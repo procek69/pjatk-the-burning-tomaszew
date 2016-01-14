@@ -116,9 +116,9 @@ body {
   }
 
   div {
-    &.skills {
+    &.skills, &.upgrades {
       display: flex;
-      flex-wrap: nowrap;
+      flex-wrap: wrap;
       align-content: space-between;
 
 

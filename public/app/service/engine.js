@@ -10,49 +10,84 @@ rocket.register.service("engine", function () {
       'skills' : [
         {
           'name' : 'Zrób studentów w balona',
-          'icon' : 'fa fa-edge fa-3x'
+          'icon' : 'fa fa-edge fa-3x',
+          'enabled' : true
         },
         {
           'name' : 'Ucz kodu',
-          'icon' : 'fa fa-edge fa-3x'
+          'icon' : 'fa fa-edge fa-3x',
+          'enabled' : true
         },
         {
           'name' : 'Czuj pot studenta',
-          'icon' : 'asd'
+          'icon' : 'asd',
+          'enabled' : false
         },
         {
           'name' : 'Zrób kolosa',
-          'icon' : 'sdg'
+          'icon' : 'sdg',
+          'enabled' : false
         },
         {
           'name' : 'Zrób egzamin',
-          'icon' : 'sgsdg'
+          'icon' : 'sgsdg',
+          'enabled' : false
         }
       ],
       'upgrades' : [
         {
-          'name' : 'Nowy surface'
+          'name' : 'Nowy surface',
+          'icon' : 'brak',
+          'enabled' : false,
+          'koszt' : 100,
+          afterBuy : function () {
+            profit += 4;
+          }
         },
         {
-          'name' : 'Napisz kolosa'
+          'name' : 'Napisz kolosa',
+          'icon' : 'brak',
+          'enabled' : false,
+          'koszt' : 100,
+          afterBuy : function () {
+            data['a']['skills'][3].enabled = true;
+          }
         },
         {
-          'name' : 'Napisz wredny egzamin'
+          'name' : 'Napisz wredny egzamin',
+          'icon' : 'brak',
+          'enabled' : false,
+          'koszt' : 100
         },
         {
-          'name' : 'update μJava'
+          'name' : 'update μJava',
+          'icon' : 'brak',
+          'enabled' : false,
+          'koszt' : 100
         },
         {
-          'name' : 'Wredne pytania teoretyczne'
+          'name' : 'Wredne pytania teoretyczne',
+          'icon' : 'brak',
+          'enabled' : false,
+          'koszt' : 100
         },
         {
-          'name' : 'Wredne zadanie na analizę'
+          'name' : 'Wredne zadanie na analizę',
+          'icon' : 'brak',
+          'enabled' : false,
+          'koszt' : 100
         },
         {
-          'name' : 'Wredne zadanie ze zmienną this'
+          'name' : 'Wredne zadanie ze zmienną this',
+          'icon' : 'brak',
+          'enabled' : false,
+          'koszt' : 100
         },
         {
-          'name' : 'Nowe buty do tupania'
+          'name' : 'Nowe buty do tupania',
+          'icon' : 'brak',
+          'enabled' : false,
+          'koszt' : 100
         }
       ]
     },
@@ -106,6 +141,19 @@ rocket.register.service("engine", function () {
           'name' : 'Otwieranie drzwi aplikacją'
         }
       ]
+    },
+    't' : {
+      'skills' : []
+      'upgrades' : [
+        {
+          'name' : 'Upgrade do Windows 8',
+          'koszt' : 1000
+        },
+        {
+          'name' : 'Upgrade do Windows 10',
+          'koszt' : 500
+        }
+      ]
     }
   };
 
@@ -124,6 +172,22 @@ rocket.register.service("engine", function () {
       div.appendChild(span);
       div.appendChild(p);
       element.appendChild(div);
+  }
+
+  function renderUpgrade (element, name, koszt) {
+    var span = document.createElement('span'),
+        p = document.createElement('p'),
+        i = document.createElement('i'),
+        div = document.createElement('div');
+
+    span.innerHTML = name;
+    div.className = 'double';
+    i.innerHTML = koszt;
+
+    p.appendChild(i);
+    div.appendChild(span);
+    div.appendChild(p);
+    element.appendChild(div);
   }
 
   return {
@@ -153,8 +217,20 @@ rocket.register.service("engine", function () {
 
         renderSkill(element, name, icon);
 
+      }
+    },
+    renderUpgrades : function (letter, element) {
+      var upgrades = data[letter]['upgrades'];
+
+      for (var i = 0, l = upgrades.length; i < l; i++) {
+
+        var name = upgrades[i]['name'];
+        var koszt = upgrades[i]['koszt'];
+
+        renderUpgrade(element, name, koszt);
 
       }
+
     }
   };
 });
