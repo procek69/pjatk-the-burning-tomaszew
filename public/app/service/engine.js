@@ -19,9 +19,9 @@ rocket.register.service("engine", function () {
           'enabled' : true
         },
         {
-          'name' : 'Czuj pot studenta',
+          'name' : 'Poczuj pot studenta',
           'icon' : 'asd',
-          'enabled' : false
+          'enabled' : true
         },
         {
           'name' : 'Zrób kolosa',
@@ -45,7 +45,7 @@ rocket.register.service("engine", function () {
           }
         },
         {
-          'name' : 'Napisz kolosa',
+          'name' : 'Stwórz kolosa',
           'icon' : 'brak',
           'enabled' : false,
           'koszt' : 100,
@@ -143,7 +143,7 @@ rocket.register.service("engine", function () {
       ]
     },
     't' : {
-      'skills' : []
+      'skills' : [],
       'upgrades' : [
         {
           'name' : 'Upgrade do Windows 8',
@@ -157,37 +157,25 @@ rocket.register.service("engine", function () {
     }
   };
 
-  function renderSkill (element, name, icon) {
+  function renderSkill (element, params) {
 
-      var span = document.createElement('span'),
-          p = document.createElement('p'),
-          i = document.createElement('i'),
-          div = document.createElement('div');
+    var div = document.createElement('div');
+    div.className = 'skill';
 
-      span.innerHTML = name;
-      div.className = 'double';
-      i.className = icon;
+    rocket.router.loadModuleIntoElement('content/tile/skill', div, params);
 
-      p.appendChild(i);
-      div.appendChild(span);
-      div.appendChild(p);
-      element.appendChild(div);
+    element.appendChild(div);
   }
 
-  function renderUpgrade (element, name, koszt) {
-    var span = document.createElement('span'),
-        p = document.createElement('p'),
-        i = document.createElement('i'),
-        div = document.createElement('div');
+  function renderUpgrade (element, params) {
 
-    span.innerHTML = name;
-    div.className = 'double';
-    i.innerHTML = koszt;
+    var div = document.createElement('div');
+    div.className = 'upgrade';
 
-    p.appendChild(i);
-    div.appendChild(span);
-    div.appendChild(p);
+    rocket.router.loadModuleIntoElement('content/tile/upgrade', div, params);
+
     element.appendChild(div);
+
   }
 
   return {
@@ -212,10 +200,7 @@ rocket.register.service("engine", function () {
 
       for (var i = 0, l = skills.length; i < l; i++) {
 
-        var name = skills[i]['name'];
-        var icon = skills[i]['icon'];
-
-        renderSkill(element, name, icon);
+        renderSkill(element, skills[i]);
 
       }
     },
@@ -224,10 +209,7 @@ rocket.register.service("engine", function () {
 
       for (var i = 0, l = upgrades.length; i < l; i++) {
 
-        var name = upgrades[i]['name'];
-        var koszt = upgrades[i]['koszt'];
-
-        renderUpgrade(element, name, koszt);
+        renderUpgrade(element, upgrades[i]);
 
       }
 

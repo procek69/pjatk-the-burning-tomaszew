@@ -80,6 +80,7 @@ body {
   background-size: cover;
   background-position: center;
   z-index: -9999;
+  overflow: auto;
 }
 #content.tomaszew {
   background-color: red;
