@@ -1,0 +1,179 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto+Slab:300&subset=latin,latin-ext);
+
+$menuSize: 69px;
+$base: rgba(0,0,0,.6);
+$support: rgba(0,0,0,.7);;
+$text: rgb(255,90,90);
+$blue: #5978A6;
+
+body {
+  font-family: 'Roboto Slab', 'serif';
+}
+
+#left {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 9999;
+  bottom: $menuSize;
+  height: $menuSize;
+  background-color: $base;
+
+  > div {
+    max-width: 700px;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    > a {
+      display: block;
+      height: $menuSize;
+      width: 25%;
+      float: left;
+      text-align: center;
+      line-height: $menuSize;
+      text-decoration: none;
+      color: $text;
+      font-size: 1.2em;
+      -webkit-transition: background 250ms ease;
+      -moz-transition: background 250ms ease;
+      -ms-transition: background 250ms ease;
+      -o-transition: background 250ms ease;
+      transition: background 250ms ease;
+      &:hover {
+        background-color: rgba(255,255,255,.1);
+      }
+      > img {
+        width: 0.9*$menuSize;
+        height: auto;
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+        -webkit-box-shadow: 0 0 2px 1px black,
+                            0 0 0px 2px #FFED4D,
+                            0 0 1px 1px #FFFF1C,
+                            -1px -1px 0 3px #444;
+        box-shadow: 0 0 2px 1px black,
+                            0 0 0px 2px #FFED4D,
+                            0 0 1px 1px #FFFF1C,
+                            -1px -1px 0 3px #444;
+
+      }
+    }
+  }
+
+}
+
+#top {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: $menuSize;
+  height: 2em;
+  background-color: $support;
+  color: rgba(255,255,255,.5);
+  z-index: 9999;
+  > div {
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    > p {
+      width: 150px;
+      float: left;
+      height: 2em;
+      line-height: 2em;
+      padding: 0;
+      margin: 0;
+    }
+  }
+
+}
+
+#content {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding-top: $menuSize + 36px;
+  background-size: cover;
+  background-position: center;
+  z-index: -9999;
+  &.tomaszew {
+    background-color: red;
+  }
+
+  &.cwiczenia {
+    background-image: url("../media/cwiczenia.JPG")
+  }
+
+  &.aula {
+    background-image: url("../media/aula.JPG")
+  }
+
+  &.s9 {
+    background-image: url("../media/s9.JPG")
+  }
+
+  div {
+    &.skills {
+      display: flex;
+      flex-wrap: nowrap;
+      align-content: space-between;
+
+
+      > div {
+        position: relative;
+        border: none;
+        text-align: center;
+        $size: 100px;
+        width: $size;
+        height: $size;
+        margin: 8px;
+        color: white;
+        cursor: pointer;
+
+        background: rgb(38,81,127);
+        background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzI2NTE3ZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMzMTYyYTUiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+        background: -moz-linear-gradient(left,  rgba(38,81,127,1) 0%, rgba(49,98,165,1) 100%);
+        background: -webkit-linear-gradient(left,  rgba(38,81,127,1) 0%,rgba(49,98,165,1) 100%);
+        background: linear-gradient(to right,  rgba(38,81,127,1) 0%,rgba(49,98,165,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#26517f', endColorstr='#3162a5',GradientType=1 );
+
+        -webkit-transition: all 300ms ease;
+        -moz-transition: all 300ms ease;
+        -ms-transition: all 300ms ease;
+        -o-transition: all 300ms ease;
+        transition: all 300ms ease;
+
+        &:hover {
+          -moz-transform: scale(1.05);
+          -webkit-transform: scale(1.05);
+          -o-transform: scale(1.05);
+          -ms-transform: scale(1.05);
+          transform: scale(1.05);
+        }
+
+
+        > p {
+          line-height: $size;
+          margin: 0;
+        }
+        > span {
+          display: block;
+          position: absolute;
+          bottom: 1em;
+          left: 0;
+          right: 0;
+          text-align: center;
+          font-size: 11px;
+        }
+
+        &.double {
+          width: 2*$size;
+        }
+      }
+    }
+  }
+
+}
