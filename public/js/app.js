@@ -33,11 +33,21 @@ rocket.register.module('content', function (element, params) {
     //rocket.router.loadModuleIntoElement(window.location.hash[2], elemen);
     load(window.location.hash[2]);
   });
+  window.location.hash = '#/aula';
 
   return {
     constructor: function () {
       load(window.location.hash[2]);
     }
+  }
+});
+
+'use strict';
+
+rocket.register.module('top', function (element, params) {
+
+  return {
+    constructor : function () {}
   }
 });
 
@@ -262,7 +272,22 @@ rocket.register.service("engine", function () {
 
 'use strict';
 
-rocket.register.module('top', function (element, params) {
+rocket.register.module("left/default", function(element, params) {
+  return {
+    constructor : function () {}
+
+  }
+});
+
+'use strict';
+
+rocket.register.module('content/aula', function(element, params) {
+
+  var skillsElement = element.querySelector(':scope > div.skills');
+  rocket.service('engine').renderSkills('a', skillsElement);
+
+  var upgradesElement = element.querySelector(':scope > div.upgrades');
+  rocket.service('engine').renderUpgrades('a', upgradesElement);
 
   return {
     constructor : function () {}
@@ -278,21 +303,6 @@ rocket.register.module('content/cwiczenia', function(element, params) {
 
   var upgradesElement = element.querySelector(':scope > div.upgrades');
   rocket.service('engine').renderUpgrades('c', upgradesElement);
-
-  return {
-    constructor : function () {}
-  }
-});
-
-'use strict';
-
-rocket.register.module('content/aula', function(element, params) {
-
-  var skillsElement = element.querySelector(':scope > div.skills');
-  rocket.service('engine').renderSkills('a', skillsElement);
-
-  var upgradesElement = element.querySelector(':scope > div.upgrades');
-  rocket.service('engine').renderUpgrades('a', upgradesElement);
 
   return {
     constructor : function () {}
@@ -331,16 +341,10 @@ rocket.register.module('content/tomaszew', function(element, params) {
 
 'use strict';
 
-rocket.register.module("left/default", function(element, params) {
-  return {
-    constructor : function () {}
-
-  }
-});
-
-'use strict';
-
 rocket.register.module('content/tile/skill', function (element, params) {
+
+  element.querySelector('span').innerHTML = params.name;
+  element.querySelector('p > i').className = params.icon;
 
   return {
     constructor : function () {}

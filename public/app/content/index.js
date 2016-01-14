@@ -33,6 +33,7 @@ rocket.register.module('content', function (element, params) {
     //rocket.router.loadModuleIntoElement(window.location.hash[2], elemen);
     load(window.location.hash[2]);
   });
+  window.location.hash = '#/aula';
 
   return {
     constructor: function () {
