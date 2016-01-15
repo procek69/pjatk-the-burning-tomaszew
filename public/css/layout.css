@@ -145,6 +145,17 @@ body {
   -ms-transform: scale(1.05);
   transform: scale(1.05);
 }
+#content div.skills > div div.hidden p, #content div.upgrades > div div.hidden p {
+  margin: 0;
+  color: #ff9900;
+  font-size: 12px;
+}
+#content div.skills > div:hover div.visible, #content div.skills > div div.hidden, #content div.upgrades > div:hover div.visible, #content div.upgrades > div div.hidden {
+  display: none;
+}
+#content div.skills > div:hover div.hidden, #content div.upgrades > div:hover div.hidden {
+  display: block;
+}
 #content div.skills > div > p, #content div.upgrades > div > p {
   line-height: 100px;
   margin: 0;

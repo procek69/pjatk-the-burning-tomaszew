@@ -177,6 +177,19 @@ body {
           transform: scale(1.05);
         }
 
+        div.hidden p {
+          margin: 0;
+          color: rgb(255, 153, 0);
+          font-size: 12px;
+        }
+
+        &:hover div.visible, div.hidden {
+          display: none;
+        }
+        &:hover div.hidden {
+          display: block;
+        }
+
 
         > p {
           line-height: $size;

@@ -710,8 +710,9 @@ rocket.register.module("left/default", function(element, params) {
 
 rocket.register.module('content/tile/skill', function (element, params) {
 
-  element.querySelector('span').innerHTML = params.name;
-  element.querySelector('p > i').className = params.icon;
+  element.querySelector('div.visible span').innerHTML = params.name;
+  element.querySelector('div.visible p > i').className = params.icon;
+  element.querySelector('div.hidden p').innerHTML = params.info;
 
   if (!params.enabled) {
     element.className += ' disabled';
@@ -735,8 +736,9 @@ rocket.register.module('content/tile/skill', function (element, params) {
 
 rocket.register.module('content/tile/upgrade', function (element, params) {
 
-  element.querySelector('span').innerHTML = params.name;
-  element.querySelector('i').innerHTML = params.koszt;
+  element.querySelector('div.visible span').innerHTML = params.name;
+  element.querySelector('div.visible i').innerHTML = params.koszt;
+  element.querySelector('div.hidden p').innerHTML = params.info;
 
   element.addEventListener('click', params.click, true);
 
