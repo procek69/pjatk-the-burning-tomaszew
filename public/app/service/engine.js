@@ -2,10 +2,23 @@
 
 rocket.register.service("engine", function () {
 
-  var money = parseInt(localStorage.getItem("money"));
-  if (money == null) money = 0;
-  var profit = 1;
-  var students = 20;
+  function parse(name, def) {
+    var value = parseInt(localStorage.getItem(name));
+    if (value === NaN || value === null) {
+      localStorage.setItem(name, def);
+      return def;
+    } else return value;
+  }
+
+  var money = parse('money', 0);
+  var profit = parse('profit', 1);
+  var students = parse('students', 20);
+
+  function updateValues() {
+    rocket.trigger('updateMoney', money);
+    rocket.trigger('updateStudents', students);
+    rocket.trigger('updateProfit', profit);
+  }
 
   var data = {
     'a' : {
@@ -13,37 +26,88 @@ rocket.register.service("engine", function () {
         {
           'name' : 'Ucz kodu',
           'icon' : 'fa fa-edge fa-2x',
-          'enabled' : true
+          'enabled' : true,
+          click : function () {
+
+            if(money < 10) return;
+
+            money -= 10;
+            students += 2;
+
+            updateValues();
+          }
         },
         {
           'name' : 'Prowadź wykład',
           'icon' : 'fa fa-edge fa-3x',
-          'enabled' : true
+          'enabled' : true,
+          click : function () {
+
+            if (money < 100) return;
+
+            money -= 100;
+            students += 25;
+
+            updateValues();
+          }
+
         },
         {
           'name' : 'Streamuj WoW\'a',
           'icon' : 'fa fa-edge fa-3x',
-          'enabled' : true
+          'enabled' : true,
+          'click' : function () {
+            students += 10;
+            updateValues();
+          }
         },
         {
           'name' : 'Wstaw wykłady',
           'icon' : 'fa fa-edge fa-3x',
-          'enabled' : true
+          'enabled' : true,
+          'click' : function () {
+            students += 100;
+            updateValues();
+          }
         },
         {
           'name' : 'Zrób studentów w balona',
           'icon' : 'fa fa-edge fa-2x',
-          'enabled' : true
+          'enabled' : true,
+          'click' : function () {
+            if (students < 100) return;
+
+            students -= 100;
+            profit += 1;
+
+            updateValues();
+          }
         },
         {
           'name' : 'Zrób kolosa',
           'icon' : 'fa fa-book fa-2x',
-          'enabled' : false
+          'enabled' : false,
+          'click' : function () {
+            if (student < 100) return;
+
+            students -= 100;
+            money += 500;
+
+            updateValues();
+          }
         },
         {
           'name' : 'Zrób egzamin',
           'icon' : 'fa fa-calendar-o fa-2x',
-          'enabled' : false
+          'enabled' : false,
+          'click' : function () {
+            if (students < 200) return;
+
+            students -= 200;
+            profit += 5;
+
+            updateValues();
+          }
         }
       ],
       'upgrades' : [
@@ -223,7 +287,7 @@ rocket.register.service("engine", function () {
   return {
     calc : function () {
       money += profit;
-      rocket.trigger("updateMoney", money);
+      updateValues();
     },
     getMoney : function () {
       return money;

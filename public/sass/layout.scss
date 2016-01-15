@@ -6,6 +6,18 @@ $support: rgba(0,0,0,.7);;
 $text: rgb(255,90,90);
 $blue: #5978A6;
 
+.disabled {
+  cursor: not-allowed !important;
+  opacity: .5;
+  &:hover {
+    -moz-transform: scale(1) !important;
+    -webkit-transform: scale(1) !important;
+    -o-transform: scale(1) !important;
+    -ms-transform: scale(1) !important;
+    transform: scale(1) !important;
+  }
+}
+
 body {
   font-family: 'Roboto Slab', 'serif';
 }

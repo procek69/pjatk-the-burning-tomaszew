@@ -1,4 +1,16 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto+Slab:300&subset=latin,latin-ext);
+.disabled {
+  cursor: not-allowed !important;
+  opacity: .5;
+}
+.disabled:hover {
+  -moz-transform: scale(1) !important;
+  -webkit-transform: scale(1) !important;
+  -o-transform: scale(1) !important;
+  -ms-transform: scale(1) !important;
+  transform: scale(1) !important;
+}
+
 body {
   font-family: 'Roboto Slab', 'serif';
 }

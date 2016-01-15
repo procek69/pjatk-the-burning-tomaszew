@@ -46,10 +46,23 @@ rocket.register.module('content', function (element, params) {
 
 rocket.register.service("engine", function () {
 
-  var money = parseInt(localStorage.getItem("money"));
-  if (money == null) money = 0;
-  var profit = 1;
-  var students = 20;
+  function parse(name, def) {
+    var value = parseInt(localStorage.getItem(name));
+    if (value === NaN || value === null) {
+      localStorage.setItem(name, def);
+      return def;
+    } else return value;
+  }
+
+  var money = parse('money', 0);
+  var profit = parse('profit', 1);
+  var students = parse('students', 20);
+
+  function updateValues() {
+    rocket.trigger('updateMoney', money);
+    rocket.trigger('updateStudents', students);
+    rocket.trigger('updateProfit', profit);
+  }
 
   var data = {
     'a' : {
@@ -57,37 +70,88 @@ rocket.register.service("engine", function () {
         {
           'name' : 'Ucz kodu',
           'icon' : 'fa fa-edge fa-2x',
-          'enabled' : true
+          'enabled' : true,
+          click : function () {
+
+            if(money < 10) return;
+
+            money -= 10;
+            students += 2;
+
+            updateValues();
+          }
         },
         {
           'name' : 'Prowadź wykład',
           'icon' : 'fa fa-edge fa-3x',
-          'enabled' : true
+          'enabled' : true,
+          click : function () {
+
+            if (money < 100) return;
+
+            money -= 100;
+            students += 25;
+
+            updateValues();
+          }
+
         },
         {
           'name' : 'Streamuj WoW\'a',
           'icon' : 'fa fa-edge fa-3x',
-          'enabled' : true
+          'enabled' : true,
+          'click' : function () {
+            students += 10;
+            updateValues();
+          }
         },
         {
           'name' : 'Wstaw wykłady',
           'icon' : 'fa fa-edge fa-3x',
-          'enabled' : true
+          'enabled' : true,
+          'click' : function () {
+            students += 100;
+            updateValues();
+          }
         },
         {
           'name' : 'Zrób studentów w balona',
           'icon' : 'fa fa-edge fa-2x',
-          'enabled' : true
+          'enabled' : true,
+          'click' : function () {
+            if (students < 100) return;
+
+            students -= 100;
+            profit += 1;
+
+            updateValues();
+          }
         },
         {
           'name' : 'Zrób kolosa',
           'icon' : 'fa fa-book fa-2x',
-          'enabled' : false
+          'enabled' : false,
+          'click' : function () {
+            if (student < 100) return;
+
+            students -= 100;
+            money += 500;
+
+            updateValues();
+          }
         },
         {
           'name' : 'Zrób egzamin',
           'icon' : 'fa fa-calendar-o fa-2x',
-          'enabled' : false
+          'enabled' : false,
+          'click' : function () {
+            if (students < 200) return;
+
+            students -= 200;
+            profit += 5;
+
+            updateValues();
+          }
         }
       ],
       'upgrades' : [
@@ -267,7 +331,7 @@ rocket.register.service("engine", function () {
   return {
     calc : function () {
       money += profit;
-      rocket.trigger("updateMoney", money);
+      updateValues();
     },
     getMoney : function () {
       return money;
@@ -311,22 +375,44 @@ setInterval(rocket.service("engine").calc, 1000);
 rocket.register.module('top', function (element, params) {
 
   var $money;
+  var $students;
+  var $profit;
 
   return {
     constructor : function () {
       var $this = this;
       $this.setup();
 
-      rocket.register.event("updateMoney", function(money) {
+      rocket.register.event('updateMoney', function(money) {
         $this.update(money);
       });
+
+      rocket.register.event('updateStudents', function (students) {
+        $this.updateStudents(students);
+      });
+
+      rocket.register.event('updateProfit', function (profit) {
+        $this.updateProfit(profit);
+      });
+
     },
     update : function(money) {
       $money.innerHTML = money;
-      localStorage.setItem("money", money);
+      localStorage.setItem('money', money);
+    },
+    updateStudents : function (students) {
+      $students.innerHTML = students;
+      localStorage.setItem('students', students);
+    },
+    updateProfit : function (profit) {
+      $profit.innerHTML = ['+', profit, '/s'].join('');
+      localStorage.setItem('proft', profit);
+
     },
     setup : function () {
-      $money = element.querySelector('p:nth-child(2) > span');
+      $students = element.querySelector('p:nth-child(1) > span');
+      $money    = element.querySelector('p:nth-child(2) > span');
+      $profit   = element.querySelector('p:nth-child(2) > i');
     }
   }
 });
@@ -406,6 +492,12 @@ rocket.register.module('content/tile/skill', function (element, params) {
 
   element.querySelector('span').innerHTML = params.name;
   element.querySelector('p > i').className = params.icon;
+
+  if (!params.enabled) {
+    element.className += ' disabled';
+  }
+
+  element.addEventListener('click', params.click, true);
 
   return {
     constructor : function () {}
