@@ -102,7 +102,7 @@ rocket.register.service("engine", function () {
         },
         {
           'name' : 'Prowadź wykład',
-          'icon' : 'fa fa-edge fa-3x',
+          'icon' : 'fa fa-edge fa-2x',
           'enabled' : true,
           'info' : '-100 kodu<br />+25 studentów',
           click : function () {
@@ -118,7 +118,7 @@ rocket.register.service("engine", function () {
         },
         {
           'name' : 'Streamuj WoW\'a',
-          'icon' : 'fa fa-edge fa-3x',
+          'icon' : 'fa fa-edge fa-2x',
           'enabled' : true,
           'info' : '+25 studentów',
           'click' : function () {
@@ -128,7 +128,7 @@ rocket.register.service("engine", function () {
         },
         {
           'name' : 'Wstaw wykłady',
-          'icon' : 'fa fa-edge fa-3x',
+          'icon' : 'fa fa-edge fa-2x',
           'enabled' : true,
           'info' : '+100 studentów',
           'click' : function () {

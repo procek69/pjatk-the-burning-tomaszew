@@ -144,7 +144,7 @@ rocket.register.service("engine", function () {
         },
         {
           'name' : 'Prowadź wykład',
-          'icon' : 'fa fa-edge fa-3x',
+          'icon' : 'fa fa-edge fa-2x',
           'enabled' : true,
           'info' : '-100 kodu<br />+25 studentów',
           click : function () {
@@ -160,7 +160,7 @@ rocket.register.service("engine", function () {
         },
         {
           'name' : 'Streamuj WoW\'a',
-          'icon' : 'fa fa-edge fa-3x',
+          'icon' : 'fa fa-edge fa-2x',
           'enabled' : true,
           'info' : '+25 studentów',
           'click' : function () {
@@ -170,7 +170,7 @@ rocket.register.service("engine", function () {
         },
         {
           'name' : 'Wstaw wykłady',
-          'icon' : 'fa fa-edge fa-3x',
+          'icon' : 'fa fa-edge fa-2x',
           'enabled' : true,
           'info' : '+100 studentów',
           'click' : function () {
@@ -753,9 +753,45 @@ rocket.register.module('content/tomaszew', function(element, params) {
 'use strict';
 
 rocket.register.module("left/default", function(element, params) {
+
+  var $start = element.querySelector('div.start');
+  var flag = false;
+
+  function show (e) {;
+    flag = !flag;
+
+    if (flag)
+      $start.className += ' touch';
+    else
+      $start.className = 'start';
+  }
+
+  function hide(e) {
+    console.log($start.className);
+    $start.className = 'start';
+    console.log($start.className);
+  }
+
+  $start.addEventListener('click', show, false);
+
   return {
     constructor : function () {}
 
+  }
+});
+
+'use strict';
+
+rocket.register.module('content/tile/upgrade', function (element, params) {
+
+  element.querySelector('div.visible span').innerHTML = params.name;
+  element.querySelector('div.visible i').innerHTML = [params.koszt, 'kodu'].join(' ');
+  element.querySelector('div.hidden p').innerHTML = params.info;
+
+  element.addEventListener('click', params.click, true);
+
+  return {
+    constructor : function () {}
   }
 });
 
@@ -783,19 +819,4 @@ rocket.register.module('content/tile/skill', function (element, params) {
     }
   }
 
-});
-
-'use strict';
-
-rocket.register.module('content/tile/upgrade', function (element, params) {
-
-  element.querySelector('div.visible span').innerHTML = params.name;
-  element.querySelector('div.visible i').innerHTML = params.koszt;
-  element.querySelector('div.hidden p').innerHTML = params.info;
-
-  element.addEventListener('click', params.click, true);
-
-  return {
-    constructor : function () {}
-  }
 });

@@ -18,17 +18,21 @@ $blue: #5978A6;
   }
 }
 
+html, body {
+  height: 100%;
+}
+
 body {
   font-family: 'Roboto Slab', 'serif';
+  margin: 0;
 }
 
 #left {
   position: fixed;
   left: 0;
   right: 0;
-  top: 0;
+  bottom: 0;
   z-index: 9999;
-  bottom: $menuSize;
   height: $menuSize;
   background-color: $base;
 
@@ -80,7 +84,7 @@ body {
   position: fixed;
   left: 0;
   right: 0;
-  top: $menuSize;
+  bottom: $menuSize;
   height: 2em;
   background-color: $support;
   color: rgba(255,255,255,.5);
@@ -105,16 +109,11 @@ body {
 }
 
 #content {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding-top: $menuSize + 36px;
   background-size: cover;
   background-position: center;
   z-index: -9999;
   overflow: auto;
+  height: 100%;
 
   &.tomaszew {
     background-image: url("../media/t.jpg");
@@ -213,3 +212,5 @@ body {
   }
 
 }
+
+@import "95"

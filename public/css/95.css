@@ -1,0 +1,93 @@
+@import url(https://fonts.googleapis.com/css?family=VT323);
+body.win95 {
+  font-family: 'VT323' !important;
+}
+
+#content {
+  background: #008484;
+}
+#content.tomaszew {
+  background: #008484;
+}
+#content.cwiczenia {
+  background: #008484;
+}
+#content.aula {
+  background: #008484;
+}
+#content.s9 {
+  background: #008484;
+}
+#content .skill, #content .upgrade {
+  background: none !important;
+}
+#content .skill.double, #content .upgrade.double {
+  width: inherit;
+}
+#content .skill span, #content .upgrade span {
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 2px;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#left {
+  background-color: #d4d0c7;
+  height: 50px;
+}
+#left div.timer {
+  float: right;
+  text-align: center;
+  line-height: 42px;
+  width: 81.25px;
+  height: 42px;
+  margin: 4px;
+  background-color: rgba(150, 150, 150, 0.1);
+  -webkit-box-shadow: inset 2px 2px 0 0 rgba(0, 0, 0, 0.2);
+  box-shadow: inset 2px 2px 0 0 rgba(0, 0, 0, 0.2);
+}
+#left div.start {
+  background-color: #d4d0c7;
+  float: left;
+  margin: 4px;
+  padding: 0;
+  width: 81.25px;
+  height: 42px;
+  line-height: 42px;
+  text-align: center;
+  cursor: pointer;
+  -webkit-box-shadow: 1px 1px 0 1px #000, -1px -1px 0 1px #fff;
+  box-shadow: 1px 1px 0 1px #000, -1px -1px 0 1px #fff;
+}
+#left div.start:active {
+  background-color: #beb4b4;
+}
+#left div.start.touch > div.menu {
+  display: block;
+}
+#left div.menu {
+  display: none;
+  position: relative;
+  bottom: 370px;
+  left: -13px;
+  width: 132.03125px;
+}
+#left div.menu:hover {
+  display: block;
+}
+#left div.menu > a {
+  background: #d4d0c7;
+  color: rgba(0, 0, 0, 0.8);
+  display: block;
+  width: 132.03125px;
+  height: 81.25px;
+  float: left;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+#left div.menu > a > i {
+  margin-left: 4px;
+}
