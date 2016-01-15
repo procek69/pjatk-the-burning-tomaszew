@@ -56,22 +56,22 @@ rocket.register.service("engine", function () {
       'skills' : [
         {
           'name' : 'Ucz kodu',
-          'icon' : 'fa fa-edge fa-2x',
+          'icon' : 'fa fa fa-code fa-2x',
           'enabled' : true
         },
         {
           'name' : 'Prowadź wykład',
-          'icon' : 'fa fa-edge fa-3x',
+          'icon' : 'fa fa-microphone fa-2x',
           'enabled' : true
         },
         {
           'name' : 'Streamuj WoW\'a',
-          'icon' : 'fa fa-edge fa-3x',
+          'icon' : 'fa fa-twitch fa-2x',
           'enabled' : true
         },
         {
           'name' : 'Wstaw wykłady',
-          'icon' : 'fa fa-edge fa-3x',
+          'icon' : 'fa fa-share-square-o fa-2x',
           'enabled' : true
         },
         {
@@ -160,7 +160,7 @@ rocket.register.service("engine", function () {
         },
         {
           'name' : 'Zadaj projekt',
-          'icon' : 'brak',
+          'icon' : 'fa fa-folder-o fa-2x',
           'enabled' : true
         },
         {
