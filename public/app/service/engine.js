@@ -11,6 +11,7 @@ rocket.register.service("engine", function () {
     'a' : {
       'skills' : [
         {
+<<<<<<< HEAD
           'name' : 'Ucz kodu',
           'icon' : 'fa fa fa-code fa-2x',
           'enabled' : true
@@ -44,10 +45,31 @@ rocket.register.service("engine", function () {
           'name' : 'Zrób egzamin',
           'icon' : 'fa fa-calendar-o fa-2x',
           'enabled' : false
+=======
+          'name' : 'Zrób studentów w balona',
+          'icon' : 'fa fa-edge fa-3x'
+        },
+        {
+          'name' : 'Ucz kodu',
+          'icon' : 'fa fa-edge fa-3x'
+        },
+        {
+          'name' : 'Czuj pot studenta',
+          'icon' : 'asd'
+        },
+        {
+          'name' : 'Zrób kolosa',
+          'icon' : 'sdg'
+        },
+        {
+          'name' : 'Zrób egzamin',
+          'icon' : 'sgsdg'
+>>>>>>> parent of 1bb15ff... Merge remote-tracking branch 'procek69/master'
         }
       ],
       'upgrades' : [
         {
+<<<<<<< HEAD
           'name' : 'Kup megafon',
           'koszt' : 200
         },
@@ -59,36 +81,37 @@ rocket.register.service("engine", function () {
           afterBuy : function () {
             data['a']['skills'][3].enabled = true;
           }
+=======
+          'name' : 'Nowy surface'
         },
         {
-          'name' : 'Napisz wredny egzamin',
-          'icon' : 'brak',
-          'enabled' : false,
-          'koszt' : 100
+          'name' : 'Napisz kolosa'
+>>>>>>> parent of 1bb15ff... Merge remote-tracking branch 'procek69/master'
         },
         {
+          'name' : 'Napisz wredny egzamin'
+        },
+        {
+<<<<<<< HEAD
           'name' : 'Wredne pytania teoretyczne',
           'icon' : 'brak',
           'enabled' : false,
           'koszt' : 100
+=======
+          'name' : 'update μJava'
         },
         {
-          'name' : 'Wredne zadanie na analizę',
-          'icon' : 'brak',
-          'enabled' : false,
-          'koszt' : 100
+          'name' : 'Wredne pytania teoretyczne'
+>>>>>>> parent of 1bb15ff... Merge remote-tracking branch 'procek69/master'
         },
         {
-          'name' : 'Wredne zadanie ze zmienną this',
-          'icon' : 'brak',
-          'enabled' : false,
-          'koszt' : 100
+          'name' : 'Wredne zadanie na analizę'
         },
         {
-          'name' : 'Nowe buty do tupania',
-          'icon' : 'brak',
-          'enabled' : false,
-          'koszt' : 100
+          'name' : 'Wredne zadanie ze zmienną this'
+        },
+        {
+          'name' : 'Nowe buty do tupania'
         }
       ]
     },
@@ -167,6 +190,7 @@ rocket.register.service("engine", function () {
           'koszt' : 1000
         }
       ]
+<<<<<<< HEAD
     },
     't' : {
       'skills' : [],
@@ -196,6 +220,8 @@ rocket.register.service("engine", function () {
           'koszt' : 1000
         }
       ]
+=======
+>>>>>>> parent of 1bb15ff... Merge remote-tracking branch 'procek69/master'
     }
   };
 
@@ -209,6 +235,7 @@ rocket.register.service("engine", function () {
     element.appendChild(div);
   }
 
+<<<<<<< HEAD
   function renderUpgrade (element, params) {
 
     var div = document.createElement('div');
@@ -220,6 +247,8 @@ rocket.register.service("engine", function () {
 
   }
 
+=======
+>>>>>>> parent of 1bb15ff... Merge remote-tracking branch 'procek69/master'
   return {
     calc : function () {
       money += profit;
@@ -245,6 +274,7 @@ rocket.register.service("engine", function () {
 
         renderSkill(element, skills[i]);
 
+<<<<<<< HEAD
       }
     },
     renderUpgrades : function (letter, element) {
@@ -253,9 +283,10 @@ rocket.register.service("engine", function () {
       for (var i = 0, l = upgrades.length; i < l; i++) {
 
         renderUpgrade(element, upgrades[i]);
+=======
+>>>>>>> parent of 1bb15ff... Merge remote-tracking branch 'procek69/master'
 
       }
-
     }
   };
 });
