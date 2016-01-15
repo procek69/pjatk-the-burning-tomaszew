@@ -97,12 +97,12 @@ body {
 #content.s9 {
   background-image: url("../media/s9.JPG");
 }
-#content div.skills, #content div.upgrades {
+#content div.skills {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-content: space-between;
 }
-#content div.skills > div, #content div.upgrades > div {
+#content div.skills > div {
   position: relative;
   border: none;
   text-align: center;
@@ -123,18 +123,18 @@ body {
   -o-transition: all 300ms ease;
   transition: all 300ms ease;
 }
-#content div.skills > div:hover, #content div.upgrades > div:hover {
+#content div.skills > div:hover {
   -moz-transform: scale(1.05);
   -webkit-transform: scale(1.05);
   -o-transform: scale(1.05);
   -ms-transform: scale(1.05);
   transform: scale(1.05);
 }
-#content div.skills > div > p, #content div.upgrades > div > p {
+#content div.skills > div > p {
   line-height: 100px;
   margin: 0;
 }
-#content div.skills > div > span, #content div.upgrades > div > span {
+#content div.skills > div > span {
   display: block;
   position: absolute;
   bottom: 1em;
@@ -143,6 +143,6 @@ body {
   text-align: center;
   font-size: 11px;
 }
-#content div.skills > div.double, #content div.upgrades > div.double {
+#content div.skills > div.double {
   width: 200px;
 }
