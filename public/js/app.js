@@ -271,13 +271,13 @@ rocket.register.module('top', function (element, params) {
 
 'use strict';
 
-rocket.register.module('content/cwiczenia', function(element, params) {
+rocket.register.module('content/aula', function(element, params) {
 
   var skillsElement = element.querySelector(':scope > div.skills');
-  rocket.service('engine').renderSkills('c', skillsElement);
+  rocket.service('engine').renderSkills('a', skillsElement);
 
   var upgradesElement = element.querySelector(':scope > div.upgrades');
-  rocket.service('engine').renderUpgrades('c', upgradesElement);
+  rocket.service('engine').renderUpgrades('a', upgradesElement);
 
   return {
     constructor : function () {}
@@ -286,13 +286,13 @@ rocket.register.module('content/cwiczenia', function(element, params) {
 
 'use strict';
 
-rocket.register.module('content/aula', function(element, params) {
+rocket.register.module('content/cwiczenia', function(element, params) {
 
   var skillsElement = element.querySelector(':scope > div.skills');
-  rocket.service('engine').renderSkills('a', skillsElement);
+  rocket.service('engine').renderSkills('c', skillsElement);
 
   var upgradesElement = element.querySelector(':scope > div.upgrades');
-  rocket.service('engine').renderUpgrades('a', upgradesElement);
+  rocket.service('engine').renderUpgrades('c', upgradesElement);
 
   return {
     constructor : function () {}
@@ -341,6 +341,9 @@ rocket.register.module("left/default", function(element, params) {
 'use strict';
 
 rocket.register.module('content/tile/skill', function (element, params) {
+
+  element.querySelector('span').innerHTML = params.name;
+  element.querySelector('p > i').className = params.icon;
 
   return {
     constructor : function () {}
