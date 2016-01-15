@@ -33,7 +33,7 @@ rocket.register.module('top', function (element, params) {
       localStorage.setItem('students', students);
     },
     updateProfit : function (profit) {
-      $profit.innerHTML = ['+', profit, '/s'].join('');
+      $profit.innerHTML = ['(+', profit, '/s)'].join('');
       localStorage.setItem('proft', profit);
 
     },

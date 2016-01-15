@@ -12,7 +12,13 @@ rocket.register.module('content/tile/skill', function (element, params) {
   element.addEventListener('click', params.click, true);
 
   return {
-    constructor : function () {}
+    constructor : function () {
+      rocket.register.event('updateSkills', function(upgrade) {
+        if (params.name === upgrade.name) {
+          element.className = 'double';
+        }
+      });
+    }
   }
 
 });

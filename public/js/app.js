@@ -27,8 +27,6 @@ rocket.register.module('content', function (element, params) {
     rocket.router.loadModuleIntoElement(['content', toLoad].join('/'), loadHere, {});
   }
 
-
-
   window.addEventListener("hashchange", function (e) {
     //rocket.router.loadModuleIntoElement(window.location.hash[2], elemen);
     load(window.location.hash[2]);
@@ -46,6 +44,16 @@ rocket.register.module('content', function (element, params) {
 
 rocket.register.service("engine", function () {
 
+  function updateValues() {
+    rocket.trigger('updateMoney', money);
+    rocket.trigger('updateStudents', students);
+    rocket.trigger('updateProfit', profit);
+  }
+
+  function updateSkills(params) {
+    rocket.trigger('updateSkills', params);
+  }
+
   function parse(name, def) {
     var value = parseInt(localStorage.getItem(name));
     if (value === NaN || value === null) {
@@ -58,10 +66,48 @@ rocket.register.service("engine", function () {
   var profit = parse('profit', 1);
   var students = parse('students', 20);
 
-  function updateValues() {
-    rocket.trigger('updateMoney', money);
-    rocket.trigger('updateStudents', students);
-    rocket.trigger('updateProfit', profit);
+  function tryUpgrade(e) {
+    var $parent = e.srcElement.parentNode;
+
+    if ($parent.className == 'upgrade green')
+      return false;
+
+    $parent.className += ' green';
+
+    var $i = $parent.querySelector('i');
+    $i.innerHTML = '';
+    $i.className = 'fa fa-check';
+
+    return true;
+  }
+
+  function upgrade(e, values) {
+
+    if (!tryUpgrade(e)) return;
+
+    var cost = values['money'];
+    var student = values['students'];
+    var prof = values['profit']
+
+    if (cost != undefined && money >= cost) {
+      money -= cost;
+    }
+
+    if (student != undefined && students >= student) {
+      students -= student;
+    }
+
+    if (prof != undefined) {
+      profit += prof;
+    }
+
+
+    updateValues();
+    updateSkills({
+      'name' : values['name'],
+    });
+
+
   }
 
   var data = {
@@ -156,23 +202,34 @@ rocket.register.service("engine", function () {
       ],
       'upgrades' : [
         {
-          'name' : 'Kup megafon',
-          'koszt' : 200
-        },
-        {
           'name' : 'Stwórz kolosa',
           'icon' : 'brak',
           'enabled' : false,
           'koszt' : 100,
-          afterBuy : function () {
-            data['a']['skills'][3].enabled = true;
+          'click' : function (e) {
+
+            upgrade(e, {
+              'name' : 'Zrób kolosa',
+              'money' : 100
+            });
+
           }
         },
         {
           'name' : 'Napisz wredny egzamin',
           'icon' : 'brak',
           'enabled' : false,
-          'koszt' : 100
+          'koszt' : 100,
+          'click' : function (e) {
+            if (!tryUpgrade(e)) return;
+
+            money -= 100;
+
+            updateValues();
+            updateSkills({
+              'name' : 'Zrób egzamin',
+            });
+          }
         },
         {
           'name' : 'Wredne pytania teoretyczne',
@@ -279,6 +336,13 @@ rocket.register.service("engine", function () {
     't' : {
       'skills' : [],
       'upgrades' : [
+        {
+          'name' : 'Kup megafon',
+          'koszt' : 200,
+          'click' : function (e) {
+            //todo
+          }
+        },
         {
           'name' : 'update μJava',
           'koszt' : 1000
@@ -405,7 +469,7 @@ rocket.register.module('top', function (element, params) {
       localStorage.setItem('students', students);
     },
     updateProfit : function (profit) {
-      $profit.innerHTML = ['+', profit, '/s'].join('');
+      $profit.innerHTML = ['(+', profit, '/s)'].join('');
       localStorage.setItem('proft', profit);
 
     },
@@ -500,7 +564,13 @@ rocket.register.module('content/tile/skill', function (element, params) {
   element.addEventListener('click', params.click, true);
 
   return {
-    constructor : function () {}
+    constructor : function () {
+      rocket.register.event('updateSkills', function(upgrade) {
+        if (params.name === upgrade.name) {
+          element.className = 'double';
+        }
+      });
+    }
   }
 
 });
@@ -511,6 +581,8 @@ rocket.register.module('content/tile/upgrade', function (element, params) {
 
   element.querySelector('span').innerHTML = params.name;
   element.querySelector('i').innerHTML = params.koszt;
+
+  element.addEventListener('click', params.click, true);
 
   return {
     constructor : function () {}

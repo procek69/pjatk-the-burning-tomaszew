@@ -3,7 +3,7 @@
 $menuSize: 69px;
 $base: rgba(0,0,0,.6);
 $support: rgba(0,0,0,.7);;
-$text: rgb(255,90,90);
+$text: rgba(255,255,255,.6);
 $blue: #5978A6;
 
 .disabled {
@@ -139,6 +139,8 @@ body {
       align-content: space-between;
 
 
+
+
       > div {
         position: relative;
         border: none;
@@ -156,6 +158,10 @@ body {
         background: -webkit-linear-gradient(left,  rgba(38,81,127,1) 0%,rgba(49,98,165,1) 100%);
         background: linear-gradient(to right,  rgba(38,81,127,1) 0%,rgba(49,98,165,1) 100%);
         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#26517f', endColorstr='#3162a5',GradientType=1 );
+
+        &.green {
+          background: green !important;
+        }
 
         -webkit-transition: all 300ms ease;
         -moz-transition: all 300ms ease;

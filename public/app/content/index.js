@@ -27,8 +27,6 @@ rocket.register.module('content', function (element, params) {
     rocket.router.loadModuleIntoElement(['content', toLoad].join('/'), loadHere, {});
   }
 
-
-
   window.addEventListener("hashchange", function (e) {
     //rocket.router.loadModuleIntoElement(window.location.hash[2], elemen);
     load(window.location.hash[2]);
