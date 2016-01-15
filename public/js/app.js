@@ -44,15 +44,6 @@ rocket.register.module('content', function (element, params) {
 
 'use strict';
 
-rocket.register.module('top', function (element, params) {
-
-  return {
-    constructor : function () {}
-  }
-});
-
-'use strict';
-
 rocket.register.service("engine", function () {
 
   var money = 0;
@@ -234,6 +225,7 @@ rocket.register.service("engine", function () {
   return {
     calc : function () {
       money += profit;
+      rocket.trigger("updateMoney", money);
     },
     getMoney : function () {
       return money;
@@ -270,12 +262,29 @@ rocket.register.service("engine", function () {
   };
 });
 
+setInterval(rocket.service("engine").calc, 1000);
+
 'use strict';
 
-rocket.register.module("left/default", function(element, params) {
-  return {
-    constructor : function () {}
+rocket.register.module('top', function (element, params) {
 
+  var $money;
+
+  return {
+    constructor : function () {
+      var $this = this;
+      $this.setup();
+
+      rocket.register.event("updateMoney", function(money) {
+        $this.update(money);
+      });
+    },
+    update : function(money) {
+      $money.innerHTML = money;
+    },
+    setup : function () {
+      $money = element.querySelector('p:nth-child(2) > span');
+    }
   }
 });
 
@@ -336,6 +345,15 @@ rocket.register.module('content/tomaszew', function(element, params) {
 
   return {
     constructor : function (){}
+  }
+});
+
+'use strict';
+
+rocket.register.module("left/default", function(element, params) {
+  return {
+    constructor : function () {}
+
   }
 });
 

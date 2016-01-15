@@ -181,6 +181,7 @@ rocket.register.service("engine", function () {
   return {
     calc : function () {
       money += profit;
+      rocket.trigger("updateMoney", money);
     },
     getMoney : function () {
       return money;
@@ -216,3 +217,5 @@ rocket.register.service("engine", function () {
     }
   };
 });
+
+setInterval(rocket.service("engine").calc, 1000);
