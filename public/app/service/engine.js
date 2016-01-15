@@ -2,7 +2,8 @@
 
 rocket.register.service("engine", function () {
 
-  var money = 0;
+  var money = parseInt(localStorage.getItem("money"));
+  if (money == null) money = 0;
   var profit = 1;
   var students = 20;
 

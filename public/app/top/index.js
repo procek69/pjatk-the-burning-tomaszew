@@ -15,6 +15,7 @@ rocket.register.module('top', function (element, params) {
     },
     update : function(money) {
       $money.innerHTML = money;
+      localStorage.setItem("money", money);
     },
     setup : function () {
       $money = element.querySelector('p:nth-child(2) > span');

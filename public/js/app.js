@@ -46,7 +46,8 @@ rocket.register.module('content', function (element, params) {
 
 rocket.register.service("engine", function () {
 
-  var money = 0;
+  var money = parseInt(localStorage.getItem("money"));
+  if (money == null) money = 0;
   var profit = 1;
   var students = 20;
 
@@ -322,6 +323,7 @@ rocket.register.module('top', function (element, params) {
     },
     update : function(money) {
       $money.innerHTML = money;
+      localStorage.setItem("money", money);
     },
     setup : function () {
       $money = element.querySelector('p:nth-child(2) > span');
