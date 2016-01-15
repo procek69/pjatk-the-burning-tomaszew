@@ -201,7 +201,7 @@ rocket.register.service("engine", function () {
   function renderSkill (element, params) {
 
     var div = document.createElement('div');
-    div.className = 'skill';
+    div.className = 'skill double';
 
     rocket.router.loadModuleIntoElement('content/tile/skill', div, params);
 

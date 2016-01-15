@@ -245,7 +245,7 @@ rocket.register.service("engine", function () {
   function renderSkill (element, params) {
 
     var div = document.createElement('div');
-    div.className = 'skill';
+    div.className = 'skill double';
 
     rocket.router.loadModuleIntoElement('content/tile/skill', div, params);
 
@@ -400,18 +400,6 @@ rocket.register.module("left/default", function(element, params) {
 
 'use strict';
 
-rocket.register.module('content/tile/upgrade', function (element, params) {
-
-  element.querySelector('span').innerHTML = params.name;
-  element.querySelector('i').innerHTML = params.koszt;
-
-  return {
-    constructor : function () {}
-  }
-});
-
-'use strict';
-
 rocket.register.module('content/tile/skill', function (element, params) {
 
   element.querySelector('span').innerHTML = params.name;
@@ -421,4 +409,16 @@ rocket.register.module('content/tile/skill', function (element, params) {
     constructor : function () {}
   }
 
+});
+
+'use strict';
+
+rocket.register.module('content/tile/upgrade', function (element, params) {
+
+  element.querySelector('span').innerHTML = params.name;
+  element.querySelector('i').innerHTML = params.koszt;
+
+  return {
+    constructor : function () {}
+  }
 });
