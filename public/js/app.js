@@ -1,48 +1,5 @@
 'use strict';
 
-rocket.register.module('content', function (element, params) {
-
-
-  var loadHere = element.querySelector(':scope > div');
-
-
-  function load (letter) {
-    var toLoad;
-    switch (letter) {
-      case 't':
-        toLoad = 'tomaszew';
-        break;
-      case 'a':
-        toLoad = 'aula';
-        break;
-      case 'c':
-        toLoad = 'cwiczenia';
-        break;
-      case 's':
-        toLoad = 's9';
-        break;
-    }
-
-    element.className = toLoad;
-    rocket.router.loadModuleIntoElement(['content', toLoad].join('/'), loadHere, {});
-  }
-
-
-
-  window.addEventListener("hashchange", function (e) {
-    //rocket.router.loadModuleIntoElement(window.location.hash[2], elemen);
-    load(window.location.hash[2]);
-  });
-
-  return {
-    constructor: function () {
-      load(window.location.hash[2]);
-    }
-  }
-});
-
-'use strict';
-
 rocket.register.service("engine", function () {
 
   var money = 0;
@@ -53,27 +10,27 @@ rocket.register.service("engine", function () {
       'skills' : [
         {
           'name' : 'Zrób studentów w balona',
-          'icon' : 'fa fa-edge fa-3x',
+          'icon' : 'fa fa-edge fa-2x',
           'enabled' : true
         },
         {
           'name' : 'Ucz kodu',
-          'icon' : 'fa fa-edge fa-3x',
+          'icon' : 'fa fa-edge fa-2x',
           'enabled' : true
         },
         {
           'name' : 'Poczuj pot studenta',
-          'icon' : 'asd',
+          'icon' : 'fa fa-male fa-2x',
           'enabled' : true
         },
         {
           'name' : 'Zrób kolosa',
-          'icon' : 'sdg',
+          'icon' : 'fa fa-book fa-2x',
           'enabled' : false
         },
         {
           'name' : 'Zrób egzamin',
-          'icon' : 'sgsdg',
+          'icon' : 'fa fa-calendar-o fa-2x',
           'enabled' : false
         }
       ],
@@ -137,16 +94,20 @@ rocket.register.service("engine", function () {
     'c' : {
       'skills' : [
         {
-          'name' : 'ŹLE!'
+          'name' : 'ŹLE!',
+		  'icon' : 'fa fa-frown-o fa-2x'
         },
         {
-          'name' : 'Wredne pytanie'
+          'name' : 'Wredne pytanie',
+		  'icon' : 'fa fa-question fa-2x'
         },
         {
-          'name' : 'Daj wymagające zadania'
+          'name' : 'Daj wymagające zadania',
+		  'icon' : 'fa fa-cubes fa-2x'
         },
         {
-          'name' : 'Opowiadaj historię swojego życia'
+          'name' : 'Opowiadaj historię swojego życia',
+		  'icon' : 'fa fa-commenting-o fa-2x'
         }
       ],
       'upgrades' : [
@@ -164,13 +125,16 @@ rocket.register.service("engine", function () {
     's' : {
       'skills' : [
         {
-          'name' : 'Załóż team na imaginecupa'
+          'name' : 'Załóż team na imaginecupa',
+		  'icon' : 'fa fa-users fa-2x'
         },
         {
-          'name' : 'Nakłoń Procka do kodu'
+          'name' : 'Nakłoń Procka do kodu',
+		  'icon' : 'fa fa-terminal fa-2x'
         },
         {
-          'name' : 'Masteruj skille adeptów'
+          'name' : 'Masteruj skille adeptów',
+		  'icon' : 'fa fa-spinner fa-2x'
         }
       ],
       'upgrades' : [
@@ -262,7 +226,74 @@ rocket.register.service("engine", function () {
 
 'use strict';
 
+rocket.register.module('content', function (element, params) {
+
+
+  var loadHere = element.querySelector(':scope > div');
+
+
+  function load (letter) {
+    var toLoad;
+    switch (letter) {
+      case 't':
+        toLoad = 'tomaszew';
+        break;
+      case 'a':
+        toLoad = 'aula';
+        break;
+      case 'c':
+        toLoad = 'cwiczenia';
+        break;
+      case 's':
+        toLoad = 's9';
+        break;
+    }
+
+    element.className = toLoad;
+    rocket.router.loadModuleIntoElement(['content', toLoad].join('/'), loadHere, {});
+  }
+
+
+
+  window.addEventListener("hashchange", function (e) {
+    //rocket.router.loadModuleIntoElement(window.location.hash[2], elemen);
+    load(window.location.hash[2]);
+  });
+
+  return {
+    constructor: function () {
+      load(window.location.hash[2]);
+    }
+  }
+});
+
+'use strict';
+
 rocket.register.module('top', function (element, params) {
+
+  return {
+    constructor : function () {}
+  }
+});
+
+'use strict';
+
+rocket.register.module("left/default", function(element, params) {
+  return {
+    constructor : function () {}
+
+  }
+});
+
+'use strict';
+
+rocket.register.module('content/aula', function(element, params) {
+
+  var skillsElement = element.querySelector(':scope > div.skills');
+  rocket.service('engine').renderSkills('a', skillsElement);
+
+  var upgradesElement = element.querySelector(':scope > div.upgrades');
+  rocket.service('engine').renderUpgrades('a', upgradesElement);
 
   return {
     constructor : function () {}
@@ -278,21 +309,6 @@ rocket.register.module('content/cwiczenia', function(element, params) {
 
   var upgradesElement = element.querySelector(':scope > div.upgrades');
   rocket.service('engine').renderUpgrades('c', upgradesElement);
-
-  return {
-    constructor : function () {}
-  }
-});
-
-'use strict';
-
-rocket.register.module('content/aula', function(element, params) {
-
-  var skillsElement = element.querySelector(':scope > div.skills');
-  rocket.service('engine').renderSkills('a', skillsElement);
-
-  var upgradesElement = element.querySelector(':scope > div.upgrades');
-  rocket.service('engine').renderUpgrades('a', upgradesElement);
 
   return {
     constructor : function () {}
@@ -331,16 +347,10 @@ rocket.register.module('content/tomaszew', function(element, params) {
 
 'use strict';
 
-rocket.register.module("left/default", function(element, params) {
-  return {
-    constructor : function () {}
-
-  }
-});
-
-'use strict';
-
 rocket.register.module('content/tile/skill', function (element, params) {
+
+  element.querySelector('span').innerHTML = params.name;
+  element.querySelector('p > i').className = params.icon;
 
   return {
     constructor : function () {}

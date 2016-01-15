@@ -10,27 +10,27 @@ rocket.register.service("engine", function () {
       'skills' : [
         {
           'name' : 'Zrób studentów w balona',
-          'icon' : 'fa fa-edge fa-3x',
+          'icon' : 'fa fa-edge fa-2x',
           'enabled' : true
         },
         {
           'name' : 'Ucz kodu',
-          'icon' : 'fa fa-edge fa-3x',
+          'icon' : 'fa fa-edge fa-2x',
           'enabled' : true
         },
         {
           'name' : 'Poczuj pot studenta',
-          'icon' : 'asd',
+          'icon' : 'fa fa-male fa-2x',
           'enabled' : true
         },
         {
           'name' : 'Zrób kolosa',
-          'icon' : 'sdg',
+          'icon' : 'fa fa-book fa-2x',
           'enabled' : false
         },
         {
           'name' : 'Zrób egzamin',
-          'icon' : 'sgsdg',
+          'icon' : 'fa fa-calendar-o fa-2x',
           'enabled' : false
         }
       ],
@@ -94,16 +94,20 @@ rocket.register.service("engine", function () {
     'c' : {
       'skills' : [
         {
-          'name' : 'ŹLE!'
+          'name' : 'ŹLE!',
+		  'icon' : 'fa fa-frown-o fa-2x'
         },
         {
-          'name' : 'Wredne pytanie'
+          'name' : 'Wredne pytanie',
+		  'icon' : 'fa fa-question fa-2x'
         },
         {
-          'name' : 'Daj wymagające zadania'
+          'name' : 'Daj wymagające zadania',
+		  'icon' : 'fa fa-cubes fa-2x'
         },
         {
-          'name' : 'Opowiadaj historię swojego życia'
+          'name' : 'Opowiadaj historię swojego życia',
+		  'icon' : 'fa fa-commenting-o fa-2x'
         }
       ],
       'upgrades' : [
@@ -121,13 +125,16 @@ rocket.register.service("engine", function () {
     's' : {
       'skills' : [
         {
-          'name' : 'Załóż team na imaginecupa'
+          'name' : 'Załóż team na imaginecupa',
+		  'icon' : 'fa fa-users fa-2x'
         },
         {
-          'name' : 'Nakłoń Procka do kodu'
+          'name' : 'Nakłoń Procka do kodu',
+		  'icon' : 'fa fa-terminal fa-2x'
         },
         {
-          'name' : 'Masteruj skille adeptów'
+          'name' : 'Masteruj skille adeptów',
+		  'icon' : 'fa fa-spinner fa-2x'
         }
       ],
       'upgrades' : [
