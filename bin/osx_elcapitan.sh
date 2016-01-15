@@ -20,8 +20,13 @@ sudo gem install -n /usr/local/bin compass
 
 echo "Installing gulp globally"
 npm install gulp -g
+echo "Installing bower"
+npm install bower -g
 echo "Installing dependecies"
 npm install
+
+cd ../public
+bower install rocket.js
 
 echo ""
 echo "install success"

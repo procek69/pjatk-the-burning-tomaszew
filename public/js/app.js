@@ -56,7 +56,7 @@ rocket.register.service("engine", function () {
 
   function parse(name, def) {
     var value = parseInt(localStorage.getItem(name));
-    if (value === NaN || value === null) {
+    if (isNaN(value) || value === null) {
       localStorage.setItem(name, def);
       return def;
     } else return value;
@@ -131,6 +131,7 @@ rocket.register.service("engine", function () {
           'name' : 'Ucz kodu',
           'icon' : 'fa fa-edge fa-2x',
           'enabled' : true,
+          'info' : '-10 kodu<br />+2 studentów',
           click : function () {
 
             if(money < 10) return;
@@ -145,6 +146,7 @@ rocket.register.service("engine", function () {
           'name' : 'Prowadź wykład',
           'icon' : 'fa fa-edge fa-3x',
           'enabled' : true,
+          'info' : '-100 kodu<br />+25 studentów',
           click : function () {
 
             if (money < 100) return;
@@ -160,6 +162,7 @@ rocket.register.service("engine", function () {
           'name' : 'Streamuj WoW\'a',
           'icon' : 'fa fa-edge fa-3x',
           'enabled' : true,
+          'info' : '+25 studentów',
           'click' : function () {
             students += 10;
             updateValues();
@@ -169,6 +172,7 @@ rocket.register.service("engine", function () {
           'name' : 'Wstaw wykłady',
           'icon' : 'fa fa-edge fa-3x',
           'enabled' : true,
+          'info' : '+100 studentów',
           'click' : function () {
             students += 100;
             updateValues();
@@ -178,6 +182,7 @@ rocket.register.service("engine", function () {
           'name' : 'Zrób studentów w balona',
           'icon' : 'fa fa-edge fa-2x',
           'enabled' : true,
+          'info' : '-100 studentów<br />+1 profit',
           'click' : function () {
             if (students < 100) return;
 
@@ -191,8 +196,9 @@ rocket.register.service("engine", function () {
           'name' : 'Zrób kolosa',
           'icon' : 'fa fa-book fa-2x',
           'enabled' : false,
+          'info' : '-100 studentów<br />+500 kodu',
           'click' : function () {
-            if (student < 100) return;
+            if (students < 100) return;
 
             students -= 100;
             money += 500;
@@ -204,6 +210,7 @@ rocket.register.service("engine", function () {
           'name' : 'Zrób egzamin',
           'icon' : 'fa fa-calendar-o fa-2x',
           'enabled' : false,
+          'info' : '-200 studentów<br />+5 profit',
           'click' : function () {
             if (students < 200) return;
 
@@ -220,6 +227,7 @@ rocket.register.service("engine", function () {
           'icon' : 'brak',
           'enabled' : false,
           'koszt' : 100,
+          'info' : 'Odlobokuje kolokwium<br />-100 kodu',
           'click' : function (e) {
 
             upgrade(e, {
@@ -233,6 +241,7 @@ rocket.register.service("engine", function () {
           'name' : 'Napisz wredny egzamin',
           'icon' : 'brak',
           'enabled' : false,
+          'info' : 'Odblokuje egzamin<br />-100 kodu',
           'koszt' : 100,
           'click' : function (e) {
 
@@ -247,6 +256,7 @@ rocket.register.service("engine", function () {
           'icon' : 'brak',
           'enabled' : false,
           'koszt' : 100,
+          'opis' : 'Kolokwium i egzamin dają 20 więcej kodu',
           'click' : function (e) {
 
             upgrade(e, {
@@ -262,6 +272,7 @@ rocket.register.service("engine", function () {
           'icon' : 'brak',
           'enabled' : false,
           'koszt' : 100,
+          'opis' : 'Kolokwium i egzamin dają 20 więcej kodu',
           'click' : function (e) {
 
             upgrade(e, {
@@ -277,6 +288,7 @@ rocket.register.service("engine", function () {
           'icon' : 'brak',
           'enabled' : false,
           'koszt' : 100,
+          'opis' : 'Kolokwium i egzamin dają 20 więcej kodu',
           'click' : function (e) {
 
             upgrade(e, {
@@ -295,6 +307,7 @@ rocket.register.service("engine", function () {
           'name' : 'ŹLE!',
           'icon' : 'fa fa-frown-o fa-2x',
           'enabled' : true,
+          'opis' : '-1 student<br />+', //todo
           'click' : function (e) {
             if (money < 10) return;
             if (students < 1) return;
@@ -308,6 +321,7 @@ rocket.register.service("engine", function () {
         {
           'name' : 'Wredne pytanie',
           'icon' : 'fa fa-question fa-2x',
+          'opis' : '-1 student<br/>+', //todo
           'enabled' : true,
           'click' : function (e) {
             if (money < 10) return;
@@ -323,6 +337,7 @@ rocket.register.service("engine", function () {
           'name' : 'Opowiadaj historię swojego życia',
           'icon' : 'fa fa-commenting-o fa-2x',
           'enabled' : true,
+          'opis' : '+1 student',
           'click' : function (e) {
 
             students++;
@@ -334,6 +349,7 @@ rocket.register.service("engine", function () {
           'name' : 'Daj wymagające zadania',
           'icon' : 'fa fa-cubes fa-2x',
           'enabled' : true,
+          'opis' : '+kodu<br />-10 studentów',
           'click' : function (e) {
             if (students < 10) return;
 
@@ -347,6 +363,7 @@ rocket.register.service("engine", function () {
           'name' : 'Zadaj projekt',
           'icon' : 'brak',
           'enabled' : true,
+          'opis' : '+400 kodu<br />+25 studentów',
           'click' : function (e) {
             if (students < 25) return;
 
@@ -360,6 +377,7 @@ rocket.register.service("engine", function () {
           'name' : 'Poczuj pot studenta',
           'icon' : 'fa fa-male fa-2x',
           'enabled' : true,
+          'opis' : '-1 student<br />+', //todo
           'click' : function (e) {
             if (money < 10) return;
             if (students < 1) return;
@@ -374,16 +392,23 @@ rocket.register.service("engine", function () {
       ],
       'upgrades' : [
         {
-          'name' : 'Zainstaluj Windows 10'
+          'name' : 'Stwórz galerię na sharepoint',
+          'koszt' : 1000,
+          'opis' : '-1000 kodu<br />+100 studentów',
+          'click' : function (e) {
+            upgrade(e, {
+              'koszt' : 1000,
+              'student' : 100
+            });
+          }
         },
-        {
-          'name' : 'Stwórz galerię na sharepoint'
-        },
+        //todo: you are doint it wrong
         {
           'name' : 'zabezpiecz sharepoint',
           'koszt' : 0,
+          'opis' : 'hacker needed',
           'click' : function (e) {
-            if (prompt('00010101 01110010 0100010 0001001?') == 'tak') {
+            if (prompt('01110100 01100001 01101011') == 'tak') {
               alert('procek69 i tak już go panował');
             }
           }
@@ -394,26 +419,52 @@ rocket.register.service("engine", function () {
       'skills' : [
         {
           'name' : 'Załóż team na imaginecupa',
-          'icon' : 'fa fa-users fa-2x'
+          'icon' : 'fa fa-users fa-2x',
+          'koszt' : 10000,
+          'opis' : 'profit +20<br />-10000 kodu',
+          'click' : function (e) {
+            upgrade(e, {
+              'koszt' : 10000,
+              'profit' : 20
+            });
+          }
         },
         {
           'name' : 'Nakłoń Procka do kodu',
-          'icon' : 'fa fa-terminal fa-2x'
+          'icon' : 'fa fa-terminal fa-2x',
+          'koszt' : 1000,
+          'enabled' : false,
+          'opis' : '-1000 kodu<br />+69 profit',
+          'click' : function (e) {
+            upgrade(e, {
+              'koszt' : 1000,
+              'profit' : 69
+            });
+          }
         },
         {
           'name' : 'Masteruj skille adeptów',
-          'icon' : 'fa fa-spinner fa-2x'
+          'icon' : 'fa fa-spinner fa-2x',
+          'opis' : '-1000 kodu<br />+1 profit',
+          'click' : function (e) {
+            upgrade(e,{
+              'koszt' : 1000,
+              'profit' : 1
+            })
+          }
         }
       ],
       'upgrades' : [
         {
           'name' : 'Zrekrutuj Procka',
           'koszt' : 69000,
+          'opis' : '-69000 kodu<br />+6900 profit<br />odblokowuje "Nakłoń Procka do kodu"',
           'click' : function (e) {
 
             upgrade(e, {
               'koszt' : 69000,
               'profit' : 6900,
+              'name' : 'Nakłoń Procka do kodu',
               'callback' : function () {
                 skillsPower['procek69'] = true;
               }
@@ -423,6 +474,7 @@ rocket.register.service("engine", function () {
         {
           'name' : 'Nowy sprzęt',
           'koszt' : 10000,
+          'opis' : '+200 profit<br />-10000 kody',
           'click' : function (e) {
 
             upgrade(e, {
@@ -434,6 +486,7 @@ rocket.register.service("engine", function () {
         {
           'name': 'Otwieranie drzwi aplikacją',
           'koszt' : 1000,
+          'opis' : '+200 kodu / s<br />-10000kodu',
           'click' : function (e) {
 
             upgrade(e, {
