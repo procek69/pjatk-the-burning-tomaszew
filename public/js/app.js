@@ -87,13 +87,19 @@ rocket.register.service("engine", function () {
 
     var cost = values['money'];
     var student = values['students'];
-    var prof = values['profit']
+    var prof = values['profit'];
 
-    if (cost != undefined && money >= cost) {
+    if (cost != undefined) {
+      if (money < cost) {
+        return;
+      }
       money -= cost;
     }
 
-    if (student != undefined && students >= student) {
+    if (student != undefined) {
+      if (students < student) {
+        return;
+      }
       students -= student;
     }
 
@@ -101,6 +107,8 @@ rocket.register.service("engine", function () {
       profit += prof;
     }
 
+    var callback = values['callback'];
+    if (callback != undefined) callback();
 
     updateValues();
     updateSkills({
@@ -108,7 +116,13 @@ rocket.register.service("engine", function () {
     });
 
 
-  }
+  };
+
+  var skillsPower = {
+    'zle' : 10,
+    'tupanie' : 0,
+    'procek69' : false
+  };
 
   var data = {
     'a' : {
@@ -221,13 +235,10 @@ rocket.register.service("engine", function () {
           'enabled' : false,
           'koszt' : 100,
           'click' : function (e) {
-            if (!tryUpgrade(e)) return;
 
-            money -= 100;
-
-            updateValues();
-            updateSkills({
+            upgrade(e, {
               'name' : 'Zrób egzamin',
+              'money' : 100
             });
           }
         },
@@ -235,25 +246,46 @@ rocket.register.service("engine", function () {
           'name' : 'Wredne pytania teoretyczne',
           'icon' : 'brak',
           'enabled' : false,
-          'koszt' : 100
+          'koszt' : 100,
+          'click' : function (e) {
+
+            upgrade(e, {
+              'koszt' : 100,
+              'callback' : function () {
+                  skillsPower['tupanie'] += 20;
+              }
+            });
+          }
         },
         {
           'name' : 'Wredne zadanie na analizę',
           'icon' : 'brak',
           'enabled' : false,
-          'koszt' : 100
+          'koszt' : 100,
+          'click' : function (e) {
+
+            upgrade(e, {
+              'koszt' : 100,
+              'callback' : function () {
+                skillsPower['tupanie'] += 20;
+              }
+            });
+          }
         },
         {
           'name' : 'Wredne zadanie ze zmienną this',
           'icon' : 'brak',
           'enabled' : false,
-          'koszt' : 100
-        },
-        {
-          'name' : 'Nowe buty do tupania',
-          'icon' : 'brak',
-          'enabled' : false,
-          'koszt' : 100
+          'koszt' : 100,
+          'click' : function (e) {
+
+            upgrade(e, {
+              'koszt' : 100,
+              'callback' : function () {
+                skillsPower['tupanie'] += 20;
+              }
+            });
+          }
         }
       ]
     },
@@ -262,32 +294,81 @@ rocket.register.service("engine", function () {
         {
           'name' : 'ŹLE!',
           'icon' : 'fa fa-frown-o fa-2x',
-          'enabled' : true
+          'enabled' : true,
+          'click' : function (e) {
+            if (money < 10) return;
+            if (students < 1) return;
+
+            money += skillsPower['zle'];
+            students -= 1;
+
+            updateValues();
+          }
         },
         {
           'name' : 'Wredne pytanie',
           'icon' : 'fa fa-question fa-2x',
-          'enabled' : true
+          'enabled' : true,
+          'click' : function (e) {
+            if (money < 10) return;
+            if (students < 1) return;
+
+            money += 2*skillsPower['zle'];
+            students -= 1;
+
+            updateValues();
+          }
         },
         {
           'name' : 'Opowiadaj historię swojego życia',
           'icon' : 'fa fa-commenting-o fa-2x',
-          'enabled' : true
+          'enabled' : true,
+          'click' : function (e) {
+
+            students++;
+
+            updateValues();
+          }
         },
         {
           'name' : 'Daj wymagające zadania',
           'icon' : 'fa fa-cubes fa-2x',
-          'enabled' : true
+          'enabled' : true,
+          'click' : function (e) {
+            if (students < 10) return;
+
+            money += 50;
+            students -= 10;
+
+            updateValues();
+          }
         },
         {
           'name' : 'Zadaj projekt',
           'icon' : 'brak',
-          'enabled' : true
+          'enabled' : true,
+          'click' : function (e) {
+            if (students < 25) return;
+
+            money += 400;
+            students -= 25;
+
+            updateValues();
+          }
         },
         {
           'name' : 'Poczuj pot studenta',
           'icon' : 'fa fa-male fa-2x',
-          'enabled' : true
+          'enabled' : true,
+          'click' : function (e) {
+            if (money < 10) return;
+            if (students < 1) return;
+
+            money += 2*skillsPower['zle'];
+            students -= 1;
+
+            updateValues();
+          }
         }
 
       ],
@@ -299,7 +380,13 @@ rocket.register.service("engine", function () {
           'name' : 'Stwórz galerię na sharepoint'
         },
         {
-          'name' : 'SPRÓBUJ zabezpieczyć sharepoint'
+          'name' : 'zabezpiecz sharepoint',
+          'koszt' : 0,
+          'click' : function (e) {
+            if (prompt('00010101 01110010 0100010 0001001?') == 'tak') {
+              alert('procek69 i tak już go panował');
+            }
+          }
         }
       ]
     },
@@ -321,15 +408,39 @@ rocket.register.service("engine", function () {
       'upgrades' : [
         {
           'name' : 'Zrekrutuj Procka',
-          'koszt' : 69000
+          'koszt' : 69000,
+          'click' : function (e) {
+
+            upgrade(e, {
+              'koszt' : 69000,
+              'profit' : 6900,
+              'callback' : function () {
+                skillsPower['procek69'] = true;
+              }
+            });
+          }
         },
         {
           'name' : 'Nowy sprzęt',
-          'koszt' : 10000
+          'koszt' : 10000,
+          'click' : function (e) {
+
+            upgrade(e, {
+              'koszt' : 10000,
+              'proft' : 200
+            });
+          }
         },
         {
           'name': 'Otwieranie drzwi aplikacją',
-          'koszt' : 1000
+          'koszt' : 1000,
+          'click' : function (e) {
+
+            upgrade(e, {
+              'koszt' : 10000,
+              'profit' : 100
+            });
+          }
         }
       ]
     },
@@ -340,32 +451,77 @@ rocket.register.service("engine", function () {
           'name' : 'Kup megafon',
           'koszt' : 200,
           'click' : function (e) {
-            //todo
+            upgrade(e, {
+              'name' : 'Zrób kolosa',
+              'money' : 200,
+              'callback' : function () {
+                skillsPower['zle'] *= 2;
+              }
+            });
           }
         },
         {
           'name' : 'update μJava',
-          'koszt' : 1000
+          'koszt' : 1000,
+          'click' : function (e) {
+            upgrade(e, {
+              'money' : 1000,
+              'profit' : 5
+            });
+          }
         },
         {
           'name' : 'nowy surface',
-          'koszt' : 1000
+          'koszt' : 1000,
+          'click' : function (e) {
+            upgrade(e, {
+              'money' : 1000,
+              'profit' : 5
+            });
+          }
         },
         {
           'name' : 'nowe buty do tupania',
-          'koszt' : 1000
+          'koszt' : 1000,
+          'click' : function (e) {
+            upgrade(e, {
+              'money' : 1000,
+              'profit' : 5,
+              'callback' : function () {
+                skillsPower['tupanie'] += 10;
+              }
+            });
+          }
         },
         {
           'name' : 'Upgrade do Windows 8',
-          'koszt' : 1000
+          'koszt' : 1000,
+          'click' : function (e) {
+            upgrade(e, {
+              'money' : 1000,
+              'profit' : 10
+            });
+          }
         },
         {
           'name' : 'Upgrade do Windows 10',
-          'koszt' : 500
+          'koszt' : 500,
+          'click' : function (e) {
+            upgrade(e, {
+              'money' : 1000,
+              'profit' : 10
+            });
+          }
         },
         {
           'name' : 'stwórz Sharepoint',
-          'koszt' : 1000
+          'koszt' : 1000,
+          'click' : function (e) {
+            upgrade(e, {
+              'money' : 1000,
+              'profit' : 10
+            });
+          }
         }
       ]
     }

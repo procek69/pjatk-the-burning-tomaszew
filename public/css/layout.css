@@ -98,7 +98,7 @@ body {
   overflow: auto;
 }
 #content.tomaszew {
-  background-color: red;
+  background-image: url("../media/t.jpg");
 }
 #content.cwiczenia {
   background-image: url("../media/cwiczenia.JPG");
