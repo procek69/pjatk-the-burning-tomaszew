@@ -5,39 +5,47 @@ rocket.register.module('content', function (element, params) {
 
   var loadHere = element.querySelector(':scope > div');
 
+  var upgradesElement = element.querySelector(':scope div.upgrades');
+  var skillsElement = element.querySelector(':scope div.skills');
 
-  function load (letter) {
-    var toLoad;
-    switch (letter) {
-      case 't':
-        toLoad = 'tomaszew';
-        break;
-      case 'a':
-        toLoad = 'aula';
-        break;
-      case 'c':
-        toLoad = 'cwiczenia';
-        break;
-      case 's':
-        toLoad = 's9';
-        break;
+  var menu = rocket.service("win95").getMenu();
+
+  function getLetter() {
+    return window.location.hash[2];
+  }
+
+  function removeChildren(el) {
+    while (el.firstChild) {
+        el.removeChild(el.firstChild);
     }
+  }
 
-    element.className = toLoad;
-    rocket.router.loadModuleIntoElement(['content', toLoad].join('/'), loadHere, {});
+  function load () {
+
+    removeChildren(skillsElement);
+    removeChildren(upgradesElement);
+
+    rocket.service('engine').renderSkills(getLetter(), skillsElement);
+    rocket.service('engine').renderUpgrades(getLetter(), upgradesElement);
+
+    rocket.trigger('reloadMenu', menu);
 
 
   }
 
+  for (var i = 0, l = menu.length; i < l; i++) {
+    if (menu[i]['default']) {
+      window.location.hash = menu[i]['hash'];
+    }
+  }
+
   window.addEventListener("hashchange", function (e) {
-    load(window.location.hash[2]);
+    load();
   });
-  window.location.hash = '#/aula';
 
   return {
     constructor: function () {
-
-      load(window.location.hash[2]);
+      load();
     }
   }
 });

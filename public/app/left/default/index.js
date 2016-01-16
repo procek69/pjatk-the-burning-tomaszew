@@ -3,6 +3,7 @@
 rocket.register.module("left/default", function(element, params) {
 
   var $start = element.querySelector('div.start');
+  var $menu  = element.querySelector('div.menu');
   var flag = false;
 
   function show (e) {;
@@ -20,6 +21,24 @@ rocket.register.module("left/default", function(element, params) {
     console.log($start.className);
   }
 
+  function render(root, elem) {
+    var a = document.createElement('a');
+    a.setAttribute('href', elem['hash']);
+
+    var x;
+    if (elem['src']) {
+      x = document.createElement('img');
+      x.setAttribute('src', elem['src']);
+    } else {
+      x = document.createElement('i');
+      x.className = elem['icon'];
+    }
+
+    a.appendChild(x);
+    a.innerHTML += ' ' + elem['name'];
+    root.appendChild(a);
+  }
+
   $start.addEventListener('click', show, false);
 
   return {
@@ -34,6 +53,16 @@ rocket.register.module("left/default", function(element, params) {
 
       rocket.register.event('updateProfit', function (profit) {
         //$this.updateProfit(profit);
+      });
+
+      rocket.register.event('reloadMenu', function (menu) {
+        while ($menu.firstChild) {
+            $menu.removeChild($menu.firstChild);
+        }
+
+        for (var i = 0, l = menu.length; i < l; i++) {
+          render($menu, menu[i]);
+        }
       });
     }
 

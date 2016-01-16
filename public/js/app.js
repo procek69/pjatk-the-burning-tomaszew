@@ -5,39 +5,47 @@ rocket.register.module('content', function (element, params) {
 
   var loadHere = element.querySelector(':scope > div');
 
+  var upgradesElement = element.querySelector(':scope div.upgrades');
+  var skillsElement = element.querySelector(':scope div.skills');
 
-  function load (letter) {
-    var toLoad;
-    switch (letter) {
-      case 't':
-        toLoad = 'tomaszew';
-        break;
-      case 'a':
-        toLoad = 'aula';
-        break;
-      case 'c':
-        toLoad = 'cwiczenia';
-        break;
-      case 's':
-        toLoad = 's9';
-        break;
+  var menu = rocket.service("win95").getMenu();
+
+  function getLetter() {
+    return window.location.hash[2];
+  }
+
+  function removeChildren(el) {
+    while (el.firstChild) {
+        el.removeChild(el.firstChild);
     }
+  }
 
-    element.className = toLoad;
-    rocket.router.loadModuleIntoElement(['content', toLoad].join('/'), loadHere, {});
+  function load () {
+
+    removeChildren(skillsElement);
+    removeChildren(upgradesElement);
+
+    rocket.service('engine').renderSkills(getLetter(), skillsElement);
+    rocket.service('engine').renderUpgrades(getLetter(), upgradesElement);
+
+    rocket.trigger('reloadMenu', menu);
 
 
   }
 
+  for (var i = 0, l = menu.length; i < l; i++) {
+    if (menu[i]['default']) {
+      window.location.hash = menu[i]['hash'];
+    }
+  }
+
   window.addEventListener("hashchange", function (e) {
-    load(window.location.hash[2]);
+    load();
   });
-  window.location.hash = '#/aula';
 
   return {
     constructor: function () {
-
-      load(window.location.hash[2]);
+      load();
     }
   }
 });
@@ -659,6 +667,35 @@ setInterval(rocket.service("engine").calc, 1000);
 'use strict';
 
 rocket.register.service('win95', function() {
+
+  var menu = [
+    {
+      'name' : 'Tomaszew',
+      'letter' : 't',
+      'hash' : '#/tomaszew',
+      'src' : '/media/tomaszew.jpg'
+    },
+    {
+      'icon' : 'fa fa-users',
+      'name' : 'Aula',
+      'hash' : '#/aula',
+      'letter' : 'a',
+      'default' : true
+    },
+    {
+      'icon' : 'fa fa-desktop',
+      'name' : 'Ćwiczenia',
+      'hash' : '#/cwiczenia',
+      'letter' : 'c'
+    },
+    {
+      'icon' : 'fa fa-book',
+      'name' : 'Biblitoteka',
+      'hash' : '#/biblioteka',
+      'letter' : 'b'
+    }
+  ];
+
   var data = {
     'a' : {
       'skills' : [
@@ -734,8 +771,18 @@ rocket.register.service('win95', function() {
       'skills' : [],
       'upgrades' : []
     },
-    's' : {
-      'skills' : [],
+    'b' : {
+      'skills' : [
+        {
+          'name' : 'źle!',
+          'icon' : 'fa-exclamation-triangle',
+          'enabled' : true,
+          'info' : '+1 kod',
+          'click' : function () {
+            console.log('elo');
+          }
+        }
+      ],
       'upgrades' : []
     },
     't' : {
@@ -750,6 +797,9 @@ rocket.register.service('win95', function() {
     },
     getUpgrades : function (letter) {
       return data[letter]['upgrades'];
+    },
+    getMenu : function () {
+      return menu;
     }
   }
 });
@@ -803,70 +853,10 @@ rocket.register.module('top', function (element, params) {
 
 'use strict';
 
-rocket.register.module('content/aula', function(element, params) {
-
-  var skillsElement = element.querySelector(':scope > div.skills');
-  rocket.service('engine').renderSkills('a', skillsElement);
-
-  var upgradesElement = element.querySelector(':scope > div.upgrades');
-  rocket.service('engine').renderUpgrades('a', upgradesElement);
-
-  return {
-    constructor : function () {
-    }
-  }
-});
-
-'use strict';
-
-rocket.register.module('content/cwiczenia', function(element, params) {
-
-  var skillsElement = element.querySelector(':scope > div.skills');
-  rocket.service('engine').renderSkills('c', skillsElement);
-
-  var upgradesElement = element.querySelector(':scope > div.upgrades');
-  rocket.service('engine').renderUpgrades('c', upgradesElement);
-
-  return {
-    constructor : function () {}
-  }
-});
-
-'use strict';
-
-rocket.register.module('content/s9', function(element, params) {
-
-  var skillsElement = element.querySelector(':scope > div.skills');
-  rocket.service('engine').renderSkills('s', skillsElement);
-
-  var upgradesElement = element.querySelector(':scope > div.upgrades');
-  rocket.service('engine').renderUpgrades('s', upgradesElement);
-
-  return {
-    constructor : function () {}
-  }
-});
-
-'use strict';
-
-rocket.register.module('content/tomaszew', function(element, params) {
-
-  var skillsElement = element.querySelector(':scope > div.skills');
-  rocket.service('engine').renderSkills('t', skillsElement);
-
-  var upgradesElement = element.querySelector(':scope > div.upgrades');
-  rocket.service('engine').renderUpgrades('t', upgradesElement);
-
-  return {
-    constructor : function (){}
-  }
-});
-
-'use strict';
-
 rocket.register.module("left/default", function(element, params) {
 
   var $start = element.querySelector('div.start');
+  var $menu  = element.querySelector('div.menu');
   var flag = false;
 
   function show (e) {;
@@ -884,6 +874,24 @@ rocket.register.module("left/default", function(element, params) {
     console.log($start.className);
   }
 
+  function render(root, elem) {
+    var a = document.createElement('a');
+    a.setAttribute('href', elem['hash']);
+
+    var x;
+    if (elem['src']) {
+      x = document.createElement('img');
+      x.setAttribute('src', elem['src']);
+    } else {
+      x = document.createElement('i');
+      x.className = elem['icon'];
+    }
+
+    a.appendChild(x);
+    a.innerHTML += ' ' + elem['name'];
+    root.appendChild(a);
+  }
+
   $start.addEventListener('click', show, false);
 
   return {
@@ -898,6 +906,16 @@ rocket.register.module("left/default", function(element, params) {
 
       rocket.register.event('updateProfit', function (profit) {
         //$this.updateProfit(profit);
+      });
+
+      rocket.register.event('reloadMenu', function (menu) {
+        while ($menu.firstChild) {
+            $menu.removeChild($menu.firstChild);
+        }
+
+        for (var i = 0, l = menu.length; i < l; i++) {
+          render($menu, menu[i]);
+        }
       });
     }
 

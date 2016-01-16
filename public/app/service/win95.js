@@ -1,6 +1,35 @@
 'use strict';
 
 rocket.register.service('win95', function() {
+
+  var menu = [
+    {
+      'name' : 'Tomaszew',
+      'letter' : 't',
+      'hash' : '#/tomaszew',
+      'src' : '/media/tomaszew.jpg'
+    },
+    {
+      'icon' : 'fa fa-users',
+      'name' : 'Aula',
+      'hash' : '#/aula',
+      'letter' : 'a',
+      'default' : true
+    },
+    {
+      'icon' : 'fa fa-desktop',
+      'name' : 'Ćwiczenia',
+      'hash' : '#/cwiczenia',
+      'letter' : 'c'
+    },
+    {
+      'icon' : 'fa fa-book',
+      'name' : 'Biblitoteka',
+      'hash' : '#/biblioteka',
+      'letter' : 'b'
+    }
+  ];
+
   var data = {
     'a' : {
       'skills' : [
@@ -76,8 +105,18 @@ rocket.register.service('win95', function() {
       'skills' : [],
       'upgrades' : []
     },
-    's' : {
-      'skills' : [],
+    'b' : {
+      'skills' : [
+        {
+          'name' : 'źle!',
+          'icon' : 'fa-exclamation-triangle',
+          'enabled' : true,
+          'info' : '+1 kod',
+          'click' : function () {
+            console.log('elo');
+          }
+        }
+      ],
       'upgrades' : []
     },
     't' : {
@@ -92,6 +131,9 @@ rocket.register.service('win95', function() {
     },
     getUpgrades : function (letter) {
       return data[letter]['upgrades'];
+    },
+    getMenu : function () {
+      return menu;
     }
   }
 });
