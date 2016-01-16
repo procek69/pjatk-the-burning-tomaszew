@@ -25,16 +25,18 @@ rocket.register.module('content', function (element, params) {
 
     element.className = toLoad;
     rocket.router.loadModuleIntoElement(['content', toLoad].join('/'), loadHere, {});
+
+
   }
 
   window.addEventListener("hashchange", function (e) {
-    //rocket.router.loadModuleIntoElement(window.location.hash[2], elemen);
     load(window.location.hash[2]);
   });
   window.location.hash = '#/aula';
 
   return {
     constructor: function () {
+
       load(window.location.hash[2]);
     }
   }

@@ -23,7 +23,19 @@ rocket.register.module("left/default", function(element, params) {
   $start.addEventListener('click', show, false);
 
   return {
-    constructor : function () {}
+    constructor : function () {
+      rocket.register.event('updateMoney', function(money) {
+        //$this.update(money);
+      });
+
+      rocket.register.event('updateStudents', function (students) {
+        //$this.updateStudents(students);
+      });
+
+      rocket.register.event('updateProfit', function (profit) {
+        //$this.updateProfit(profit);
+      });
+    }
 
   }
 });

@@ -25,16 +25,18 @@ rocket.register.module('content', function (element, params) {
 
     element.className = toLoad;
     rocket.router.loadModuleIntoElement(['content', toLoad].join('/'), loadHere, {});
+
+
   }
 
   window.addEventListener("hashchange", function (e) {
-    //rocket.router.loadModuleIntoElement(window.location.hash[2], elemen);
     load(window.location.hash[2]);
   });
   window.location.hash = '#/aula';
 
   return {
     constructor: function () {
+
       load(window.location.hash[2]);
     }
   }
@@ -43,16 +45,6 @@ rocket.register.module('content', function (element, params) {
 'use strict';
 
 rocket.register.service("engine", function () {
-
-  function updateValues() {
-    rocket.trigger('updateMoney', money);
-    rocket.trigger('updateStudents', students);
-    rocket.trigger('updateProfit', profit);
-  }
-
-  function updateSkills(params) {
-    rocket.trigger('updateSkills', params);
-  }
 
   function parse(name, def) {
     var value = parseInt(localStorage.getItem(name));
@@ -65,6 +57,16 @@ rocket.register.service("engine", function () {
   var money = parse('money', 0);
   var profit = parse('profit', 1);
   var students = parse('students', 20);
+
+  function updateValues() {
+    rocket.trigger('updateMoney', money);
+    rocket.trigger('updateStudents', students);
+    rocket.trigger('updateProfit', profit);
+  }
+
+  function updateSkills(params) {
+    rocket.trigger('updateSkills', params);
+  }
 
   function tryUpgrade(e) {
     var $parent = e.srcElement.parentNode;
@@ -117,6 +119,8 @@ rocket.register.service("engine", function () {
 
 
   };
+
+  var lvl = 'win95';
 
   var skillsPower = {
     'zle' : 10,
@@ -606,6 +610,15 @@ rocket.register.service("engine", function () {
       money += profit;
       updateValues();
     },
+    loadLvl : function (name) {
+      lvl = name;
+      rocket.trigger('updateLvl', {
+        'lvl' : name
+      });
+    },
+    getLvl : function () {
+      return lvl;
+    },
     getMoney : function () {
       return money;
     },
@@ -613,14 +626,14 @@ rocket.register.service("engine", function () {
       return profit;
     },
     getSkills : function (letter) {
-      return data[letter]['skills'];
+      return rocket.service(lvl).getSkills(letter);
     },
     getUpgrades : function (letter) {
-      return data[letter]['upgrades'];
+      return rocket.service(lvl).getUpgrades(letter);
     },
     renderSkills : function (letter, element) {
 
-      var skills = data[letter]['skills'];
+      var skills = this.getSkills(letter);
 
       for (var i = 0, l = skills.length; i < l; i++) {
 
@@ -629,7 +642,7 @@ rocket.register.service("engine", function () {
       }
     },
     renderUpgrades : function (letter, element) {
-      var upgrades = data[letter]['upgrades'];
+      var upgrades = this.getUpgrades(letter);
 
       for (var i = 0, l = upgrades.length; i < l; i++) {
 
@@ -642,6 +655,104 @@ rocket.register.service("engine", function () {
 });
 
 setInterval(rocket.service("engine").calc, 1000);
+
+'use strict';
+
+rocket.register.service('win95', function() {
+  var data = {
+    'a' : {
+      'skills' : [
+        {
+          'name' : 'źle!',
+          'icon' : 'fa-exclamation-triangle',
+          'enabled' : true,
+          'info' : '+1 kod',
+          'click' : function () {
+            console.log('elo');
+          }
+        },
+        {
+          'name' : 'graj w pasjansa online',
+          'icon' : 'fa-play',
+          'enabled' : false,
+          'info' : '+1 studentów',
+          'click' : function () {
+            console.log('elo');
+          }
+        },
+        {
+          'name' : 'asystuj profesorowi',
+          'icon' : 'fa-play',
+          'enabled' : true,
+          'info' : '+10 kodu',
+          'click' : function () {
+            console.log('elo');
+          }
+        },
+        {
+          'name' : 'czytaj dokumentację',
+          'icon' : 'fa-play',
+          'enabled' : true,
+          'info' : '+10 kodu',
+          'click' : function () {
+            console.log('elo');
+          }
+        },
+        {
+          'name' : 'weź udział w konkusie',
+          'icon' : 'fa-play',
+          'enabled' : true,
+          'info' : '+10 kodu',
+          'click' : function () {
+            console.log('elo');
+          }
+        }
+      ],
+      'upgrades' : [
+        {
+          'name' : 'kup modem',
+          'icon' : 'brak',
+          'enabled' : true,
+          'koszt' : 100,
+          'opis' : 'umożliwia granie w pasjansa online',
+          'click' : function (e) {
+          }
+        },
+        {
+          'name' : 'pracuj nad microJava',
+          'icon' : 'fa-play',
+          'enabled' : true,
+          'koszt' : 100,
+          'info' : '+1 profit',
+          'click' : function () {
+            console.log('elo');
+          }
+        },
+      ]
+    },
+    'c' : {
+      'skills' : [],
+      'upgrades' : []
+    },
+    's' : {
+      'skills' : [],
+      'upgrades' : []
+    },
+    't' : {
+      'skills' : [],
+      'upgrades' : []
+    }
+  }
+
+  return {
+    getSkills : function (letter) {
+      return data[letter]['skills'];
+    },
+    getUpgrades : function (letter) {
+      return data[letter]['upgrades'];
+    }
+  }
+});
 
 'use strict';
 
@@ -701,7 +812,8 @@ rocket.register.module('content/aula', function(element, params) {
   rocket.service('engine').renderUpgrades('a', upgradesElement);
 
   return {
-    constructor : function () {}
+    constructor : function () {
+    }
   }
 });
 
@@ -775,23 +887,20 @@ rocket.register.module("left/default", function(element, params) {
   $start.addEventListener('click', show, false);
 
   return {
-    constructor : function () {}
+    constructor : function () {
+      rocket.register.event('updateMoney', function(money) {
+        //$this.update(money);
+      });
 
-  }
-});
+      rocket.register.event('updateStudents', function (students) {
+        //$this.updateStudents(students);
+      });
 
-'use strict';
+      rocket.register.event('updateProfit', function (profit) {
+        //$this.updateProfit(profit);
+      });
+    }
 
-rocket.register.module('content/tile/upgrade', function (element, params) {
-
-  element.querySelector('div.visible span').innerHTML = params.name;
-  element.querySelector('div.visible i').innerHTML = [params.koszt, 'kodu'].join(' ');
-  element.querySelector('div.hidden p').innerHTML = params.info;
-
-  element.addEventListener('click', params.click, true);
-
-  return {
-    constructor : function () {}
   }
 });
 
@@ -809,6 +918,8 @@ rocket.register.module('content/tile/skill', function (element, params) {
 
   element.addEventListener('click', params.click, true);
 
+
+
   return {
     constructor : function () {
       rocket.register.event('updateSkills', function(upgrade) {
@@ -816,7 +927,25 @@ rocket.register.module('content/tile/skill', function (element, params) {
           element.className = 'double';
         }
       });
+      rocket.register.event('updateLvl', function (params) {
+        console.log(params);
+      });
     }
   }
 
+});
+
+'use strict';
+
+rocket.register.module('content/tile/upgrade', function (element, params) {
+
+  element.querySelector('div.visible span').innerHTML = params.name;
+  element.querySelector('div.visible i').innerHTML = [params.koszt, 'kodu'].join(' ');
+  element.querySelector('div.hidden p').innerHTML = params.info;
+
+  element.addEventListener('click', params.click, true);
+
+  return {
+    constructor : function () {}
+  }
 });

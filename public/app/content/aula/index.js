@@ -9,6 +9,7 @@ rocket.register.module('content/aula', function(element, params) {
   rocket.service('engine').renderUpgrades('a', upgradesElement);
 
   return {
-    constructor : function () {}
+    constructor : function () {
+    }
   }
 });

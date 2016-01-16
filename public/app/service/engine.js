@@ -2,16 +2,6 @@
 
 rocket.register.service("engine", function () {
 
-  function updateValues() {
-    rocket.trigger('updateMoney', money);
-    rocket.trigger('updateStudents', students);
-    rocket.trigger('updateProfit', profit);
-  }
-
-  function updateSkills(params) {
-    rocket.trigger('updateSkills', params);
-  }
-
   function parse(name, def) {
     var value = parseInt(localStorage.getItem(name));
     if (isNaN(value) || value === null) {
@@ -23,6 +13,16 @@ rocket.register.service("engine", function () {
   var money = parse('money', 0);
   var profit = parse('profit', 1);
   var students = parse('students', 20);
+
+  function updateValues() {
+    rocket.trigger('updateMoney', money);
+    rocket.trigger('updateStudents', students);
+    rocket.trigger('updateProfit', profit);
+  }
+
+  function updateSkills(params) {
+    rocket.trigger('updateSkills', params);
+  }
 
   function tryUpgrade(e) {
     var $parent = e.srcElement.parentNode;
@@ -75,6 +75,8 @@ rocket.register.service("engine", function () {
 
 
   };
+
+  var lvl = 'win95';
 
   var skillsPower = {
     'zle' : 10,
@@ -564,6 +566,15 @@ rocket.register.service("engine", function () {
       money += profit;
       updateValues();
     },
+    loadLvl : function (name) {
+      lvl = name;
+      rocket.trigger('updateLvl', {
+        'lvl' : name
+      });
+    },
+    getLvl : function () {
+      return lvl;
+    },
     getMoney : function () {
       return money;
     },
@@ -571,14 +582,14 @@ rocket.register.service("engine", function () {
       return profit;
     },
     getSkills : function (letter) {
-      return data[letter]['skills'];
+      return rocket.service(lvl).getSkills(letter);
     },
     getUpgrades : function (letter) {
-      return data[letter]['upgrades'];
+      return rocket.service(lvl).getUpgrades(letter);
     },
     renderSkills : function (letter, element) {
 
-      var skills = data[letter]['skills'];
+      var skills = this.getSkills(letter);
 
       for (var i = 0, l = skills.length; i < l; i++) {
 
@@ -587,7 +598,7 @@ rocket.register.service("engine", function () {
       }
     },
     renderUpgrades : function (letter, element) {
-      var upgrades = data[letter]['upgrades'];
+      var upgrades = this.getUpgrades(letter);
 
       for (var i = 0, l = upgrades.length; i < l; i++) {
 
