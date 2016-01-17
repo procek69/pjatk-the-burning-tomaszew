@@ -64,6 +64,7 @@ rocket.register.service("engine", function () {
   var profit = parse('profit', 1);
   var students = parse('students', 20);
   var lvl = '';
+  var time = 60*90; //90 minut
 
   function updateValues() {
     rocket.trigger('updateMoney', money);
@@ -610,6 +611,7 @@ rocket.register.service("engine", function () {
   return {
     calc : function () {
       money += profit;
+      time--;
       updateValues();
     },
     loadLvl : function () {
@@ -627,6 +629,9 @@ rocket.register.service("engine", function () {
     },
     getProfit : function () {
       return profit;
+    },
+    getTime : function () {
+      return time;
     },
     getMenu : function () {
       return rocket.service(lvl).getMenu();
@@ -1375,7 +1380,6 @@ rocket.register.module("left/default", function(element, params) {
       });
 
       rocket.register.event('reloadMenu', function (menu) {
-        console.log(menu);
         while ($menu.firstChild) {
             $menu.removeChild($menu.firstChild);
         }

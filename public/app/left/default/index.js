@@ -56,7 +56,6 @@ rocket.register.module("left/default", function(element, params) {
       });
 
       rocket.register.event('reloadMenu', function (menu) {
-        console.log(menu);
         while ($menu.firstChild) {
             $menu.removeChild($menu.firstChild);
         }
