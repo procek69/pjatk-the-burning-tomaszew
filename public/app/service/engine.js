@@ -623,7 +623,7 @@ rocket.register.service("engine", function () {
       console.log('profit', p);
 
       //przypadek braku hajsu lub studentów
-      if (money + m < 0 || students + s < 0) {]
+      if (money + m < 0 || students + s < 0) {
         return;
       }
 
