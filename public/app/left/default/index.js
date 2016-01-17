@@ -6,6 +6,8 @@ rocket.register.module("left/default", function(element, params) {
   var $menu  = element.querySelector('div.menu');
   var flag = false;
 
+  rocket.router.routeModuleHere(element.querySelector('div.top'));
+
   function show (e) {;
     flag = !flag;
 

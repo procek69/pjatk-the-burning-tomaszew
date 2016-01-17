@@ -24,8 +24,7 @@ rocket.register.service("engine", function () {
     rocket.trigger('updateSkills', params);
   }
 
-  function tryUpgrade(e) {
-    var $parent = e.srcElement.parentNode;
+  function tryUpgrade($parent) {
 
     if ($parent.className == 'upgrade green')
       return false;
@@ -72,8 +71,6 @@ rocket.register.service("engine", function () {
     updateSkills({
       'name' : values['name'],
     });
-
-
   };
 
   var lvl = 'win95';
@@ -543,7 +540,7 @@ rocket.register.service("engine", function () {
   function renderSkill (element, params) {
 
     var div = document.createElement('div');
-    div.className = 'skill double';
+    div.className = 'skill';
 
     rocket.router.loadModuleIntoElement('content/tile/skill', div, params);
 
@@ -587,6 +584,30 @@ rocket.register.service("engine", function () {
     getUpgrades : function (letter) {
       return rocket.service(lvl).getUpgrades(letter);
     },
+    change : function (params) {
+
+      if (params['money'])
+        money += params['money'];
+
+      var m = params['money'] || 0;
+      var s = params['students'] || 0;
+      var p = params['profit'] || 0;
+
+      //przypadek braku hajsu lub studentów
+      if ((m < 0 && money >= m) || (s < 0 && students >= s)) {
+        students += s;
+        m += s;
+        profit += p;
+        updateValues();
+        return;
+      }
+
+      profit += p;
+      students += s;
+      m += s;
+      updateValues();
+    },
+    'upgrade' : upgrade,
     renderSkills : function (letter, element) {
 
       var skills = this.getSkills(letter);

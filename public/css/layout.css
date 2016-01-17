@@ -29,6 +29,12 @@ body {
   z-index: 9999;
   height: 69px;
   background-color: rgba(0, 0, 0, 0.6);
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 #left > div {
   max-width: 700px;
@@ -136,7 +142,7 @@ body {
   transition: all 300ms ease;
 }
 #content div.skills > div.green, #content div.upgrades > div.green {
-  background: green !important;
+  background: green;
 }
 #content div.skills > div:hover, #content div.upgrades > div:hover {
   -moz-transform: scale(1.05);
@@ -175,22 +181,23 @@ body {
 
 body.win95 {
   font-family: 'VT323' !important;
+  background: #008484 !important;
 }
 
 #content {
-  background: #008484;
+  background: url("../media/tomaszew95.png") !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: 400px 200px !important;
 }
-#content.tomaszew {
-  background: #008484;
+#content > div > div {
+  padding-bottom: 40px;
 }
-#content.cwiczenia {
-  background: #008484;
+#content i {
+  color: #d4d0c7;
 }
-#content.aula {
-  background: #008484;
-}
-#content.s9 {
-  background: #008484;
+#content i.fa {
+  text-shadow: 1px 1px 0 #000, -1px -1px 0 #fff;
 }
 #content .skill, #content .upgrade {
   background: none !important;
@@ -208,6 +215,9 @@ body.win95 {
 #left {
   background-color: #d4d0c7;
   height: 50px;
+}
+#left > div {
+  max-width: inherit;
 }
 #left div.timer {
   float: right;
@@ -239,11 +249,33 @@ body.win95 {
 #left div.start.touch > div.menu {
   display: block;
 }
+#left div.top {
+  display: inline;
+}
+#left div.top p {
+  background-color: #d4d0c7;
+  float: left;
+  margin: 4px;
+  margin-top: 8px;
+  padding: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+  height: 34px;
+  line-height: 34px;
+  text-align: center;
+  cursor: pointer;
+  -webkit-box-shadow: 1px 1px 0 1px #777, -1px -1px 0 1px #ddd;
+  box-shadow: 1px 1px 0 1px #777, -1px -1px 0 1px #ddd;
+  display: inline;
+  float: left;
+  margin-left: 10px;
+  margin-right: 10px;
+}
 #left div.menu {
   display: none;
   position: relative;
   bottom: 370px;
-  left: -13px;
+  left: -4px;
   width: 132.03125px;
 }
 #left div.menu:hover {
@@ -255,12 +287,25 @@ body.win95 {
   display: block;
   width: 132.03125px;
   height: 81.25px;
+  line-height: 81.25px;
   float: left;
   padding: 0;
   margin: 0;
   text-align: left;
   text-decoration: none;
   cursor: pointer;
+}
+#left div.menu > a:hover {
+  background-color: #ddd;
+}
+#left div.menu > a > img {
+  height: 50px;
+  width: 50px;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  vertical-align: text-top;
+  position: relative;
+  bottom: 20px;
 }
 #left div.menu > a > i {
   margin-left: 4px;

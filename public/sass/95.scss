@@ -9,29 +9,30 @@ $gold: 13/8;
 body {
   &.win95 {
     font-family: 'VT323' !important;
+    background: $theme !important;
   }
 }
 
 #content {
-  background: $theme;
 
+  background: url('../media/tomaszew95.png') !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  //background-size: 50%;
+   background-size: 400px 200px !important;
 
-
-
-  &.tomaszew {
-    background: $theme;
+  > div > div {
+    padding-bottom: 40px;
   }
 
-  &.cwiczenia {
-    background: $theme;
-  }
 
-  &.aula {
-    background: $theme;
-  }
 
-  &.s9 {
-    background: $theme;
+  i {
+    color: $gray;
+    &.fa {
+      text-shadow: 1px 1px 0 #000,
+                  -1px -1px 0 #fff;
+    }
   }
 
   .skill, .upgrade {
@@ -53,6 +54,10 @@ $height: 50px;
   background-color: $gray;
   height: $height;
   $startMargin: 4px;
+
+  > div {
+    max-width: inherit;
+  }
 
   div.timer {
     float: right;
@@ -93,11 +98,37 @@ $height: 50px;
 
   }
 
+  div.top {
+    display: inline;
+    p {
+      background-color: $gray;
+      float: left;
+      margin: $startMargin;
+      margin-top: 2*$startMargin;
+      padding: 0;
+      padding-left: 4px;
+      padding-right : 4px;
+      height: $height - 4*$startMargin;
+      line-height: $height - 4*$startMargin;
+      text-align: center;
+      cursor: pointer;
+      -webkit-box-shadow: 1px 1px 0 1px #777,
+                          -1px -1px 0 1px #ddd;
+      box-shadow: 1px 1px 0 1px #777,
+                  -1px -1px 0 1px #ddd;
+
+      display: inline;
+      float: left;
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+  }
+
   div.menu {
     display: none;
     position: relative;
     bottom: 370px;
-    left: -13px;
+    left: -$startMargin;
     width: $gold*$gold*$height;
 
     &:hover {
@@ -110,12 +141,25 @@ $height: 50px;
       display: block;
       width: $gold*$gold*$height;
       height: $gold*$height;
+      line-height: $gold*$height;
       float: left;
       padding: 0;
       margin: 0;
       text-align: left;
       text-decoration: none;
       cursor: pointer;
+      &:hover {
+        background-color: #ddd;
+      }
+      > img {
+        height: $height;
+        width: $height;
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+        vertical-align: text-top;
+        position: relative;
+        bottom: 20px;
+      }
       > i {
         margin-left: 4px;
       }

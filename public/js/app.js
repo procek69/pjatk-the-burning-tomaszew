@@ -76,8 +76,7 @@ rocket.register.service("engine", function () {
     rocket.trigger('updateSkills', params);
   }
 
-  function tryUpgrade(e) {
-    var $parent = e.srcElement.parentNode;
+  function tryUpgrade($parent) {
 
     if ($parent.className == 'upgrade green')
       return false;
@@ -124,8 +123,6 @@ rocket.register.service("engine", function () {
     updateSkills({
       'name' : values['name'],
     });
-
-
   };
 
   var lvl = 'win95';
@@ -595,7 +592,7 @@ rocket.register.service("engine", function () {
   function renderSkill (element, params) {
 
     var div = document.createElement('div');
-    div.className = 'skill double';
+    div.className = 'skill';
 
     rocket.router.loadModuleIntoElement('content/tile/skill', div, params);
 
@@ -639,6 +636,30 @@ rocket.register.service("engine", function () {
     getUpgrades : function (letter) {
       return rocket.service(lvl).getUpgrades(letter);
     },
+    change : function (params) {
+
+      if (params['money'])
+        money += params['money'];
+
+      var m = params['money'] || 0;
+      var s = params['students'] || 0;
+      var p = params['profit'] || 0;
+
+      //przypadek braku hajsu lub studentów
+      if ((m < 0 && money >= m) || (s < 0 && students >= s)) {
+        students += s;
+        m += s;
+        profit += p;
+        updateValues();
+        return;
+      }
+
+      profit += p;
+      students += s;
+      m += s;
+      updateValues();
+    },
+    'upgrade' : upgrade,
     renderSkills : function (letter, element) {
 
       var skills = this.getSkills(letter);
@@ -701,45 +722,42 @@ rocket.register.service('win95', function() {
       'skills' : [
         {
           'name' : 'źle!',
-          'icon' : 'fa-exclamation-triangle',
+          'icon' : 'fa-exclamation-triangle fa-3x',
           'enabled' : true,
           'info' : '+1 kod',
           'click' : function () {
-            console.log('elo');
+            rocket.service('engine').change({
+              'money' : 2
+            });
           }
         },
         {
-          'name' : 'graj w pasjansa online',
-          'icon' : 'fa-play',
-          'enabled' : false,
-          'info' : '+1 studentów',
+          'name' : 'słuchaj wykładu',
+          'icon' : 'fa-graduation-cap fa-3x',
+          'enabled' : true,
+          'info' : '+2 kodu',
           'click' : function () {
-            console.log('elo');
+            rocket.service('engine').change({
+              'kod' : 2
+            });
+          }
+        },
+        {
+          'name' : 'nie sluchaj wykladu',
+          'icon' : 'fa-graduation-cap fa-3x',
+          'enabled' : false,
+          'info' : '+1 student',
+          'click' : function () {
+            rocket.service('engine').change({
+              'students' : 1
+            });
           }
         },
         {
           'name' : 'asystuj profesorowi',
-          'icon' : 'fa-play',
-          'enabled' : true,
-          'info' : '+10 kodu',
-          'click' : function () {
-            console.log('elo');
-          }
-        },
-        {
-          'name' : 'czytaj dokumentację',
-          'icon' : 'fa-play',
-          'enabled' : true,
-          'info' : '+10 kodu',
-          'click' : function () {
-            console.log('elo');
-          }
-        },
-        {
-          'name' : 'weź udział w konkusie',
-          'icon' : 'fa-play',
-          'enabled' : true,
-          'info' : '+10 kodu',
+          'icon' : 'fa-play fa-3x',
+          'enabled' : false,
+          'info' : '+1 profit',
           'click' : function () {
             console.log('elo');
           }
@@ -747,47 +765,190 @@ rocket.register.service('win95', function() {
       ],
       'upgrades' : [
         {
-          'name' : 'kup modem',
-          'icon' : 'brak',
+          'name' : 'kup sluchawki',
+          'icon' : 'brak fa-3x',
           'enabled' : true,
           'koszt' : 100,
-          'opis' : 'umożliwia granie w pasjansa online',
+          'opis' : 'na co komu wyklad?',
           'click' : function (e) {
+            rocket.service("engine").upgrade(e, {
+              'koszt' : 100,
+              'name' : 'nie sluchaj wykladu'
+            });
           }
         },
         {
-          'name' : 'pracuj nad microJava',
-          'icon' : 'fa-play',
+          'name' : 'namow profesora na wyklad',
+          'icon' : 'fa-cash fa-3x',
           'enabled' : true,
           'koszt' : 100,
-          'info' : '+1 profit',
-          'click' : function () {
-            console.log('elo');
+          'opis' : 'zacznij prowadzic wyklady',
+          'click' : function (e) {
+            rocket.service("engine").upgrade(e, {
+              'koszt' : 100,
+              'name' : 'asystuj profesorowi'
+            });
           }
-        },
+        }
       ]
     },
     'c' : {
-      'skills' : [],
+      'skills' : [
+        {
+          'name' : 'rob zadania',
+          'icon' : 'fa-tasks fa-3x',
+          'enabled' : true,
+          'info' : '+2 kod',
+          'click' : function () {
+            rocket.service('engine').change({
+              'money' : 2
+            });
+          }
+        },
+        {
+          'name' : 'pomoz kodzic znajomemu',
+          'icon' : 'fa-medkit fa-3x',
+          'enabled' : true,
+          'info' : '-2 kod&+1 student',
+          'click' : function () {
+            rocket.service('engine').change({
+              'money' : 2
+            });
+          }
+        },
+        {
+          'name' : 'wytknij blad prowadzacemu',
+          'icon' : 'fa-comment fa-3x',
+          'enabled' : true,
+          'info' : '-10 kod&+2 studentów',
+          'click' : function () {
+            rocket.service('engine').change({
+              'money' : -10,
+              'students' : 2
+            });
+          }
+        },
+      ],
       'upgrades' : []
     },
     'b' : {
       'skills' : [
         {
-          'name' : 'źle!',
-          'icon' : 'fa-exclamation-triangle',
+          'name' : 'czytaj dokumentację',
+          'icon' : 'fa-book fa-3x',
           'enabled' : true,
           'info' : '+1 kod',
           'click' : function () {
-            console.log('elo');
+            rocket.service('engine').change({
+              'money' : 1
+            });
+          }
+        },
+        {
+          'name' : 'wez udzial w konkusie',
+          'icon' : 'fa-play fa-3x',
+          'enabled' : false,
+          'info' : '+1 profit&-5 studentów',
+          'click' : function () {
+            rocket.service('engine').change({
+              'profit' : 1,
+              'students' : -5
+            });
           }
         }
       ],
-      'upgrades' : []
+      'upgrades' : [
+        {
+          'name' : 'naucz sie kompilatora na pamiec',
+          'koszt' : 100,
+          'info' : 'umożliwia udzial w konkursie',
+          'click' : function (e) {
+
+            rocket.service("engine").upgrade(e, {
+              'koszt' : 100,
+              'name' : 'wez udzial w konkusie'
+            });
+
+          }
+        }
+      ]
     },
     't' : {
-      'skills' : [],
-      'upgrades' : []
+      'skills' : [
+        {
+          'name' : 'graj w pasjansa online',
+          'icon' : 'fa-play fa-3x',
+          'enabled' : false,
+          'info' : '+1 studentów',
+          'click' : function () {
+            rocket.service('engine').change({
+              'students' : 1
+            });
+          }
+        },
+        {
+          'name' : 'koduj w microJava',
+          'icon' : 'fa-play fa-3x',
+          'enabled' : false,
+          'info' : '+2 kodu',
+          'click' : function () {
+            rocket.service('engine').change({
+              'money' : 2
+            });
+          }
+        },
+        {
+          'name' : 'tomaszewXP',
+          'icon' : 'fa-star fa-3x',
+          'enabled' : false,
+          'info' : 'zainstaluj nowy system',
+          'click' : function () {
+            //todo
+          }
+        }
+      ],
+      'upgrades' : [
+        {
+          'name' : 'kup modem',
+          'koszt' : 100,
+          'info' : 'umożliwia gre w pasjansa online',
+          'click' : function (e) {
+
+            rocket.service("engine").upgrade(e, {
+              'koszt' : 100,
+              'name' : 'graj w pasjansa online'
+            });
+
+          }
+        },
+        {
+          'name' : 'napisz microJava',
+          'icon' : 'fa-play fa-3x',
+          'enabled' : true,
+          'koszt' : 200,
+          'info' : '+1 profit',
+          'click' : function (e) {
+            rocket.service("engine").upgrade(e, {
+              'koszt' : 100,
+              'name' : 'koduj w microJava',
+              'profit' : 5
+            });
+          }
+        },
+        {
+          'name' : 'napisz inzynierke',
+          'koszt' : 1000,
+          'info' : 'odblokowuje upgrade do tomaszewXP',
+          'click' : function (e) {
+
+            rocket.service("engine").upgrade(e, {
+              'name' : 'tomaszewXP',
+              'koszt' : 1000
+            });
+
+          }
+        },
+      ]
     }
   }
 
@@ -859,6 +1020,8 @@ rocket.register.module("left/default", function(element, params) {
   var $menu  = element.querySelector('div.menu');
   var flag = false;
 
+  rocket.router.routeModuleHere(element.querySelector('div.top'));
+
   function show (e) {;
     flag = !flag;
 
@@ -927,27 +1090,30 @@ rocket.register.module("left/default", function(element, params) {
 rocket.register.module('content/tile/skill', function (element, params) {
 
   element.querySelector('div.visible span').innerHTML = params.name;
-  element.querySelector('div.visible p > i').className = params.icon;
+  element.querySelector('div.visible p > i').className = ['fa', params.icon].join(' ');
   element.querySelector('div.hidden p').innerHTML = params.info;
+
 
   if (!params.enabled) {
     element.className += ' disabled';
   }
 
-  element.addEventListener('click', params.click, true);
-
-
-
   return {
     constructor : function () {
+      var click = params.click;
       rocket.register.event('updateSkills', function(upgrade) {
         if (params.name === upgrade.name) {
-          element.className = 'double';
+          element.className = 'skill';
         }
       });
       rocket.register.event('updateLvl', function (params) {
         console.log(params);
       });
+      element.addEventListener('click', function(e) {
+        if (element.className != 'skill disabled') {
+          click();
+        }
+      }, true);
     }
   }
 
@@ -961,9 +1127,13 @@ rocket.register.module('content/tile/upgrade', function (element, params) {
   element.querySelector('div.visible i').innerHTML = [params.koszt, 'kodu'].join(' ');
   element.querySelector('div.hidden p').innerHTML = params.info;
 
-  element.addEventListener('click', params.click, true);
+
 
   return {
-    constructor : function () {}
+    constructor : function () {
+      element.addEventListener('click', function (e) {
+        params.click(e.target);
+      }, true);
+    }
   }
 });

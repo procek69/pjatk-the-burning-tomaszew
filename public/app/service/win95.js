@@ -35,45 +35,42 @@ rocket.register.service('win95', function() {
       'skills' : [
         {
           'name' : 'źle!',
-          'icon' : 'fa-exclamation-triangle',
+          'icon' : 'fa-exclamation-triangle fa-3x',
           'enabled' : true,
           'info' : '+1 kod',
           'click' : function () {
-            console.log('elo');
+            rocket.service('engine').change({
+              'money' : 2
+            });
           }
         },
         {
-          'name' : 'graj w pasjansa online',
-          'icon' : 'fa-play',
-          'enabled' : false,
-          'info' : '+1 studentów',
+          'name' : 'słuchaj wykładu',
+          'icon' : 'fa-graduation-cap fa-3x',
+          'enabled' : true,
+          'info' : '+2 kodu',
           'click' : function () {
-            console.log('elo');
+            rocket.service('engine').change({
+              'kod' : 2
+            });
+          }
+        },
+        {
+          'name' : 'nie sluchaj wykladu',
+          'icon' : 'fa-graduation-cap fa-3x',
+          'enabled' : false,
+          'info' : '+1 student',
+          'click' : function () {
+            rocket.service('engine').change({
+              'students' : 1
+            });
           }
         },
         {
           'name' : 'asystuj profesorowi',
-          'icon' : 'fa-play',
-          'enabled' : true,
-          'info' : '+10 kodu',
-          'click' : function () {
-            console.log('elo');
-          }
-        },
-        {
-          'name' : 'czytaj dokumentację',
-          'icon' : 'fa-play',
-          'enabled' : true,
-          'info' : '+10 kodu',
-          'click' : function () {
-            console.log('elo');
-          }
-        },
-        {
-          'name' : 'weź udział w konkusie',
-          'icon' : 'fa-play',
-          'enabled' : true,
-          'info' : '+10 kodu',
+          'icon' : 'fa-play fa-3x',
+          'enabled' : false,
+          'info' : '+1 profit',
           'click' : function () {
             console.log('elo');
           }
@@ -81,47 +78,190 @@ rocket.register.service('win95', function() {
       ],
       'upgrades' : [
         {
-          'name' : 'kup modem',
-          'icon' : 'brak',
+          'name' : 'kup sluchawki',
+          'icon' : 'brak fa-3x',
           'enabled' : true,
           'koszt' : 100,
-          'opis' : 'umożliwia granie w pasjansa online',
+          'opis' : 'na co komu wyklad?',
           'click' : function (e) {
+            rocket.service("engine").upgrade(e, {
+              'koszt' : 100,
+              'name' : 'nie sluchaj wykladu'
+            });
           }
         },
         {
-          'name' : 'pracuj nad microJava',
-          'icon' : 'fa-play',
+          'name' : 'namow profesora na wyklad',
+          'icon' : 'fa-cash fa-3x',
           'enabled' : true,
           'koszt' : 100,
-          'info' : '+1 profit',
-          'click' : function () {
-            console.log('elo');
+          'opis' : 'zacznij prowadzic wyklady',
+          'click' : function (e) {
+            rocket.service("engine").upgrade(e, {
+              'koszt' : 100,
+              'name' : 'asystuj profesorowi'
+            });
           }
-        },
+        }
       ]
     },
     'c' : {
-      'skills' : [],
+      'skills' : [
+        {
+          'name' : 'rob zadania',
+          'icon' : 'fa-tasks fa-3x',
+          'enabled' : true,
+          'info' : '+2 kod',
+          'click' : function () {
+            rocket.service('engine').change({
+              'money' : 2
+            });
+          }
+        },
+        {
+          'name' : 'pomoz kodzic znajomemu',
+          'icon' : 'fa-medkit fa-3x',
+          'enabled' : true,
+          'info' : '-2 kod&+1 student',
+          'click' : function () {
+            rocket.service('engine').change({
+              'money' : 2
+            });
+          }
+        },
+        {
+          'name' : 'wytknij blad prowadzacemu',
+          'icon' : 'fa-comment fa-3x',
+          'enabled' : true,
+          'info' : '-10 kod&+2 studentów',
+          'click' : function () {
+            rocket.service('engine').change({
+              'money' : -10,
+              'students' : 2
+            });
+          }
+        },
+      ],
       'upgrades' : []
     },
     'b' : {
       'skills' : [
         {
-          'name' : 'źle!',
-          'icon' : 'fa-exclamation-triangle',
+          'name' : 'czytaj dokumentację',
+          'icon' : 'fa-book fa-3x',
           'enabled' : true,
           'info' : '+1 kod',
           'click' : function () {
-            console.log('elo');
+            rocket.service('engine').change({
+              'money' : 1
+            });
+          }
+        },
+        {
+          'name' : 'wez udzial w konkusie',
+          'icon' : 'fa-play fa-3x',
+          'enabled' : false,
+          'info' : '+1 profit&-5 studentów',
+          'click' : function () {
+            rocket.service('engine').change({
+              'profit' : 1,
+              'students' : -5
+            });
           }
         }
       ],
-      'upgrades' : []
+      'upgrades' : [
+        {
+          'name' : 'naucz sie kompilatora na pamiec',
+          'koszt' : 100,
+          'info' : 'umożliwia udzial w konkursie',
+          'click' : function (e) {
+
+            rocket.service("engine").upgrade(e, {
+              'koszt' : 100,
+              'name' : 'wez udzial w konkusie'
+            });
+
+          }
+        }
+      ]
     },
     't' : {
-      'skills' : [],
-      'upgrades' : []
+      'skills' : [
+        {
+          'name' : 'graj w pasjansa online',
+          'icon' : 'fa-play fa-3x',
+          'enabled' : false,
+          'info' : '+1 studentów',
+          'click' : function () {
+            rocket.service('engine').change({
+              'students' : 1
+            });
+          }
+        },
+        {
+          'name' : 'koduj w microJava',
+          'icon' : 'fa-play fa-3x',
+          'enabled' : false,
+          'info' : '+2 kodu',
+          'click' : function () {
+            rocket.service('engine').change({
+              'money' : 2
+            });
+          }
+        },
+        {
+          'name' : 'tomaszewXP',
+          'icon' : 'fa-star fa-3x',
+          'enabled' : false,
+          'info' : 'zainstaluj nowy system',
+          'click' : function () {
+            //todo
+          }
+        }
+      ],
+      'upgrades' : [
+        {
+          'name' : 'kup modem',
+          'koszt' : 100,
+          'info' : 'umożliwia gre w pasjansa online',
+          'click' : function (e) {
+
+            rocket.service("engine").upgrade(e, {
+              'koszt' : 100,
+              'name' : 'graj w pasjansa online'
+            });
+
+          }
+        },
+        {
+          'name' : 'napisz microJava',
+          'icon' : 'fa-play fa-3x',
+          'enabled' : true,
+          'koszt' : 200,
+          'info' : '+1 profit',
+          'click' : function (e) {
+            rocket.service("engine").upgrade(e, {
+              'koszt' : 100,
+              'name' : 'koduj w microJava',
+              'profit' : 5
+            });
+          }
+        },
+        {
+          'name' : 'napisz inzynierke',
+          'koszt' : 1000,
+          'info' : 'odblokowuje upgrade do tomaszewXP',
+          'click' : function (e) {
+
+            rocket.service("engine").upgrade(e, {
+              'name' : 'tomaszewXP',
+              'koszt' : 1000
+            });
+
+          }
+        },
+      ]
     }
   }
 
