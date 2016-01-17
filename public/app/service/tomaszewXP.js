@@ -1,7 +1,6 @@
 'use strict';
 
-rocket.register.service('win95', function() {
-
+rocket.register.service('tomaszewXP', function() {
   var menu = [
     {
       'name' : 'Tomaszew',
@@ -11,7 +10,7 @@ rocket.register.service('win95', function() {
     },
     {
       'icon' : 'fa fa-users',
-      'name' : 'Aula',
+      'name' : 'Nie Aula',
       'hash' : '#/aula',
       'letter' : 'a',
       'default' : true
@@ -274,6 +273,9 @@ rocket.register.service('win95', function() {
     },
     getMenu : function () {
       return menu;
+    },
+    setUp : function () {
+      
     }
-  }
+  };
 });

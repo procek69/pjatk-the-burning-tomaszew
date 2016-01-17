@@ -13,6 +13,7 @@ rocket.register.service("engine", function () {
   var money = parse('money', 0);
   var profit = parse('profit', 1);
   var students = parse('students', 20);
+  var lvl = '';
 
   function updateValues() {
     rocket.trigger('updateMoney', money);
@@ -73,14 +74,12 @@ rocket.register.service("engine", function () {
     });
   };
 
-  var lvl = 'win95';
-
   var skillsPower = {
     'zle' : 10,
     'tupanie' : 0,
     'procek69' : false
   };
-
+/*
   var data = {
     'a' : {
       'skills' : [
@@ -536,7 +535,7 @@ rocket.register.service("engine", function () {
       ]
     }
   };
-
+*/
   function renderSkill (element, params) {
 
     var div = document.createElement('div');
@@ -563,11 +562,12 @@ rocket.register.service("engine", function () {
       money += profit;
       updateValues();
     },
-    loadLvl : function (name) {
-      lvl = name;
-      rocket.trigger('updateLvl', {
+    loadLvl : function () {
+      /*rocket.trigger('updateLvl', {
         'lvl' : name
-      });
+      });*/
+      rocket.service(lvl).setUp();
+      document.body.className = lvl;
     },
     getLvl : function () {
       return lvl;
@@ -577,6 +577,28 @@ rocket.register.service("engine", function () {
     },
     getProfit : function () {
       return profit;
+    },
+    getMenu : function () {
+      return rocket.service(lvl).getMenu();
+    },
+    nextLvl : function () {
+      switch (lvl) {
+        case '':
+          lvl = 'tomaszew95';
+          break;
+        case 'tomaszew95':
+          lvl = 'tomaszewXP';
+          break;
+        case 'tomaszewXP':
+          lvl = 'tomaszew10';
+          break;
+        case 'tomaszew10':
+          lvl = 'os11tomaszew';
+          break;
+      }
+      //rocket.trigger('loadLvl', function () {});
+      rocket.trigger('reloadMenu', this.getMenu());
+      this.loadLvl(lvl);
     },
     getSkills : function (letter) {
       return rocket.service(lvl).getSkills(letter);

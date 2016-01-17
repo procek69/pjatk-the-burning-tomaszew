@@ -1,0 +1,171 @@
+@import url(https://fonts.googleapis.com/css?family=VT323);
+
+
+$gray: rgb(212, 208, 199);
+$darkGray: rgb(190, 180, 180);
+$theme: rgb(0, 132, 132);
+$gold: 13/8;
+
+body {
+  &.tomaszew95 {
+    font-family: 'VT323' !important;
+    background: $theme !important;
+
+
+    #content {
+
+      background: url('../media/tomaszew95.png') !important;
+      background-position: center !important;
+      background-repeat: no-repeat !important;
+      //background-size: 50%;
+       background-size: 400px 200px !important;
+
+      > div > div {
+        padding-bottom: 40px;
+      }
+
+
+
+      i {
+        color: $gray;
+        &.fa {
+          text-shadow: 1px 1px 0 #000,
+                      -1px -1px 0 #fff;
+        }
+      }
+
+      .skill, .upgrade {
+        background: none !important;
+        &.double {
+          width: inherit;
+        }
+        span {
+          background-color: rgba(0,0,0,.2);
+          padding: 2px;
+          padding-left: 4px;
+          padding-right: 4px;
+        }
+      }
+    }
+
+    $height: 50px;
+    #left {
+      background-color: $gray;
+      height: $height;
+      $startMargin: 4px;
+
+      > div {
+        max-width: inherit;
+      }
+
+      div.timer {
+        float: right;
+        text-align: center;
+        line-height: $height - 2*$startMargin;
+        width: $gold*$height;
+        height: $height - 2*$startMargin;
+        margin: $startMargin;
+        background-color: rgba(150,150,150,.1);
+        -webkit-box-shadow:inset 2px 2px 0 0 rgba(0,0,0,.2);
+        box-shadow:inset 2px 2px 0 0 rgba(0,0,0,.2);
+      }
+
+      div.start {
+        background-color: $gray;
+        float: left;
+        margin: $startMargin;
+        padding: 0;
+        width: $gold*$height;
+        height: $height - 2*$startMargin;
+        line-height: $height - 2*$startMargin;
+        text-align: center;
+        cursor: pointer;
+        -webkit-box-shadow: 1px 1px 0 1px #000,
+                            -1px -1px 0 1px #fff;
+        box-shadow: 1px 1px 0 1px #000,
+                    -1px -1px 0 1px #fff;
+
+        &:active {
+          background-color: $darkGray;
+        }
+
+        &.touch {
+          > div.menu {
+            display: block;
+          }
+        }
+
+      }
+
+      div.top {
+        display: inline;
+        p {
+          background-color: $gray;
+          float: left;
+          margin: $startMargin;
+          margin-top: 2*$startMargin;
+          padding: 0;
+          padding-left: 4px;
+          padding-right : 4px;
+          height: $height - 4*$startMargin;
+          line-height: $height - 4*$startMargin;
+          text-align: center;
+          cursor: pointer;
+          -webkit-box-shadow: 1px 1px 0 1px #777,
+                              -1px -1px 0 1px #ddd;
+          box-shadow: 1px 1px 0 1px #777,
+                      -1px -1px 0 1px #ddd;
+
+          display: inline;
+          float: left;
+          margin-left: 10px;
+          margin-right: 10px;
+        }
+      }
+
+      div.menu {
+        display: none;
+        position: relative;
+        bottom: 370px;
+        left: -$startMargin;
+        width: $gold*$gold*$height;
+
+        &:hover {
+          display: block;
+        }
+
+        > a {
+          background: $gray;
+          color: rgba(0,0,0,.8);
+          display: block;
+          width: $gold*$gold*$height;
+          height: $gold*$height;
+          line-height: $gold*$height;
+          float: left;
+          padding: 0;
+          margin: 0;
+          text-align: left;
+          text-decoration: none;
+          cursor: pointer;
+          &:hover {
+            background-color: #ddd;
+          }
+          > img {
+            height: $height;
+            width: $height;
+            -webkit-border-radius: 50%;
+            border-radius: 50%;
+            vertical-align: text-top;
+            position: relative;
+            bottom: 20px;
+          }
+          > i {
+            margin-left: 4px;
+          }
+        }
+      }
+
+    }
+
+  }
+}

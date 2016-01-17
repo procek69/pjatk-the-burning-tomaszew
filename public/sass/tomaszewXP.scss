@@ -1,0 +1,15 @@
+$theme: rgb(35, 93, 218);
+$gold: 13/8;
+
+body {
+  &.tomaszewXP {
+    #left {
+      background-color: $theme;
+    }
+    #content {
+      background: url("../media/tomaszewXP.jpg") !important;
+      background-position: bottom right !important;
+      //background-size: contain !important;
+    }
+  }
+}

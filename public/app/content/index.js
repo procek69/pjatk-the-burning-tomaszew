@@ -2,13 +2,14 @@
 
 rocket.register.module('content', function (element, params) {
 
-
   var loadHere = element.querySelector(':scope > div');
 
   var upgradesElement = element.querySelector(':scope div.upgrades');
   var skillsElement = element.querySelector(':scope div.skills');
 
-  var menu = rocket.service("win95").getMenu();
+  rocket.service("engine").nextLvl();
+
+  var menu = rocket.service("engine").getMenu();
 
   function getLetter() {
     return window.location.hash[2];
@@ -27,9 +28,6 @@ rocket.register.module('content', function (element, params) {
 
     rocket.service('engine').renderSkills(getLetter(), skillsElement);
     rocket.service('engine').renderUpgrades(getLetter(), upgradesElement);
-
-    rocket.trigger('reloadMenu', menu);
-
 
   }
 

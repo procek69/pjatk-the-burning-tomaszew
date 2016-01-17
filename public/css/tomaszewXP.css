@@ -1,0 +1,7 @@
+body.tomaszewXP #left {
+  background-color: #235dda;
+}
+body.tomaszewXP #content {
+  background: url("../media/tomaszewXP.jpg") !important;
+  background-position: bottom right !important;
+}

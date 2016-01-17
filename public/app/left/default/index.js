@@ -18,9 +18,7 @@ rocket.register.module("left/default", function(element, params) {
   }
 
   function hide(e) {
-    console.log($start.className);
     $start.className = 'start';
-    console.log($start.className);
   }
 
   function render(root, elem) {
@@ -58,6 +56,7 @@ rocket.register.module("left/default", function(element, params) {
       });
 
       rocket.register.event('reloadMenu', function (menu) {
+        console.log(menu);
         while ($menu.firstChild) {
             $menu.removeChild($menu.firstChild);
         }

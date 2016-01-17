@@ -179,47 +179,45 @@ body {
   width: 200px;
 }
 
-body.win95 {
+body.tomaszew95 {
   font-family: 'VT323' !important;
   background: #008484 !important;
 }
-
-#content {
+body.tomaszew95 #content {
   background: url("../media/tomaszew95.png") !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
   background-size: 400px 200px !important;
 }
-#content > div > div {
+body.tomaszew95 #content > div > div {
   padding-bottom: 40px;
 }
-#content i {
+body.tomaszew95 #content i {
   color: #d4d0c7;
 }
-#content i.fa {
+body.tomaszew95 #content i.fa {
   text-shadow: 1px 1px 0 #000, -1px -1px 0 #fff;
 }
-#content .skill, #content .upgrade {
+body.tomaszew95 #content .skill, body.tomaszew95 #content .upgrade {
   background: none !important;
 }
-#content .skill.double, #content .upgrade.double {
+body.tomaszew95 #content .skill.double, body.tomaszew95 #content .upgrade.double {
   width: inherit;
 }
-#content .skill span, #content .upgrade span {
+body.tomaszew95 #content .skill span, body.tomaszew95 #content .upgrade span {
   background-color: rgba(0, 0, 0, 0.2);
   padding: 2px;
   padding-left: 4px;
   padding-right: 4px;
 }
-
-#left {
+body.tomaszew95 #left {
   background-color: #d4d0c7;
   height: 50px;
 }
-#left > div {
+body.tomaszew95 #left > div {
   max-width: inherit;
 }
-#left div.timer {
+body.tomaszew95 #left div.timer {
   float: right;
   text-align: center;
   line-height: 42px;
@@ -230,7 +228,7 @@ body.win95 {
   -webkit-box-shadow: inset 2px 2px 0 0 rgba(0, 0, 0, 0.2);
   box-shadow: inset 2px 2px 0 0 rgba(0, 0, 0, 0.2);
 }
-#left div.start {
+body.tomaszew95 #left div.start {
   background-color: #d4d0c7;
   float: left;
   margin: 4px;
@@ -243,16 +241,16 @@ body.win95 {
   -webkit-box-shadow: 1px 1px 0 1px #000, -1px -1px 0 1px #fff;
   box-shadow: 1px 1px 0 1px #000, -1px -1px 0 1px #fff;
 }
-#left div.start:active {
+body.tomaszew95 #left div.start:active {
   background-color: #beb4b4;
 }
-#left div.start.touch > div.menu {
+body.tomaszew95 #left div.start.touch > div.menu {
   display: block;
 }
-#left div.top {
+body.tomaszew95 #left div.top {
   display: inline;
 }
-#left div.top p {
+body.tomaszew95 #left div.top p {
   background-color: #d4d0c7;
   float: left;
   margin: 4px;
@@ -271,17 +269,17 @@ body.win95 {
   margin-left: 10px;
   margin-right: 10px;
 }
-#left div.menu {
+body.tomaszew95 #left div.menu {
   display: none;
   position: relative;
   bottom: 370px;
   left: -4px;
   width: 132.03125px;
 }
-#left div.menu:hover {
+body.tomaszew95 #left div.menu:hover {
   display: block;
 }
-#left div.menu > a {
+body.tomaszew95 #left div.menu > a {
   background: #d4d0c7;
   color: rgba(0, 0, 0, 0.8);
   display: block;
@@ -295,10 +293,10 @@ body.win95 {
   text-decoration: none;
   cursor: pointer;
 }
-#left div.menu > a:hover {
+body.tomaszew95 #left div.menu > a:hover {
   background-color: #ddd;
 }
-#left div.menu > a > img {
+body.tomaszew95 #left div.menu > a > img {
   height: 50px;
   width: 50px;
   -webkit-border-radius: 50%;
@@ -307,6 +305,14 @@ body.win95 {
   position: relative;
   bottom: 20px;
 }
-#left div.menu > a > i {
+body.tomaszew95 #left div.menu > a > i {
   margin-left: 4px;
+}
+
+body.tomaszewXP #left {
+  background-color: #235dda;
+}
+body.tomaszewXP #content {
+  background: url("../media/tomaszewXP.jpg") !important;
+  background-position: bottom right !important;
 }
