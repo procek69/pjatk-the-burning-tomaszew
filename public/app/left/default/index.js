@@ -49,7 +49,7 @@ rocket.register.module("left/default", function(element, params) {
         var s = time % 60,
             m = (time - s) / 60;
 
-        $timer.innerHTML = [m, s].join(':');
+        $timer.innerHTML = [m, s < 10 ? '0' + s : s].join(':');
       });
 
       rocket.register.event('reloadMenu', function (menu) {

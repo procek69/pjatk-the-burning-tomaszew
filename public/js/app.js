@@ -664,25 +664,23 @@ rocket.register.service("engine", function () {
     },
     change : function (params) {
 
-      if (params['money'])
-        money += params['money'];
-
       var m = params['money'] || 0;
       var s = params['students'] || 0;
       var p = params['profit'] || 0;
 
+      console.log('money', m);
+      console.log('students', s);
+      console.log('profit', p);
+
       //przypadek braku hajsu lub studentów
-      if ((m < 0 && money >= m) || (s < 0 && students >= s)) {
-        students += s;
-        m += s;
-        profit += p;
-        updateValues();
+      if (money + m < 0 || students + s < 0) {]
         return;
       }
 
       profit += p;
       students += s;
-      m += s;
+      money += m;
+
       updateValues();
     },
     'upgrade' : upgrade,
@@ -1374,7 +1372,7 @@ rocket.register.module("left/default", function(element, params) {
         var s = time % 60,
             m = (time - s) / 60;
 
-        $timer.innerHTML = [m, s].join(':');
+        $timer.innerHTML = [m, s < 10 ? '0' + s : s].join(':');
       });
 
       rocket.register.event('reloadMenu', function (menu) {
