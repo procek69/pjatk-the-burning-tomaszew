@@ -70,6 +70,7 @@ rocket.register.service("engine", function () {
     rocket.trigger('updateMoney', money);
     rocket.trigger('updateStudents', students);
     rocket.trigger('updateProfit', profit);
+    rocket.trigger('updateTime', time);
   }
 
   function updateSkills(params) {
@@ -1328,6 +1329,7 @@ rocket.register.module("left/default", function(element, params) {
 
   var $start = element.querySelector('div.start');
   var $menu  = element.querySelector('div.menu');
+  var $timer = element.querySelector('div.timer');
   var flag = false;
 
   rocket.router.routeModuleHere(element.querySelector('div.top'));
@@ -1367,16 +1369,12 @@ rocket.register.module("left/default", function(element, params) {
 
   return {
     constructor : function () {
-      rocket.register.event('updateMoney', function(money) {
-        //$this.update(money);
-      });
 
-      rocket.register.event('updateStudents', function (students) {
-        //$this.updateStudents(students);
-      });
+      rocket.register.event('updateTime', function (time) {
+        var s = time % 60,
+            m = (time - s) / 60;
 
-      rocket.register.event('updateProfit', function (profit) {
-        //$this.updateProfit(profit);
+        $timer.innerHTML = [m, s].join(':');
       });
 
       rocket.register.event('reloadMenu', function (menu) {

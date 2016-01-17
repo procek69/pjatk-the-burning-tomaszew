@@ -20,6 +20,7 @@ rocket.register.service("engine", function () {
     rocket.trigger('updateMoney', money);
     rocket.trigger('updateStudents', students);
     rocket.trigger('updateProfit', profit);
+    rocket.trigger('updateTime', time);
   }
 
   function updateSkills(params) {
