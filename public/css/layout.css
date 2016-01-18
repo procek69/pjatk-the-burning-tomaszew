@@ -105,18 +105,6 @@ body {
   overflow: auto;
   height: 100%;
 }
-#content.tomaszew {
-  background-image: url("../media/t.jpg");
-}
-#content.cwiczenia {
-  background-image: url("../media/cwiczenia.JPG");
-}
-#content.aula {
-  background-image: url("../media/aula.JPG");
-}
-#content.s9 {
-  background-image: url("../media/s9.JPG");
-}
 #content div.skills, #content div.upgrades {
   display: flex;
   flex-wrap: wrap;
@@ -583,6 +571,10 @@ body.tomaszew10 #left div.menu > a > i {
 }
 
 body.os11tomaszew {
+  background: url("../media/aula.JPG");
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
   font-family: 'Karma', serif !important;
   color: #FFF;
 }
