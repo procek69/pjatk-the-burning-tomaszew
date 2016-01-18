@@ -1,5 +1,9 @@
 @import url(https://fonts.googleapis.com/css?family=Karma:300);
 body.os11tomaszew {
+  background: url("../media/aula.JPG");
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
   font-family: 'Karma', serif !important;
   color: #FFF;
 }
@@ -125,4 +129,7 @@ body.os11tomaszew #left div.menu > a > i {
   position: relative;
   background: #09F;
   text-align: center;
+}
+body.aula {
+  background: url("../media/aula.JPG") !important;
 }

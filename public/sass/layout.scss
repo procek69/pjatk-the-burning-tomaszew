@@ -122,22 +122,6 @@ body {
   overflow: auto;
   height: 100%;
 
-  &.tomaszew {
-    background-image: url("../media/t.jpg");
-  }
-
-  &.cwiczenia {
-    background-image: url("../media/cwiczenia.JPG");
-  }
-
-  &.aula {
-    background-image: url("../media/aula.JPG");
-  }
-
-  &.s9 {
-    background-image: url("../media/s9.JPG");
-  }
-
   div {
     &.skills, &.upgrades {
       display: flex;

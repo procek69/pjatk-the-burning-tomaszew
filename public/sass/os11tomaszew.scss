@@ -8,9 +8,13 @@ $gold: 13/8;
 
 body {
   &.os11tomaszew {
+    background: url('../media/aula.JPG');
+
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
     font-family: 'Karma', serif !important;
     color: #FFF;
-
 
     #content {
 
@@ -24,8 +28,6 @@ body {
       > div > div {
         padding-bottom: 50px;
       }
-
-
 
       i {
         color: #FFF;
@@ -162,4 +164,11 @@ body {
     }
 
   }
+
+  &.aula {
+    background: url('../media/aula.JPG') !important;
+  }
+
+
+
 }
