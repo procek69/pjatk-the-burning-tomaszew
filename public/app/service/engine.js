@@ -14,7 +14,7 @@ rocket.register.service("engine", function () {
   var profit = parse('profit', 1);
   var students = parse('students', 20);
   var lvl = '';
-  var time = parse('time', 0);
+  var time = parse('time', 90*60);
   var after = null;
 
   function updateValues() {
