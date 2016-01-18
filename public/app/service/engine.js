@@ -106,6 +106,8 @@ rocket.register.service("engine", function () {
 
   return {
     calc : function () {
+
+      time--;
       money += profit;
       updateValues();
     },

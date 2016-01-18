@@ -44,6 +44,7 @@ rocket.register.module('content', function (element, params) {
     for (var i = 0, l = menu.length; i < l; i++) {
       if (menu[i]['letter'] == letter) {
         var f = menu[i]['callback'];
+        console.log(f);
         if (f != undefined) {
           f();
         }

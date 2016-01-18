@@ -16,6 +16,31 @@ body {
     font-family: 'Karma', serif !important;
     color: #FFF;
 
+    &.aula {
+      background: url('../media/aula.JPG') !important;
+      background-position: center !important;
+      background-repeat: no-repeat !important;
+      background-size: cover !important;
+    }
+    &.tomaszew {
+      background: url('../media/t.JPG') !important;
+      background-position: center !important;
+      background-repeat: no-repeat !important;
+      background-size: cover !important;
+    }
+    &.cwiczenia {
+      background: url('../media/cwiczenia.JPG') !important;
+      background-position: center !important;
+      background-repeat: no-repeat !important;
+      background-size: cover !important;
+    }
+    &.s9 {
+      background: url('../media/s9.JPG') !important;
+      background-position: center !important;
+      background-repeat: no-repeat !important;
+      background-size: cover !important;
+    }
+
     #content {
 
       /*background: url("../media/tomaszew10.jpg") no-repeat center center fixed !important;*/
@@ -165,9 +190,7 @@ body {
 
   }
 
-  &.aula {
-    background: url('../media/aula.JPG') !important;
-  }
+
 
 
 
