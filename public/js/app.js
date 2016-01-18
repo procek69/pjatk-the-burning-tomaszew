@@ -39,6 +39,17 @@ rocket.register.module('content', function (element, params) {
 
   window.addEventListener("hashchange", function (e) {
     load();
+    var menu = rocket.service("engine").getMenu();
+    var letter = getLetter();
+    for (var i = 0, l = menu.length; i < l; i++) {
+      if (menu[i]['letter'] == letter) {
+        var f = menu[i]['callback'];
+        if (f != undefined) {
+          f();
+        }
+      }
+    }
+
   });
 
   return {
@@ -711,6 +722,98 @@ setInterval(rocket.service("engine").calc, 1000);
 
 'use strict';
 
+rocket.register.service('os11tomaszew', function() {
+
+  var menu = [
+    {
+      'name' : 'Tomaszew',
+      'letter' : 't',
+      'hash' : '#/tomaszew',
+      'src' : '/media/tomaszew.jpg',
+      'callback' : function () {
+        document.body.className = 'os11tomaszew tomaszew';
+      }
+    },
+    {
+      'icon' : 'fa fa-users',
+      'name' : 'Nie Aula',
+      'hash' : '#/aula',
+      'letter' : 'a',
+      'default' : true,
+      'callback' : function () {
+        document.body.className = 'os11tomaszew aula';
+      }
+    },
+    {
+      'icon' : 'fa fa-desktop',
+      'name' : 'Ćwiczenia',
+      'hash' : '#/cwiczenia',
+      'letter' : 'c',
+      'callback' : function () {
+        document.body.className = 'os11tomaszew cwiczenia';
+      }
+    },
+    {
+      'icon' : 'fa fa-book',
+      'name' : 'Biblitoteka',
+      'hash' : '#/biblioteka',
+      'letter' : 'b',
+      'callback' : function () {
+        document.body.className = 'os11tomaszew biblioteka';
+      }
+    }
+  ];
+
+  var data = {
+    'a' : {
+      'skills' : [],
+      'upgrades' : []
+    },
+    'c' : {
+      'skills' : [],
+      'upgrades' : []
+    }
+  };
+
+  return {
+    getSkills : function (letter) {
+      return data[letter]['skills'];
+    },
+    getUpgrades : function (letter) {
+      return data[letter]['upgrades'];
+    },
+    getMenu : function () {
+      return menu;
+    },
+    setUp : function () {
+    }
+  };
+});
+
+'use strict';
+
+rocket.register.service('tomaszew10', function() {
+
+  var menu = [];
+  var data = {};
+
+  return {
+    getSkills : function (letter) {
+      return data[letter]['skills'];
+    },
+    getUpgrades : function (letter) {
+      return data[letter]['upgrades'];
+    },
+    getMenu : function () {
+      return menu;
+    },
+    setUp : function () {
+    }
+  };
+});
+
+'use strict';
+
 rocket.register.service('tomaszew95', function() {
 
   var menu = [
@@ -1269,7 +1372,7 @@ rocket.register.service('tomaszewXP', function() {
       return menu;
     },
     setUp : function () {
-      
+
     }
   };
 });

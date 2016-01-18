@@ -309,10 +309,141 @@ body.tomaszew95 #left div.menu > a > i {
   margin-left: 4px;
 }
 
-body.tomaszewXP #left {
-  background-color: #235dda;
+body.tomaszewXP {
+  font-family: 'VT323' !important;
+  background: #235dda !important;
 }
 body.tomaszewXP #content {
   background: url("../media/tomaszewXP.jpg") !important;
   background-position: bottom right !important;
+}
+body.tomaszewXP #content > div > div {
+  padding-bottom: 40px;
+}
+body.tomaszewXP #content i {
+  color: white;
+}
+body.tomaszewXP #content i.fa {
+  text-shadow: 1px 1px 0 #000, -1px -1px 0 #fff;
+}
+body.tomaszewXP #content .skill, body.tomaszewXP #content .upgrade {
+  background: none !important;
+}
+body.tomaszewXP #content .skill.double, body.tomaszewXP #content .upgrade.double {
+  width: inherit;
+}
+body.tomaszewXP #content .skill span, body.tomaszewXP #content .upgrade span {
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 2px;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+body.tomaszewXP #left {
+  background-color: #235dda;
+  height: 50px;
+}
+body.tomaszewXP #left > div {
+  max-width: inherit;
+}
+body.tomaszewXP #left div.timer {
+  float: right;
+  text-align: center;
+  line-height: 42px;
+  width: 81.25px;
+  height: 42px;
+  margin: 4px;
+  color: white;
+  background-color: rgba(150, 150, 150, 0.1);
+  -webkit-box-shadow: inset 2px 2px 0 0 rgba(0, 0, 0, 0.2);
+  box-shadow: inset 2px 2px 0 0 rgba(0, 0, 0, 0.2);
+}
+body.tomaszewXP #left div.start {
+  background-color: #36b034;
+  float: left;
+  padding: 0;
+  width: 81.25px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  cursor: pointer;
+  -webkit-box-shadow: inset -2px -2px 4px 0 rgba(0, 0, 0, 0.3), inset 2px 2px 4px 2px rgba(255, 255, 255, 0.3);
+  box-shadow: inset -2px -2px 4px 0 rgba(0, 0, 0, 0.3), inset 2px 2px 4px 2px rgba(255, 255, 255, 0.3);
+  -webkit-border-radius: 0 6px 6px 0;
+  border-radius: 0 6px 6px 0;
+}
+body.tomaszewXP #left div.start span {
+  color: white;
+}
+body.tomaszewXP #left div.start:active {
+  background-color: green;
+}
+body.tomaszewXP #left div.start.touch > div.menu {
+  display: block;
+}
+body.tomaszewXP #left div.top {
+  display: inline;
+}
+body.tomaszewXP #left div.top p {
+  float: left;
+  margin: 4px;
+  margin-top: 8px;
+  padding: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+  display: inline;
+  float: left;
+  margin-left: 10px;
+  margin-right: 10px;
+  text-align: center;
+  line-height: 42px;
+  height: 42px;
+  margin: 4px;
+  color: white;
+  background-color: rgba(255, 255, 255, 0.3) !important;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.6);
+  box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.6);
+}
+body.tomaszewXP #left div.menu {
+  display: none;
+  position: relative;
+  bottom: 370px;
+  left: -4px;
+  width: 132.03125px;
+}
+body.tomaszewXP #left div.menu:hover {
+  display: block;
+}
+body.tomaszewXP #left div.menu > a {
+  background: white;
+  color: rgba(0, 0, 0, 0.8);
+  display: block;
+  width: 132.03125px;
+  height: 81.25px;
+  line-height: 81.25px;
+  float: left;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+body.tomaszewXP #left div.menu > a:last-child {
+  height: 76px;
+}
+body.tomaszewXP #left div.menu > a:hover {
+  background-color: #ddd;
+}
+body.tomaszewXP #left div.menu > a > img {
+  height: 50px;
+  width: 50px;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  vertical-align: text-top;
+  position: relative;
+  bottom: 20px;
+}
+body.tomaszewXP #left div.menu > a > i {
+  margin-left: 4px;
 }

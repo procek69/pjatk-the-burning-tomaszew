@@ -275,7 +275,7 @@ rocket.register.service('tomaszewXP', function() {
       return menu;
     },
     setUp : function () {
-      
+
     }
   };
 });
