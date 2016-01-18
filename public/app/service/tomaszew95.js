@@ -38,7 +38,7 @@ rocket.register.service('tomaszew95', function() {
           'icon' : 'fa-exclamation-triangle fa-3x',
           'enabled' : true,
           'info' : '+1 kod',
-          'time' : 1,
+          'time' : -1,
           'click' : function () {
             rocket.service('engine').change({
               'money' : 2,

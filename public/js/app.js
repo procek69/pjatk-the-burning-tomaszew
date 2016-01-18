@@ -661,7 +661,7 @@ rocket.register.service('tomaszew95', function() {
           'icon' : 'fa-exclamation-triangle fa-3x',
           'enabled' : true,
           'info' : '+1 kod',
-          'time' : 1,
+          'time' : -1,
           'click' : function () {
             rocket.service('engine').change({
               'money' : 2,
@@ -1304,23 +1304,6 @@ rocket.register.module("left/default", function(element, params) {
 
 'use strict';
 
-rocket.register.module('content/tile/upgrade', function (element, params) {
-
-  element.querySelector('div.visible span').innerHTML = params.name;
-  element.querySelector('div.visible i').innerHTML = [params.koszt, 'kodu'].join(' ');
-  element.querySelector('div.hidden p').innerHTML = params.info;
-
-  return {
-    constructor : function () {
-      element.addEventListener('click', function (e) {
-        params.click(e.target);
-      }, true);
-    }
-  }
-});
-
-'use strict';
-
 rocket.register.module('content/tile/skill', function (element, params) {
 
   element.querySelector('div.visible span').innerHTML = params.name;
@@ -1348,4 +1331,21 @@ rocket.register.module('content/tile/skill', function (element, params) {
     }
   }
 
+});
+
+'use strict';
+
+rocket.register.module('content/tile/upgrade', function (element, params) {
+
+  element.querySelector('div.visible span').innerHTML = params.name;
+  element.querySelector('div.visible i').innerHTML = [params.koszt, 'kodu'].join(' ');
+  element.querySelector('div.hidden p').innerHTML = params.info;
+
+  return {
+    constructor : function () {
+      element.addEventListener('click', function (e) {
+        params.click(e.target);
+      }, true);
+    }
+  }
 });
