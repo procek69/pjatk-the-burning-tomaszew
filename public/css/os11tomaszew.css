@@ -1,0 +1,128 @@
+@import url(https://fonts.googleapis.com/css?family=Karma:300);
+body.os11tomaszew {
+  font-family: 'Karma', serif !important;
+  color: #FFF;
+}
+body.os11tomaszew #content {
+  /*background: url("../media/tomaszew10.jpg") no-repeat center center fixed !important;*/
+}
+body.os11tomaszew #content > div {
+  margin-top: 30px;
+}
+body.os11tomaszew #content > div > div {
+  padding-bottom: 50px;
+}
+body.os11tomaszew #content i {
+  color: #FFF;
+}
+body.os11tomaszew #content .skill, body.os11tomaszew #content .upgrade {
+  background: none !important;
+}
+body.os11tomaszew #content .skill.double, body.os11tomaszew #content .upgrade.double {
+  width: inherit;
+}
+body.os11tomaszew #content .skill span, body.os11tomaszew #content .upgrade span {
+  text-shadow: 0 0 7px rgba(0, 0, 0, 0.6);
+  padding: 2px;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+body.os11tomaszew #left {
+  top: 0;
+  bottom: auto;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #000;
+  height: 30px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+body.os11tomaszew #left > div {
+  max-width: inherit;
+}
+body.os11tomaszew #left div.timer {
+  float: right;
+  text-align: center;
+  line-height: 22px;
+  width: 48.75px;
+  height: 22px;
+  margin: 4px;
+  color: #000;
+}
+body.os11tomaszew #left div.start {
+  float: left;
+  margin: 4px;
+  padding: 0;
+  width: 48.75px;
+  height: 22px;
+  line-height: 22px;
+  text-align: center;
+  cursor: pointer;
+}
+body.os11tomaszew #left div.start.touch > div.menu {
+  display: block;
+}
+body.os11tomaszew #left div.top {
+  display: inline;
+}
+body.os11tomaszew #left div.top p {
+  float: left;
+  margin: 4px;
+  margin-top: 8px;
+  padding: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+  height: 14px;
+  line-height: 14px;
+  text-align: center;
+  cursor: pointer;
+  display: inline;
+  float: left;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+body.os11tomaszew #left div.menu {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  margin-left: -250px;
+  height: 50px;
+  width: 500px !important;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  background: rgba(170, 170, 170, 0.7);
+  display: block;
+  border-radius: 10px 10px 0 0;
+}
+body.os11tomaszew #left div.menu:hover {
+  display: block;
+}
+body.os11tomaszew #left div.menu > a {
+  color: #FFF;
+  display: block;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  float: left;
+  padding: 0;
+  margin: 0 37.5px;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+body.os11tomaszew #left div.menu > a > img {
+  height: 40px;
+  width: 40px;
+  vertical-align: middle;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  position: relative;
+}
+body.os11tomaszew #left div.menu > a > i {
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  vertical-align: middle;
+  position: relative;
+  background: #09F;
+  text-align: center;
+}

@@ -1,2 +1,165 @@
-body.os11tomaszew {
+@import url(https://fonts.googleapis.com/css?family=Karma:300);
+
+
+$gray: rgba(170, 170, 170, 0.7);
+$darkGray: rgba(170, 170, 170, 0.85);
+$theme: rgb(0, 132, 132);
+$gold: 13/8;
+
+body {
+  &.os11tomaszew {
+    font-family: 'Karma', serif !important;
+    color: #FFF;
+
+
+    #content {
+
+      /*background: url("../media/tomaszew10.jpg") no-repeat center center fixed !important;*/
+      //background-size: contain !important;
+
+      > div {
+        margin-top: 30px;
+      }
+
+      > div > div {
+        padding-bottom: 50px;
+      }
+
+
+
+      i {
+        color: #FFF;
+      }
+
+      .skill, .upgrade {
+        background: none !important;
+        &.double {
+          width: inherit;
+        }
+        span {
+          text-shadow: 0 0 7px rgba(0, 0, 0, .6);
+          padding: 2px;
+          padding-left: 4px;
+          padding-right: 4px;
+        }
+      }
+    }
+
+    $height: 30px;
+    #left {
+      top: 0;
+      bottom: auto;
+      background-color: rgba(255, 255, 255, 0.9);
+      color: #000;
+      height: $height;
+      box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+      $startMargin: 4px;
+
+      > div {
+        max-width: inherit;
+      }
+
+      div.timer {
+        float: right;
+        text-align: center;
+        line-height: $height - 2*$startMargin;
+        width: $gold*$height;
+        height: $height - 2*$startMargin;
+        margin: $startMargin;
+        color: #000;
+      }
+
+      div.start {
+        float: left;
+        margin: $startMargin;
+        padding: 0;
+        width: $gold*$height;
+        height: $height - 2*$startMargin;
+        line-height: $height - 2*$startMargin;
+        text-align: center;
+        cursor: pointer;
+
+        &.touch {
+          > div.menu {
+            display: block;
+          }
+        }
+
+      }
+
+      div.top {
+        display: inline;
+        p {
+          float: left;
+          margin: $startMargin;
+          margin-top: 2*$startMargin;
+          padding: 0;
+          padding-left: 4px;
+          padding-right : 4px;
+          height: $height - 4*$startMargin;
+          line-height: $height - 4*$startMargin;
+          text-align: center;
+          cursor: pointer;
+
+          display: inline;
+          float: left;
+          margin-left: 10px;
+          margin-right: 10px;
+        }
+      }
+
+      div.menu {
+        position: fixed;
+        bottom: 0;
+        left: 50%;
+        margin-left: -250px;
+        height: 50px;
+        width: 500px !important;
+        box-shadow: 0 0 3px rgba(0, 0, 0, .3);
+        background: $gray;
+        display: block;
+        border-radius: 10px 10px 0 0;
+
+        &:hover {
+          display: block;
+        }
+
+        > a {
+          color: #FFF;
+          display: block;
+          width: 50px;
+          height: 50px;
+          line-height: 50px;
+          float: left;
+          padding: 0;
+          margin: 0 37.5px;
+          text-align: left;
+          text-decoration: none;
+          cursor: pointer;
+          > img {
+            height: 40px;
+            width: 40px;
+            vertical-align: middle;
+            -webkit-border-radius: 50%;
+            border-radius: 50%;
+            position: relative;
+          }
+          > i {
+            height: 40px;
+            width: 40px;
+            line-height: 40px;
+            -webkit-border-radius: 50%;
+            border-radius: 50%;
+            vertical-align: middle;
+            position: relative;
+            background: #09F;
+            text-align: center;
+
+          }
+        }
+      }
+
+    }
+
+  }
 }

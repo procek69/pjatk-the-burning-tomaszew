@@ -4,54 +4,32 @@ rocket.register.service('os11tomaszew', function() {
 
   var menu = [
     {
-      'name' : 'Tomaszew',
+      'name' : '',
       'letter' : 't',
       'hash' : '#/tomaszew',
-      'src' : '/media/tomaszew.jpg',
-      'callback' : function () {
-        document.body.className = 'os11tomaszew tomaszew';
-      }
+      'src' : '/media/tomaszew.jpg'
     },
     {
       'icon' : 'fa fa-users',
-      'name' : 'Nie Aula',
+      'name' : '',
       'hash' : '#/aula',
       'letter' : 'a',
-      'default' : true,
-      'callback' : function () {
-        document.body.className = 'os11tomaszew aula';
-      }
+      'default' : true
     },
     {
       'icon' : 'fa fa-desktop',
-      'name' : 'Ćwiczenia',
+      'name' : '',
       'hash' : '#/cwiczenia',
-      'letter' : 'c',
-      'callback' : function () {
-        document.body.className = 'os11tomaszew cwiczenia';
-      }
+      'letter' : 'c'
     },
     {
       'icon' : 'fa fa-book',
-      'name' : 'Biblitoteka',
+      'name' : '',
       'hash' : '#/biblioteka',
-      'letter' : 'b',
-      'callback' : function () {
-        document.body.className = 'os11tomaszew biblioteka';
-      }
+      'letter' : 'b'
     }
   ];
-
-  var data = {
-    'a' : {
-      'skills' : [],
-      'upgrades' : []
-    },
-    'c' : {
-      'skills' : [],
-      'upgrades' : []
-    }
-  };
+  var data = {};
 
   return {
     getSkills : function (letter) {

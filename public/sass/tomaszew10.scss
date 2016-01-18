@@ -1,2 +1,168 @@
-body.tomaszew10 {
+@import url(https://fonts.googleapis.com/css?family=Karma:300);
+
+
+$gray: rgba(0, 0, 0, 0.7);
+$darkGray: rgba(0, 0, 0, 0.85);
+$theme: rgb(0, 132, 132);
+$gold: 13/8;
+
+body {
+  &.tomaszew10 {
+    font-family: 'Karma', serif !important;
+    color: #FFF;
+
+
+    #content {
+
+      background: url("../media/tomaszew10.jpg") no-repeat center center fixed !important;
+      //background-size: contain !important;
+
+      > div > div {
+        padding-bottom: 40px;
+      }
+
+
+
+      i {
+        color: #FFF;
+      }
+
+      .skill, .upgrade {
+        background: none !important;
+        &.double {
+          width: inherit;
+        }
+        span {
+          text-shadow: 0 0 7px rgba(0, 0, 0, .6);
+          padding: 2px;
+          padding-left: 4px;
+          padding-right: 4px;
+        }
+      }
+    }
+
+    $height: 50px;
+    #left {
+      background-color: $darkGray;
+      height: $height;
+      $startMargin: 4px;
+
+      > div {
+        max-width: inherit;
+      }
+
+      div.timer {
+        float: right;
+        text-align: center;
+        line-height: $height - 2*$startMargin;
+        width: $gold*$height;
+        height: $height - 2*$startMargin;
+        margin: $startMargin;
+        color: #FFF;
+      }
+
+      div.start {
+        float: left;
+        margin: $startMargin;
+        padding: 0;
+        width: $gold*$height;
+        height: $height - 2*$startMargin;
+        line-height: $height - 2*$startMargin;
+        text-align: center;
+        cursor: pointer;
+
+        &:active {
+          background-color: $darkGray;
+        }
+
+        &.touch {
+          > div.menu {
+            display: block;
+          }
+        }
+
+      }
+
+      div.top {
+        display: inline;
+        p {
+          float: left;
+          margin: $startMargin;
+          margin-top: 2*$startMargin;
+          padding: 0;
+          padding-left: 4px;
+          padding-right : 4px;
+          height: $height - 4*$startMargin;
+          line-height: $height - 4*$startMargin;
+          text-align: center;
+          cursor: pointer;
+
+          display: inline;
+          float: left;
+          margin-left: 10px;
+          margin-right: 10px;
+        }
+      }
+
+      div.menu {
+        height: 365px;
+        width: 155px !important;
+        background: $gray;
+        display: none;
+        position: relative;
+        bottom: 410px;
+        left: -$startMargin;
+        width: $gold*$gold*$height;
+
+        &:hover {
+          display: block;
+        }
+
+        > a {
+          background: $gray;
+          color: #FFF;
+          display: block;
+          width: $gold*$gold*$height;
+          height: $gold*$height;
+          line-height: $gold*$height;
+          float: left;
+          padding: 0;
+          margin: 2px 5px;
+          text-align: left;
+          text-decoration: none;
+          cursor: pointer;
+          &:nth-child(1) {
+            background: none;
+            margin: 20px 5px 2px;
+          }
+          &:nth-child(2) {
+            background: rgb(15, 106, 189) !important;
+          }
+          &:nth-child(3) {
+            background: rgb(217, 20, 38) !important;
+          }
+          &:nth-child(4) {
+          background: rgb(30, 125, 63) !important;
+          }
+          &:hover {
+            background-color: $darkGray;
+          }
+          > img {
+            height: $height;
+            width: $height;
+            -webkit-border-radius: 50%;
+            border-radius: 50%;
+            vertical-align: text-top;
+            position: relative;
+            bottom: 20px;
+          }
+          > i {
+            margin-left: 4px;
+          }
+        }
+      }
+
+    }
+
+  }
 }
