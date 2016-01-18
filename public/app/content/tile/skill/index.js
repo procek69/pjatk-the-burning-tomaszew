@@ -19,9 +19,6 @@ rocket.register.module('content/tile/skill', function (element, params) {
           element.className = 'skill';
         }
       });
-      rocket.register.event('updateLvl', function (params) {
-        console.log(params);
-      });
       element.addEventListener('click', function(e) {
         if (element.className != 'skill disabled') {
           click();

@@ -33,7 +33,7 @@ rocket.register.service('tomaszewXP', function() {
     'a' : {
       'skills' : [
         {
-          'name' : 'źle!',
+          'name' : 'źle!!!',
           'icon' : 'fa-exclamation-triangle fa-3x',
           'enabled' : true,
           'info' : '+1 kod',

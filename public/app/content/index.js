@@ -52,9 +52,15 @@ rocket.register.module('content', function (element, params) {
 
   });
 
+  //rocket.trigger('loadLvl', function () {});
+
+
   return {
     constructor: function () {
       load();
+      rocket.service("engine").setAfter(function () {
+        load();
+      });
     }
   }
 });
