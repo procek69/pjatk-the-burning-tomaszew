@@ -5,6 +5,7 @@ rocket.register.module("left/default", function(element, params) {
   var $start = element.querySelector('div.start');
   var $menu  = element.querySelector('div.menu');
   var $timer = element.querySelector('div.timer');
+  document.querySelector(':scope img').setAttribute('src', 'http://procek69.github.io/pjatk-the-burning-tomaszew/public/media/tomaszew.jpg');
   var flag = false;
 
   rocket.router.routeModuleHere(element.querySelector('div.top'));
