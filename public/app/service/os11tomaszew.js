@@ -7,7 +7,7 @@ rocket.register.service('os11tomaszew', function() {
       'name' : '',
       'letter' : 't',
       'hash' : '#/tomaszew',
-      'src' : '/media/tomaszew.jpg',
+      'src' : 'media/tomaszew.jpg',
       'callback' : function () {
         document.body.className = 'os11tomaszew tomaszew'
       }

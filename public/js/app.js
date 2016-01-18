@@ -287,7 +287,7 @@ rocket.register.service('os11tomaszew', function() {
       'name' : '',
       'letter' : 't',
       'hash' : '#/tomaszew',
-      'src' : '/media/tomaszew.jpg',
+      'src' : 'media/tomaszew.jpg',
       'callback' : function () {
         document.body.className = 'os11tomaszew tomaszew'
       }
@@ -582,7 +582,7 @@ rocket.register.service('tomaszew10', function() {
       'name' : 'Tomaszew',
       'letter' : 't',
       'hash' : '#/tomaszew',
-      'src' : '/media/tomaszew.jpg'
+      'src' : 'media/tomaszew.jpg'
     },
     {
       'icon' : 'fa fa-users',
@@ -630,7 +630,7 @@ rocket.register.service('tomaszew95', function() {
       'name' : 'Tomaszew',
       'letter' : 't',
       'hash' : '#/tomaszew',
-      'src' : '/media/tomaszew.jpg'
+      'src' : 'media/tomaszew.jpg'
     },
     {
       'icon' : 'fa fa-users',
@@ -913,7 +913,7 @@ rocket.register.service('tomaszewXP', function() {
       'name' : 'Tomaszew',
       'letter' : 't',
       'hash' : '#/tomaszew',
-      'src' : '/media/tomaszew.jpg'
+      'src' : 'media/tomaszew.jpg'
     },
     {
       'icon' : 'fa fa-users',
