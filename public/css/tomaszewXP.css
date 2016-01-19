@@ -17,6 +17,7 @@ body.tomaszewXP #content i.fa {
 }
 body.tomaszewXP #content .skill, body.tomaszewXP #content .upgrade {
   background: none !important;
+  text-shadow: 1px 1px 0 black;
 }
 body.tomaszewXP #content .skill.double, body.tomaszewXP #content .upgrade.double {
   width: inherit;

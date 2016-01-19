@@ -719,8 +719,7 @@ rocket.register.service('tomaszew95', function() {
           'name' : 'kup sluchawki',
           'enabled' : true,
           'koszt' : 100,
-          'opis' : 'na co komu wyklad?',
-          'unlock' : 'nie sluchaj wykladu',
+          'info' : 'na co komu wyklad?',
           'click' : function (e) {
             rocket.service("engine").upgrade(e, {
               'koszt' : 100,
@@ -732,8 +731,7 @@ rocket.register.service('tomaszew95', function() {
           'name' : 'namow profesora na wyklad',
           'enabled' : true,
           'koszt' : 100,
-          'opis' : 'zacznij prowadzic wyklady',
-          'unlock' : 'asystuj profesorowi',
+          'info' : 'zacznij prowadzic wyklady',
           'click' : function (e) {
             rocket.service("engine").upgrade(e, {
               'koszt' : 100,
@@ -752,7 +750,7 @@ rocket.register.service('tomaszew95', function() {
           'info' : '+2 kod',
           'click' : function () {
             rocket.service('engine').change({
-              'kod' : 2
+              'money' : 2
             });
           }
         },
@@ -976,7 +974,7 @@ rocket.register.service('tomaszewXP', function() {
           'info' : '+1 kod',
           'click' : function () {
             rocket.service('engine').change({
-              'money' : 2
+              'money' : 1
             });
           }
         },
@@ -1282,23 +1280,6 @@ rocket.register.module("left/default", function(element, params) {
 
 'use strict';
 
-rocket.register.module('content/tile/upgrade', function (element, params) {
-
-  element.querySelector('div.visible span').innerHTML = params.name;
-  element.querySelector('div.visible i').innerHTML = [params.koszt, 'kodu'].join(' ');
-  element.querySelector('div.hidden p').innerHTML = params.info;
-
-  return {
-    constructor : function () {
-      element.addEventListener('click', function (e) {
-        params.click(e.target);
-      }, true);
-    }
-  }
-});
-
-'use strict';
-
 rocket.register.module('content/tile/skill', function (element, params) {
 
   element.querySelector('div.visible span').innerHTML = params.name;
@@ -1326,4 +1307,21 @@ rocket.register.module('content/tile/skill', function (element, params) {
     }
   }
 
+});
+
+'use strict';
+
+rocket.register.module('content/tile/upgrade', function (element, params) {
+
+  element.querySelector('div.visible span').innerHTML = params.name;
+  element.querySelector('div.visible i').innerHTML = [params.koszt, 'kodu'].join(' ');
+  element.querySelector('div.hidden p').innerHTML = params.info;
+
+  return {
+    constructor : function () {
+      element.addEventListener('click', function (e) {
+        params.click(e.target);
+      }, true);
+    }
+  }
 });

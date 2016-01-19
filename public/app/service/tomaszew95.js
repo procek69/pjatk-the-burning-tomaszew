@@ -86,8 +86,7 @@ rocket.register.service('tomaszew95', function() {
           'name' : 'kup sluchawki',
           'enabled' : true,
           'koszt' : 100,
-          'opis' : 'na co komu wyklad?',
-          'unlock' : 'nie sluchaj wykladu',
+          'info' : 'na co komu wyklad?',
           'click' : function (e) {
             rocket.service("engine").upgrade(e, {
               'koszt' : 100,
@@ -99,8 +98,7 @@ rocket.register.service('tomaszew95', function() {
           'name' : 'namow profesora na wyklad',
           'enabled' : true,
           'koszt' : 100,
-          'opis' : 'zacznij prowadzic wyklady',
-          'unlock' : 'asystuj profesorowi',
+          'info' : 'zacznij prowadzic wyklady',
           'click' : function (e) {
             rocket.service("engine").upgrade(e, {
               'koszt' : 100,
@@ -119,7 +117,7 @@ rocket.register.service('tomaszew95', function() {
           'info' : '+2 kod',
           'click' : function () {
             rocket.service('engine').change({
-              'kod' : 2
+              'money' : 2
             });
           }
         },

@@ -39,7 +39,7 @@ rocket.register.service('tomaszewXP', function() {
           'info' : '+1 kod',
           'click' : function () {
             rocket.service('engine').change({
-              'money' : 2
+              'money' : 1
             });
           }
         },
