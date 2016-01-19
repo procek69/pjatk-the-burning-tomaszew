@@ -638,7 +638,7 @@ rocket.register.service('tomaszew95', function() {
     },
     {
       'icon' : 'fa fa-desktop',
-      'name' : 'Ćwiczenia',
+      'name' : 'Cwiczenia',
       'hash' : '#/cwiczenia',
       'letter' : 'c'
     },
@@ -654,7 +654,7 @@ rocket.register.service('tomaszew95', function() {
     'a' : {
       'skills' : [
         {
-          'name' : 'źle!',
+          'name' : 'zle!',
           'icon' : 'fa-exclamation-triangle fa-3x',
           'enabled' : true,
           'info' : '+1 kod',
@@ -667,7 +667,7 @@ rocket.register.service('tomaszew95', function() {
           }
         },
         {
-          'name' : 'słuchaj wykładu',
+          'name' : 'sluchaj wykladu',
           'icon' : 'fa-graduation-cap fa-3x',
           'enabled' : true,
           'info' : '+2 kodu',
@@ -769,7 +769,7 @@ rocket.register.service('tomaszew95', function() {
     'b' : {
       'skills' : [
         {
-          'name' : 'czytaj dokumentację',
+          'name' : 'czytaj dokumentacje',
           'icon' : 'fa-book fa-3x',
           'enabled' : true,
           'info' : '+1 kod',
