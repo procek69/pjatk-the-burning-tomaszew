@@ -41,7 +41,7 @@ rocket.register.service('tomaszew95', function() {
           'time' : -1,
           'click' : function () {
             rocket.service('engine').change({
-              'kod' : 1,
+              'money' : 1,
               'time' : 1
             });
           }
@@ -53,7 +53,7 @@ rocket.register.service('tomaszew95', function() {
           'info' : '+2 kodu',
           'click' : function () {
             rocket.service('engine').change({
-              'kod' : 2
+              'money' : 2
             });
           }
         },
