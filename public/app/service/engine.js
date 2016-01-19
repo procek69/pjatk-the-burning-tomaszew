@@ -81,7 +81,12 @@ rocket.register.service("engine", function () {
     var div = document.createElement('div');
     div.className = 'upgrade';
 
-    rocket.router.loadModuleIntoElement('content/tile/upgrade', div, params);
+    var enabled = params['enabled'] || true;
+
+    if (enabled) {
+      console.log('bede rysyowal: ', params);
+      rocket.router.loadModuleIntoElement('content/tile/upgrade', div, params);
+    }
 
     element.appendChild(div);
 

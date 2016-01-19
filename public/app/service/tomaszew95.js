@@ -87,6 +87,7 @@ rocket.register.service('tomaszew95', function() {
           'enabled' : true,
           'koszt' : 100,
           'opis' : 'na co komu wyklad?',
+          'unlock' : 'nie sluchaj wykladu',
           'click' : function (e) {
             rocket.service("engine").upgrade(e, {
               'koszt' : 100,
@@ -99,6 +100,7 @@ rocket.register.service('tomaszew95', function() {
           'enabled' : true,
           'koszt' : 100,
           'opis' : 'zacznij prowadzic wyklady',
+          'unlock' : 'asystuj profesorowi',
           'click' : function (e) {
             rocket.service("engine").upgrade(e, {
               'koszt' : 100,
@@ -179,6 +181,7 @@ rocket.register.service('tomaszew95', function() {
           'name' : 'naucz sie kompilatora na pamiec',
           'koszt' : 100,
           'info' : 'umożliwia udzial w konkursie',
+          'unlock' : 'wez udzial w konkusie',
           'click' : function (e) {
 
             rocket.service("engine").upgrade(e, {
@@ -229,6 +232,7 @@ rocket.register.service('tomaszew95', function() {
           'name' : 'kup modem',
           'koszt' : 100,
           'info' : 'umożliwia gre w pasjansa online',
+          'unlock' : 'graj w pasjansa online',
           'click' : function (e) {
 
             rocket.service("engine").upgrade(e, {
@@ -244,6 +248,7 @@ rocket.register.service('tomaszew95', function() {
           'enabled' : true,
           'koszt' : 200,
           'info' : '+1 profit',
+          'unlock' : 'koduj w microJava',
           'click' : function (e) {
             rocket.service("engine").upgrade(e, {
               'koszt' : 100,
@@ -255,6 +260,7 @@ rocket.register.service('tomaszew95', function() {
         {
           'name' : 'napisz inzynierke',
           'koszt' : 1000,
+          'unlock' : 'tomaszewXP',
           'info' : 'odblokowuje upgrade do tomaszewXP',
           'click' : function (e) {
 
@@ -280,6 +286,11 @@ rocket.register.service('tomaszew95', function() {
       return menu;
     },
     upgrade : function (letter, name) {
+      for (var i = 0, l = data[letter]['upgrades'].length; i < l; i++) {
+        if (data[letter]['upgrades'][i]['unlock'] == name) {
+          data[letter]['upgrades'][i]['enabled'] = false;
+        }
+      }
       for (var i = 0, l = data[letter]['skills'].length; i < l; i++) {
         if (data[letter]['skills'][i]['name'] == name) {
           data[letter]['skills'][i]['enabled'] = true;
