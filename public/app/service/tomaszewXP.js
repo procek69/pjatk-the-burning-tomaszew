@@ -50,7 +50,7 @@ rocket.register.service('tomaszewXP', function() {
           'info' : '+2 kodu',
           'click' : function () {
             rocket.service('engine').change({
-              'kod' : 2
+              'money' : 2
             });
           }
         }
