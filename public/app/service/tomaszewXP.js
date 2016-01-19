@@ -6,7 +6,7 @@ rocket.register.service('tomaszewXP', function() {
       'name' : 'Tomaszew',
       'letter' : 't',
       'hash' : '#/tomaszew',
-      'src' : '/media/tomaszew.jpg'
+      'src' : 'media/tomaszew.jpg'
     },
     {
       'icon' : 'fa fa-users',
