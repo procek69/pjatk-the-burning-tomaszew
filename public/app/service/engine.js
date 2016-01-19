@@ -28,29 +28,11 @@ rocket.register.service("engine", function () {
     rocket.trigger('updateSkills', params);
   }
 
-  function tryUpgrade($parent) {
-
-    if ($parent.className == 'upgrade green')
-      return false;
-
-    $parent.className += ' green';
-
-    var $i = $parent.querySelector('i');
-    $i.innerHTML = '';
-    $i.className = 'fa fa-check';
-
-    return true;
-  }
-
   function upgrade(e, values) {
-
-    if (!tryUpgrade(e)) return;
 
     var cost = values['koszt'] || 0;
     var student = values['students'] || 0;
     var prof = values['profit'] || 0;
-
-    console.log(cost, student, prof);
 
     if (money - cost < 0) {
       return;
@@ -61,12 +43,16 @@ rocket.register.service("engine", function () {
     if (students - student < 0) {
       return;
     }
-    students -= student;
 
+    students -= student;
     profit += prof;
 
     var callback = values['callback'];
     if (callback != undefined) callback();
+
+    rocket.service(lvl).upgrade(window.location.hash[2], values['name']);
+
+    e.parentNode.removeChild(e);
 
     updateValues();
     updateSkills({
@@ -109,9 +95,6 @@ rocket.register.service("engine", function () {
       updateValues();
     },
     loadLvl : function () {
-      /*rocket.trigger('updateLvl', {
-        'lvl' : name
-      });*/
       rocket.service(lvl).setUp();
       document.body.className = lvl;
     },
