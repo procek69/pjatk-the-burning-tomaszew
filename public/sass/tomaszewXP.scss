@@ -36,6 +36,11 @@ body {
           padding-left: 4px;
           padding-right: 4px;
         }
+        .hidden {
+          background: rgba(255, 255, 255, .8);
+          width: 100px;
+          height: 100px;
+        }
       }
     }
 

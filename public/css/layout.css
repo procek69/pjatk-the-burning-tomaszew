@@ -143,6 +143,7 @@ body {
 }
 #content div.skills > div div.hidden p, #content div.upgrades > div div.hidden p {
   margin: 0;
+  font-weight: bold;
   color: #ff9900;
   font-size: 16px;
 }
@@ -326,6 +327,11 @@ body.tomaszewXP #content .skill span, body.tomaszewXP #content .upgrade span {
   padding: 2px;
   padding-left: 4px;
   padding-right: 4px;
+}
+body.tomaszewXP #content .skill .hidden, body.tomaszewXP #content .upgrade .hidden {
+  background: rgba(255, 255, 255, 0.8);
+  width: 100px;
+  height: 100px;
 }
 body.tomaszewXP #left {
   background-color: #235dda;
