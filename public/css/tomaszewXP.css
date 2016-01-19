@@ -22,7 +22,6 @@ body.tomaszewXP #content .skill.double, body.tomaszewXP #content .upgrade.double
   width: inherit;
 }
 body.tomaszewXP #content .skill span, body.tomaszewXP #content .upgrade span {
-  background-color: rgba(0, 0, 0, 0.4);
   padding: 2px;
   padding-left: 4px;
   padding-right: 4px;

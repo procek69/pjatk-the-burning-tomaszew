@@ -144,7 +144,7 @@ body {
 #content div.skills > div div.hidden p, #content div.upgrades > div div.hidden p {
   margin: 0;
   color: #ff9900;
-  font-size: 12px;
+  font-size: 16px;
 }
 #content div.skills > div:hover div.visible, #content div.skills > div div.hidden, #content div.upgrades > div:hover div.visible, #content div.upgrades > div div.hidden {
   display: none;
@@ -323,7 +323,6 @@ body.tomaszewXP #content .skill.double, body.tomaszewXP #content .upgrade.double
   width: inherit;
 }
 body.tomaszewXP #content .skill span, body.tomaszewXP #content .upgrade span {
-  background-color: rgba(0, 0, 0, 0.4);
   padding: 2px;
   padding-left: 4px;
   padding-right: 4px;

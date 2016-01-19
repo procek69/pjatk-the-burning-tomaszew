@@ -41,7 +41,7 @@ rocket.register.service('tomaszew95', function() {
           'time' : -1,
           'click' : function () {
             rocket.service('engine').change({
-              'money' : 2,
+              'kod' : 1,
               'time' : 1
             });
           }
@@ -75,13 +75,15 @@ rocket.register.service('tomaszew95', function() {
           'info' : '+1 profit',
           'click' : function () {
             console.log('elo');
+            rocket.service('engine').change({
+              'profit' : 1
+            });
           }
         }
       ],
       'upgrades' : [
         {
           'name' : 'kup sluchawki',
-          'icon' : 'brak fa-3x',
           'enabled' : true,
           'koszt' : 100,
           'opis' : 'na co komu wyklad?',
@@ -94,7 +96,6 @@ rocket.register.service('tomaszew95', function() {
         },
         {
           'name' : 'namow profesora na wyklad',
-          'icon' : 'fa-cash fa-3x',
           'enabled' : true,
           'koszt' : 100,
           'opis' : 'zacznij prowadzic wyklady',
@@ -116,7 +117,7 @@ rocket.register.service('tomaszew95', function() {
           'info' : '+2 kod',
           'click' : function () {
             rocket.service('engine').change({
-              'money' : 2
+              'kod' : 2
             });
           }
         },
@@ -127,7 +128,8 @@ rocket.register.service('tomaszew95', function() {
           'info' : '-2 kod&+1 student',
           'click' : function () {
             rocket.service('engine').change({
-              'money' : 2
+              'money' : -2,
+              'students' : 1
             });
           }
         },
@@ -218,7 +220,7 @@ rocket.register.service('tomaszew95', function() {
           'enabled' : false,
           'info' : 'zainstaluj nowy system',
           'click' : function () {
-            //todo
+            rocket.service("engine").nextLvl();
           }
         }
       ],

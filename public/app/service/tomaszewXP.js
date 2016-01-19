@@ -6,11 +6,11 @@ rocket.register.service('tomaszewXP', function() {
       'name' : 'Tomaszew',
       'letter' : 't',
       'hash' : '#/tomaszew',
-      'src' : 'media/tomaszew.jpg'
+      'src' : '/media/tomaszew.jpg'
     },
     {
       'icon' : 'fa fa-users',
-      'name' : 'Nie Aula',
+      'name' : 'Aula',
       'hash' : '#/aula',
       'letter' : 'a',
       'default' : true
@@ -33,9 +33,9 @@ rocket.register.service('tomaszewXP', function() {
     'a' : {
       'skills' : [
         {
-          'name' : 'źle!!!',
+          'name' : 'Wredne pytanie',
           'icon' : 'fa-exclamation-triangle fa-3x',
-          'enabled' : true,
+          'enabled' : false,
           'info' : '+1 kod',
           'click' : function () {
             rocket.service('engine').change({
@@ -44,61 +44,41 @@ rocket.register.service('tomaszewXP', function() {
           }
         },
         {
-          'name' : 'słuchaj wykładu',
-          'icon' : 'fa-graduation-cap fa-3x',
-          'enabled' : true,
+          'name' : 'Graj w WoW\'a',
+          'icon' : 'fa fa-gamepad fa-3x',
+          'enabled' : false,
           'info' : '+2 kodu',
           'click' : function () {
             rocket.service('engine').change({
               'kod' : 2
             });
           }
-        },
-        {
-          'name' : 'nie sluchaj wykladu',
-          'icon' : 'fa-graduation-cap fa-3x',
-          'enabled' : false,
-          'info' : '+1 student',
-          'click' : function () {
-            rocket.service('engine').change({
-              'students' : 1
-            });
-          }
-        },
-        {
-          'name' : 'asystuj profesorowi',
-          'icon' : 'fa-play fa-3x',
-          'enabled' : false,
-          'info' : '+1 profit',
-          'click' : function () {
-            console.log('elo');
-          }
         }
       ],
       'upgrades' : [
         {
-          'name' : 'kup sluchawki',
+          'name' : 'Kup megafon',
           'icon' : 'brak fa-3x',
           'enabled' : true,
           'koszt' : 100,
-          'opis' : 'na co komu wyklad?',
+          'info' : 'Odblokowuje wredne pytanie',
           'click' : function (e) {
             rocket.service("engine").upgrade(e, {
               'koszt' : 100,
-              'name' : 'nie sluchaj wykladu'
+              'name' : 'Wredne pytanie'
             });
           }
         },
         {
-          'name' : 'namow profesora na wyklad',
+          'name' : 'Kup PC',
           'icon' : 'fa-cash fa-3x',
           'enabled' : true,
           'koszt' : 100,
-          'opis' : 'zacznij prowadzic wyklady',
+          'info' : 'Odblokowuje grę w Wow\'a',
           'click' : function (e) {
             rocket.service("engine").upgrade(e, {
               'koszt' : 100,
-              'name' : 'asystuj profesorowi'
+              'name' : 'Graj w WoW\'a'
             });
           }
         }
@@ -107,78 +87,56 @@ rocket.register.service('tomaszewXP', function() {
     'c' : {
       'skills' : [
         {
-          'name' : 'rob zadania',
-          'icon' : 'fa-tasks fa-3x',
-          'enabled' : true,
+          'name' : 'Prowadź zajęcia',
+          'icon' : 'fa-graduation-cap fa-3x',
+          'enabled' : false,
           'info' : '+2 kod',
           'click' : function () {
             rocket.service('engine').change({
               'money' : 2
             });
           }
-        },
-        {
-          'name' : 'pomoz kodzic znajomemu',
-          'icon' : 'fa-medkit fa-3x',
-          'enabled' : true,
-          'info' : '-2 kod&+1 student',
-          'click' : function () {
-            rocket.service('engine').change({
-              'money' : 2
-            });
-          }
-        },
-        {
-          'name' : 'wytknij blad prowadzacemu',
-          'icon' : 'fa-comment fa-3x',
-          'enabled' : true,
-          'info' : '-10 kod&+2 studentów',
-          'click' : function () {
-            rocket.service('engine').change({
-              'money' : -10,
-              'students' : 2
-            });
-          }
-        },
+        }
       ],
-      'upgrades' : []
+      'upgrades' : [
+        {
+          'name' : 'Napisz niezrozumiałe zadania',
+          'enabled' : true,
+          'koszt' : 100,
+          'info' : 'Pozwala na prowadzenie zajęć\'a',
+          'click' : function (e) {
+            rocket.service("engine").upgrade(e, {
+              'koszt' : 100,
+              'name' : 'Prowadź zajęcia'
+            });
+          }
+        }
+      ]
     },
     'b' : {
       'skills' : [
         {
-          'name' : 'czytaj dokumentację',
+          'name' : 'Weź udział w hackatonie',
           'icon' : 'fa-book fa-3x',
-          'enabled' : true,
+          'enabled' : false,
           'info' : '+1 kod',
           'click' : function () {
             rocket.service('engine').change({
               'money' : 1
             });
           }
-        },
-        {
-          'name' : 'wez udzial w konkusie',
-          'icon' : 'fa-play fa-3x',
-          'enabled' : false,
-          'info' : '+1 profit&-5 studentów',
-          'click' : function () {
-            rocket.service('engine').change({
-              'profit' : 1,
-              'students' : -5
-            });
-          }
         }
       ],
       'upgrades' : [
         {
-          'name' : 'naucz sie kompilatora na pamiec',
+          'name' : 'Naucz się dokumentacji',
           'koszt' : 100,
-          'info' : 'umożliwia udzial w konkursie',
+          'info' : 'Umożliwia udzial w hackatonie',
           'click' : function (e) {
 
             rocket.service("engine").upgrade(e, {
               'koszt' : 100,
-              'name' : 'wez udzial w konkusie'
+              'name' : 'Weź udział w hackatonie'
             });
 
           }
@@ -188,8 +146,8 @@ rocket.register.service('tomaszewXP', function() {
     't' : {
       'skills' : [
         {
-          'name' : 'graj w pasjansa online',
-          'icon' : 'fa-play fa-3x',
+          'name' : 'Hakuj sieć komórkową',
+          'icon' : 'fa fa-mobile fa-3x',
           'enabled' : false,
           'info' : '+1 studentów',
           'click' : function () {
@@ -199,67 +157,44 @@ rocket.register.service('tomaszewXP', function() {
           }
         },
         {
-          'name' : 'koduj w microJava',
+          'name' : 'Tomaszew 10',
           'icon' : 'fa-play fa-3x',
           'enabled' : false,
-          'info' : '+2 kodu',
+          'info' : 'Zainstaluj nowy system',
           'click' : function () {
             rocket.service('engine').change({
               'money' : 2
             });
           }
-        },
-        {
-          'name' : 'tomaszewXP',
-          'icon' : 'fa-star fa-3x',
-          'enabled' : false,
-          'info' : 'zainstaluj nowy system',
-          'click' : function () {
-            //todo
-          }
         }
       ],
       'upgrades' : [
         {
-          'name' : 'kup modem',
+          'name' : 'Kup Nokie 3310',
           'koszt' : 100,
-          'info' : 'umożliwia gre w pasjansa online',
+          'info' : 'Umożliwia hakowanie sieci komórkowych',
           'click' : function (e) {
 
             rocket.service("engine").upgrade(e, {
               'koszt' : 100,
-              'name' : 'graj w pasjansa online'
+              'name' : 'Hakuj sieć komórkową'
             });
 
           }
         },
         {
-          'name' : 'napisz microJava',
-          'icon' : 'fa-play fa-3x',
+          'name' : 'Napisz magisterkę',
           'enabled' : true,
           'koszt' : 200,
           'info' : '+1 profit',
           'click' : function (e) {
             rocket.service("engine").upgrade(e, {
               'koszt' : 100,
-              'name' : 'koduj w microJava',
+              'name' : 'Tomaszew 10',
               'profit' : 5
             });
           }
-        },
-        {
-          'name' : 'napisz inzynierke',
-          'koszt' : 1000,
-          'info' : 'odblokowuje upgrade do tomaszewXP',
-          'click' : function (e) {
-
-            rocket.service("engine").upgrade(e, {
-              'name' : 'tomaszewXP',
-              'koszt' : 1000
-            });
-
-          }
-        },
+        }
       ]
     }
   }
