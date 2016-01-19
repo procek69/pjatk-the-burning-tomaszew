@@ -146,17 +146,18 @@ rocket.register.service("engine", function () {
 
   function renderUpgrade (element, params) {
 
-    var div = document.createElement('div');
-    div.className = 'upgrade';
+    var enabled = params['enabled'];
 
-    var enabled = params['enabled'] || true;
+    if (enabled == undefined) enabled = true;
 
     if (enabled) {
-      console.log('bede rysyowal: ', params);
-      rocket.router.loadModuleIntoElement('content/tile/upgrade', div, params);
-    }
+      var div = document.createElement('div');
+      div.className = 'upgrade';
 
-    element.appendChild(div);
+      rocket.router.loadModuleIntoElement('content/tile/upgrade', div, params);
+
+      element.appendChild(div);
+    }
 
   }
 
