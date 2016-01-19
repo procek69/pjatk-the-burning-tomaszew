@@ -288,6 +288,18 @@ rocket.register.service('os11tomaszew', function() {
     getMenu : function () {
       return menu;
     },
+    upgrade : function (letter, name) {
+      for (var i = 0, l = data[letter]['upgrades'].length; i < l; i++) {
+        if (data[letter]['upgrades'][i]['unlock'] == name) {
+          data[letter]['upgrades'][i]['enabled'] = false;
+        }
+      }
+      for (var i = 0, l = data[letter]['skills'].length; i < l; i++) {
+        if (data[letter]['skills'][i]['name'] == name) {
+          data[letter]['skills'][i]['enabled'] = true;
+        }
+      }
+    },
     setUp : function () {
     }
   };
