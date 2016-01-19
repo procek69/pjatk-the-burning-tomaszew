@@ -46,27 +46,24 @@ rocket.register.service("engine", function () {
 
     if (!tryUpgrade(e)) return;
 
-    var cost = values['money'];
-    var student = values['students'];
-    var prof = values['profit'];
+    var cost = values['koszt'] || 0;
+    var student = values['students'] || 0;
+    var prof = values['profit'] || 0;
 
-    if (cost != undefined) {
-      if (money < cost) {
-        return;
-      }
-      money -= cost;
-    }
+    console.log(cost, student, prof);
 
-    if (student != undefined) {
-      if (students < student) {
-        return;
-      }
-      students -= student;
+    if (money - cost < 0) {
+      return;
     }
+    money -= cost;
 
-    if (prof != undefined) {
-      profit += prof;
+
+    if (students - student < 0) {
+      return;
     }
+    students -= student;
+
+    profit += prof;
 
     var callback = values['callback'];
     if (callback != undefined) callback();

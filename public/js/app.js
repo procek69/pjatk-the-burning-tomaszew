@@ -68,6 +68,53 @@ rocket.register.module('content', function (element, params) {
 
 'use strict';
 
+rocket.register.module('top', function (element, params) {
+
+  var $money;
+  var $students;
+  var $profit;
+
+  return {
+    constructor : function () {
+      var $this = this;
+      $this.setup();
+
+      rocket.register.event('updateMoney', function(money) {
+        $this.update(money);
+      });
+
+      rocket.register.event('updateStudents', function (students) {
+        $this.updateStudents(students);
+      });
+
+      rocket.register.event('updateProfit', function (profit) {
+        $this.updateProfit(profit);
+      });
+
+    },
+    update : function(money) {
+      $money.innerHTML = money;
+      localStorage.setItem('money', money);
+    },
+    updateStudents : function (students) {
+      $students.innerHTML = students;
+      localStorage.setItem('students', students);
+    },
+    updateProfit : function (profit) {
+      $profit.innerHTML = ['(+', profit, '/s)'].join('');
+      localStorage.setItem('proft', profit);
+
+    },
+    setup : function () {
+      $students = element.querySelector('p:nth-child(1) > span');
+      $money    = element.querySelector('p:nth-child(2) > span');
+      $profit   = element.querySelector('p:nth-child(2) > i');
+    }
+  }
+});
+
+'use strict';
+
 rocket.register.service("engine", function () {
 
   function parse(name, def) {
@@ -114,27 +161,24 @@ rocket.register.service("engine", function () {
 
     if (!tryUpgrade(e)) return;
 
-    var cost = values['money'];
-    var student = values['students'];
-    var prof = values['profit'];
+    var cost = values['koszt'] || 0;
+    var student = values['students'] || 0;
+    var prof = values['profit'] || 0;
 
-    if (cost != undefined) {
-      if (money < cost) {
-        return;
-      }
-      money -= cost;
-    }
+    console.log(cost, student, prof);
 
-    if (student != undefined) {
-      if (students < student) {
-        return;
-      }
-      students -= student;
+    if (money - cost < 0) {
+      return;
     }
+    money -= cost;
 
-    if (prof != undefined) {
-      profit += prof;
+
+    if (students - student < 0) {
+      return;
     }
+    students -= student;
+
+    profit += prof;
 
     var callback = values['callback'];
     if (callback != undefined) callback();
@@ -1185,53 +1229,6 @@ rocket.register.service('tomaszewXP', function() {
 
     }
   };
-});
-
-'use strict';
-
-rocket.register.module('top', function (element, params) {
-
-  var $money;
-  var $students;
-  var $profit;
-
-  return {
-    constructor : function () {
-      var $this = this;
-      $this.setup();
-
-      rocket.register.event('updateMoney', function(money) {
-        $this.update(money);
-      });
-
-      rocket.register.event('updateStudents', function (students) {
-        $this.updateStudents(students);
-      });
-
-      rocket.register.event('updateProfit', function (profit) {
-        $this.updateProfit(profit);
-      });
-
-    },
-    update : function(money) {
-      $money.innerHTML = money;
-      localStorage.setItem('money', money);
-    },
-    updateStudents : function (students) {
-      $students.innerHTML = students;
-      localStorage.setItem('students', students);
-    },
-    updateProfit : function (profit) {
-      $profit.innerHTML = ['(+', profit, '/s)'].join('');
-      localStorage.setItem('proft', profit);
-
-    },
-    setup : function () {
-      $students = element.querySelector('p:nth-child(1) > span');
-      $money    = element.querySelector('p:nth-child(2) > span');
-      $profit   = element.querySelector('p:nth-child(2) > i');
-    }
-  }
 });
 
 'use strict';
