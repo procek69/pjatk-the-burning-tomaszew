@@ -40,7 +40,6 @@ rocket.register.module('content', function (element, params) {
 
   return {
     constructor: function () {
-      rocket.service("engine").nextLvl();
       window.addEventListener("hashchange", function (e) {
         load();
         var menu = rocket.service("engine").getMenu();
@@ -80,7 +79,8 @@ rocket.register.service("engine", function () {
   var money = parse('money', 0);
   var profit = parse('profit', 1);
   var students = parse('students', 20);
-  var lvl = '';
+  var lvl = 'tomaszew95';
+  document.body.className = 'tomaszew95';
   var time = parse('time', 90*60);
   var after = null;
 

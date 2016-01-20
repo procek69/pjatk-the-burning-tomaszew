@@ -40,7 +40,6 @@ rocket.register.module('content', function (element, params) {
 
   return {
     constructor: function () {
-      rocket.service("engine").nextLvl();
       window.addEventListener("hashchange", function (e) {
         load();
         var menu = rocket.service("engine").getMenu();
