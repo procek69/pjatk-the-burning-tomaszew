@@ -37,31 +37,31 @@ rocket.register.module('content', function (element, params) {
     }
   }
 
-  window.addEventListener("hashchange", function (e) {
-    load();
-    var menu = rocket.service("engine").getMenu();
-    var letter = getLetter();
-    for (var i = 0, l = menu.length; i < l; i++) {
-      if (menu[i]['letter'] == letter) {
-        var f = menu[i]['callback'];
-        console.log(f);
-        if (f != undefined) {
-          f();
-        }
-      }
-    }
-
-  });
-
   //rocket.trigger('loadLvl', function () {});
 
 
   return {
     constructor: function () {
-      load();
+      window.addEventListener("hashchange", function (e) {
+        load();
+        var menu = rocket.service("engine").getMenu();
+        var letter = getLetter();
+        for (var i = 0, l = menu.length; i < l; i++) {
+          if (menu[i]['letter'] == letter) {
+            var f = menu[i]['callback'];
+            console.log(f);
+            if (f != undefined) {
+              f();
+            }
+          }
+        }
+      });
+
       rocket.service("engine").setAfter(function () {
         load();
       });
+
+      load();
     }
   }
 });

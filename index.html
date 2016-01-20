@@ -24,6 +24,15 @@
 </head>
 <body>
 
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+var js, fjs = d.getElementsByTagName(s)[0];
+if (d.getElementById(id)) return;
+js = d.createElement(s); js.id = id;
+js.src = "//connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v2.5";
+fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
 <div class="header">
     <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
         <a class="pure-menu-heading" href="">Tomaszew Simulator</a>
@@ -38,7 +47,7 @@
     <div class="splash">
         <h1 class="splash-head">Tomaszew Simulator<br/>2016 (alfa edition)</h1>
         <p class="splash-subhead">
-            PJATK: The Burning Tomaszew
+            <div class="fb-like" data-href="https://www.facebook.com/tomaszewsimulator" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
         </p>
         <p>
             <a href="public/" class="pure-button pure-button-primary">Graj teraz</a>
