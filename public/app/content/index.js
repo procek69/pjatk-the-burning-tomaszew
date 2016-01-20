@@ -7,8 +7,6 @@ rocket.register.module('content', function (element, params) {
   var upgradesElement = element.querySelector(':scope div.upgrades');
   var skillsElement = element.querySelector(':scope div.skills');
 
-  rocket.service("engine").nextLvl();
-
   var menu = rocket.service("engine").getMenu();
 
   function getLetter() {
@@ -42,6 +40,7 @@ rocket.register.module('content', function (element, params) {
 
   return {
     constructor: function () {
+      rocket.service("engine").nextLvl();
       window.addEventListener("hashchange", function (e) {
         load();
         var menu = rocket.service("engine").getMenu();
