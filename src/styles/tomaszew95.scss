@@ -1,0 +1,56 @@
+@import url(https://fonts.googleapis.com/css?family=VT323);
+$theme: rgb(0, 132, 132);
+
+body {
+    font-family: VT323;
+    font-size: 19px;
+}
+
+.desktop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    &.tomaszew95 {
+        background-color: $theme;
+
+
+        .window {
+            position: absolute;
+            min-height: 200px;
+            min-width: 300px;
+            background-color: #c0c0c0;
+            box-shadow: whitesmoke 2px 2px 2px 0 inset, black 1px 1px 2px 0;
+
+            .titleBar {
+                background-color: #010080;
+                color: white;
+                margin: 2px;
+                padding: 3px;
+                display: flex;
+                flex-direction: row;
+                p {
+                    margin: 0;
+                    padding: 0;
+                    margin-left: 4px;
+                }
+                .divider {
+                    flex-grow: 1;
+                }
+                button {
+                    $height: 20px;
+                    max-width: $height;
+                    max-height: $height;
+                    width: $height;
+                    height: $height;
+                    padding: 0;
+                    margin: 0;
+                    font-weight: bold;
+                    background-color: #c0c0c0;
+                }
+            }
+        }
+
+    }
+}
