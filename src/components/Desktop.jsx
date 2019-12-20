@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import tomaszew95 from "./images/tomaszew95.png";
+import tomaszew95 from "./../images/tomaszew95.png";
 import Window from "./Window";
-import SystemBar from "./components/SystemBar";
+import SystemBar from "./SystemBar";
 
 
 export default () => {
