@@ -14,7 +14,7 @@ const getRandomPointInScreen = () => {
     }
 }
 
-export default function ({ children, title }) {
+export default function ({ children, title, onClose }) {
 
     const startPosition = getRandomPointInScreen();
 
@@ -24,7 +24,7 @@ export default function ({ children, title }) {
                 <div className="titleBar">
                     <p>{title || "Window"}</p>
                     <div className="divider"></div>
-                    <button>X</button>
+                    <button onClick={onClose}>X</button>
                 </div>
                 {children}
             </div>

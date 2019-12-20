@@ -1,5 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=VT323);
 $theme: rgb(0, 132, 132);
+$gray: #c0c0c0;
 
 body {
     font-family: VT323;
@@ -15,12 +16,15 @@ body {
     &.tomaszew95 {
         background-color: $theme;
 
+        button {
+            background-color: $gray;
+        }
 
         .window {
             position: absolute;
             min-height: 200px;
             min-width: 300px;
-            background-color: #c0c0c0;
+            background-color: $gray;
             box-shadow: whitesmoke 2px 2px 2px 0 inset, black 1px 1px 2px 0;
 
             .titleBar {
@@ -47,9 +51,18 @@ body {
                     padding: 0;
                     margin: 0;
                     font-weight: bold;
-                    background-color: #c0c0c0;
+                    background-color: $gray;
                 }
             }
+        }
+
+        .system-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background-color: $gray;
         }
 
     }
