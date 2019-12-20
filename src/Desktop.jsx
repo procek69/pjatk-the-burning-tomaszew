@@ -6,15 +6,19 @@ import SystemBar from "./components/SystemBar";
 
 export default () => {
     const [windows, setWindows] = useState([], []);
+
+    const closeWindow = (id) => {
+        let newWindowsState = [...windows];
+        newWindowsState.splice(id, 1);
+        setWindows(newWindowsState);
+    }
+
     return (
         <div className="desktop tomaszew95">
-            <img src={tomaszew95} />
+            <img className="system-logo" src={tomaszew95} />
             {windows.map((windowParams, key) => {
-                let onClose = () => {
-                    setWindows(windows.splice(key, 1));
-                }
                 return (
-                    <Window onClose={onClose} key={key} params={windowParams}>
+                    <Window onClose={_ => closeWindow(key)} key={key} params={windowParams}>
                         To jest treść okna {key}
                     </Window>
                 );
