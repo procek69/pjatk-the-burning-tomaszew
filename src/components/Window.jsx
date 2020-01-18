@@ -17,6 +17,7 @@ const getRandomPointInScreen = () => {
 export default function ({ children, title, onClose }) {
 
     const startPosition = getRandomPointInScreen();
+    console.log(title);
 
     return (
         <Draggable defaultPosition={startPosition}>

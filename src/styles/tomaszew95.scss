@@ -63,6 +63,15 @@ body {
             right: 0;
             height: 30px;
             background-color: $gray;
+                button {
+                    justify-content: 'space-evenly';
+                }
+        }
+
+        .system-bar-icon{
+            height: 13px;
+            width: 13px;
+            margin-right: 5px;
         }
 
         .system-logo {
@@ -71,6 +80,8 @@ body {
             left: 50%;
             transform: translateX(-50%) translateY(-50%);
         }
+
+        
 
     }
 }
