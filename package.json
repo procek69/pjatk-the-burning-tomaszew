@@ -2,7 +2,7 @@
   "name": "pjatk-the-burning-tomaszew",
   "version": "1.0.0",
   "scripts": {
-    "start": "cd src && parcel *.html --host 127.0.0.1"
+    "start": "parcel src/index.html"
   },
   "author": "Procek69 <procek69@pjwstk.edu.pl>",
   "devDependencies": {
